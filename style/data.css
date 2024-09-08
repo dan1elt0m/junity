@@ -1,0 +1,77 @@
+/* style/data.css */
+.jp-icon-string {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-right: 5px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../assets/datatypes/icon-string-black.svg');
+  vertical-align: middle; /* Align icon vertically in the middle */
+}
+
+.jp-icon-numeric {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-right: 5px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../assets/datatypes/icon-numeric-black.svg');
+  vertical-align: middle; /* Align icon vertically in the middle */
+}
+
+.jp-icon-temporal {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-right: 5px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../assets/datatypes/icon-temporal-black.svg');
+  vertical-align: middle; /* Align icon vertically in the middle */
+}
+
+.jp-icon-complex {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-right: 5px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../assets/datatypes/icon-complex-black.svg');
+  vertical-align: middle; /* Align icon vertically in the middle */
+}
+
+.jp-icon-boolean {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-right: 5px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../assets/datatypes/icon-boolean-black.svg');
+  vertical-align: middle; /* Align icon vertically in the middle */
+}
+
+.jp-icon-other {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-right: 5px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../assets/datatypes/icon-other-black.svg');
+  vertical-align: middle; /* Align icon vertically in the middle */
+}
+
+.jp-icon-default {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-right: 5px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../assets/datatypes/icon-default-black.svg');
+  vertical-align: middle; /* Align icon vertically in the middle */
+}

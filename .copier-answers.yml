@@ -1,0 +1,14 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: v4.3.5
+_src_path: https://github.com/jupyterlab/extension-template
+author_email: daniel.tom@xebia.com
+author_name: Daniel Tom
+has_binder: false
+has_settings: false
+kind: frontend
+labextension_name: junity
+project_short_description: A JupyterLab extension for Unity Catalog
+python_name: junity
+repository: https://github.com/dan1elt0m/junity
+test: true
+

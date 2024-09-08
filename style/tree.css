@@ -1,0 +1,130 @@
+ul {
+  list-style-type: none; /* Remove default bullet points */
+  margin: 0;
+  padding-left: 10px; /* Indent child layers compared to parent */
+}
+
+li {
+  margin: 0;
+  padding: 3px 0; /* Reduce padding between layers */
+}
+
+.tree-node {
+  position: relative;
+  padding-right: 30px;
+  display: block; /* Change to block to stack elements vertically */
+  align-items: flex-start; /* Align items to the start */
+  padding-bottom: 1px;
+}
+
+.tree-node > div {
+  display: flex;
+  align-items: center;
+  padding-bottom: 2px;
+}
+
+.tree-node + .tree-node {
+  padding-top: 2px; /* Add more space between schema and tables */
+}
+
+.grey-font {
+  color: grey;
+}
+
+.small-font {
+  font-size: 10px; /* Adjust the font size as needed */
+}
+
+.margin-left {
+  margin-left: 6px; /* Adjust the value to increase the space */
+}
+
+.column-name {
+  padding-left: 5px; /* Indent column names */
+}
+
+.expand-all-button {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition-duration: 0.4s;
+  background-image: url('../assets/tree/icon-expand-black.svg');
+}
+
+.expand-all-button-rotate {
+  transform: rotate(-90deg);
+}
+
+.jp-icon-expand {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../assets/tree/icon-expand-black.svg');
+  transition: transform 0.5s ease; /* Smooth rotation */
+}
+.jp-icon-rotate {
+  transform: rotate(-90deg);
+}
+
+.jp-icon-catalog {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../assets/tree/icon-catalog-black.svg');
+  margin-left: 1px; /* Adjust this value to shift the icon to the right */
+  vertical-align: middle; /* Align icon vertically in the middle */
+}
+
+.jp-icon-schema {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../assets/tree/icon-schema-black.svg');
+  margin-left: 2px; /* Adjust this value to shift the icon to the right */
+  vertical-align: middle; /* Align icon vertically in the middle */
+}
+
+.jp-icon-table {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../assets/tree/icon-table-black.svg');
+  margin-left: 2px; /* Adjust this value to shift the icon to the right */
+  margin-right: 2px;
+  vertical-align: middle; /* Align icon vertically in the middle */
+}
+
+.jp-icon-insert {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../assets/tree/icon-insert-black.svg');
+  opacity: 0; /* Make the icon invisible */
+  transition: opacity 0.3s ease; /* Smooth transition */
+  cursor: pointer;
+  position: absolute; /* Position the icon absolutely */
+  right: 10px; /* Adjust this value to stick the icon to the right corner */
+  vertical-align: middle; /* Align icon vertically in the middle */
+}
+
+.jp-icon-insert:hover {
+  opacity: 1; /* Make the icon visible on hover */
+}
+
