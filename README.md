@@ -26,6 +26,17 @@ To remove the extension, execute:
 pip uninstall junity
 ```
 
+## Configuration
+
+The default `unityCatalogHostUrl` is set to `http://localhost:8080/api/2.1/unity-catalog`.
+
+To adjust the `unityCatalogHostUrl`, follow these steps:
+
+1. Open JupyterLab.
+2. Navigate to the settings menu.
+3. Find the `junity:settings` setting.
+4. Update the URL to your desired endpoint.
+
 ## Contributing
 
 ### Development install
