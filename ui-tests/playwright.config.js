@@ -1,3 +1,5 @@
+const path = require('path');
+
 /**
  * Configuration for Playwright using default from @jupyterlab/galata
  */

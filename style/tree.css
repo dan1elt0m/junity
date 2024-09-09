@@ -14,17 +14,11 @@ li {
   padding-right: 30px;
   display: block; /* Change to block to stack elements vertically */
   align-items: flex-start; /* Align items to the start */
-  padding-bottom: 1px;
-}
-
-.tree-node > div {
-  display: flex;
-  align-items: center;
-  padding-bottom: 2px;
+  padding-bottom: 1px; /* Add a small space at the bottom */
 }
 
 .tree-node + .tree-node {
-  padding-top: 2px; /* Add more space between schema and tables */
+  padding-top: 2px; /* Add more space between tables */
 }
 
 .grey-font {
@@ -84,6 +78,7 @@ li {
   background-repeat: no-repeat;
   background-image: url('../assets/tree/icon-catalog-black.svg');
   margin-left: 1px; /* Adjust this value to shift the icon to the right */
+  margin-bottom: 3px; /* Add space below catalog names */
   vertical-align: middle; /* Align icon vertically in the middle */
 }
 
@@ -95,6 +90,7 @@ li {
   background-repeat: no-repeat;
   background-image: url('../assets/tree/icon-schema-black.svg');
   margin-left: 2px; /* Adjust this value to shift the icon to the right */
+  margin-bottom: 3px; /* Add space below schema names */
   vertical-align: middle; /* Align icon vertically in the middle */
 }
 

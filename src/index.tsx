@@ -56,8 +56,6 @@ const extension: JupyterFrontEndPlugin<void> = {
     notebookTracker: INotebookTracker,
     settings: ISettingRegistry
   ) => {
-    console.log('JupyterLab extension Junity is activated!');
-
     /**
      * Load the settings for this extension
      *
@@ -86,6 +84,8 @@ const extension: JupyterFrontEndPlugin<void> = {
     catalogTreeWidget.title.label = 'Catalog';
     catalogTreeWidget.title.iconClass = 'jp-icon-extension jp-SideBar-tabIcon';
     shell.add(catalogTreeWidget, 'left');
+
+    console.log('JupyterLab extension junity is activated!');
   }
 };
 

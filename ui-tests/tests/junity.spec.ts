@@ -13,7 +13,7 @@ test('should emit an activation console message', async ({ page }) => {
     logs.push(message.text());
   });
 
-  await page.goto();
+  await page.goto('http://localhost:8888');
 
   expect(
     logs.filter(s => s === 'JupyterLab extension junity is activated!')
