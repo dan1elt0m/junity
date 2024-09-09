@@ -2,6 +2,22 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.1.2
+
+([Full Changelog](https://github.com/dan1elt0m/junity/compare/7e580b3a5c9690b0124aaebbd30ac5cf7c0bfdee...b84ae9c6b5e0b18ca0efa92d758e9c93b06af9a1))
+
+### Merged PRs
+
+- bump version [#4](https://github.com/dan1elt0m/junity/pull/4) ([@dan1elt0m](https://github.com/dan1elt0m))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/dan1elt0m/junity/graphs/contributors?from=2024-09-08&to=2024-09-09&type=c))
+
+[@dan1elt0m](https://github.com/search?q=repo%3Adan1elt0m%2Fjunity+involves%3Adan1elt0m+updated%3A2024-09-08..2024-09-09&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## [0.1.2] - 2024-09-09
 
 ### Enhanced
@@ -11,8 +27,6 @@
 ### Added
 
 - Demo gif and configuration instructions
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## [0.1.1] - 2024-09-09
 
