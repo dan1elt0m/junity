@@ -45,9 +45,10 @@ const getColumnIconClass = (dataType: string): string => {
   }
 };
 
-const CatalogTree: React.FC<{ notebookTracker: INotebookTracker }> = ({
-  notebookTracker
-}) => {
+const CatalogTree: React.FC<{
+  notebookTracker: INotebookTracker;
+  hostUrl: string;
+}> = ({ notebookTracker, hostUrl }) => {
   const [catalogs, setCatalogs] = useState<ICatalog[]>([]);
   const [schemas, setSchemas] = useState<{ [key: string]: ISchema[] }>({});
   const [tables, setTables] = useState<{ [key: string]: ITable[] }>({});
@@ -58,7 +59,7 @@ const CatalogTree: React.FC<{ notebookTracker: INotebookTracker }> = ({
 
   useEffect(() => {
     const loadCatalogs = async () => {
-      const catalogs = await fetchCatalogs();
+      const catalogs = await fetchCatalogs(hostUrl);
       setCatalogs(catalogs);
     };
     loadCatalogs();
@@ -69,12 +70,16 @@ const CatalogTree: React.FC<{ notebookTracker: INotebookTracker }> = ({
     const newTables: { [key: string]: ITable[] } = {};
 
     for (const catalog of catalogs) {
-      const fetchedSchemas = await fetchSchemas(catalog.name);
+      const fetchedSchemas = await fetchSchemas(hostUrl, catalog.name);
       newSchemas[catalog.name] = fetchedSchemas;
 
       for (const schema of fetchedSchemas) {
         const schemaKey = `${catalog.name}/${schema.name}`;
-        const fetchedTables = await fetchTables(catalog.name, schema.name);
+        const fetchedTables = await fetchTables(
+          hostUrl,
+          catalog.name,
+          schema.name
+        );
         newTables[schemaKey] = fetchedTables;
       }
     }
@@ -119,7 +124,7 @@ const CatalogTree: React.FC<{ notebookTracker: INotebookTracker }> = ({
   };
 
   const refreshData = async () => {
-    const catalogs = await fetchCatalogs();
+    const catalogs = await fetchCatalogs(hostUrl);
     setCatalogs(catalogs);
     await fetchAndSetSchemasAndTables(catalogs);
   };
@@ -173,7 +178,7 @@ const CatalogTree: React.FC<{ notebookTracker: INotebookTracker }> = ({
     });
 
     if (type === 'catalog' && !schemas[nodeName]) {
-      const fetchedSchemas = await fetchSchemas(nodeName);
+      const fetchedSchemas = await fetchSchemas(hostUrl, nodeName);
       setSchemas(prev => ({ ...prev, [nodeName]: fetchedSchemas }));
     }
 
@@ -186,7 +191,11 @@ const CatalogTree: React.FC<{ notebookTracker: INotebookTracker }> = ({
         throw new Error('Schema name not found');
       }
       if (!tables[nodeName]) {
-        const fetchedTables = await fetchTables(parentName, schemaName);
+        const fetchedTables = await fetchTables(
+          hostUrl,
+          parentName,
+          schemaName
+        );
         setTables(prev => ({ ...prev, [nodeName]: fetchedTables }));
       }
     }

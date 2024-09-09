@@ -40,7 +40,7 @@ li {
 }
 
 .column-name {
-  padding-left: 5px; /* Indent column names */
+  padding-left: 0; /* Indent column names */
 }
 
 .expand-all-button {
@@ -71,6 +71,7 @@ li {
   background-image: url('../assets/tree/icon-expand-black.svg');
   transition: transform 0.5s ease; /* Smooth rotation */
 }
+
 .jp-icon-rotate {
   transform: rotate(-90deg);
 }
@@ -127,4 +128,3 @@ li {
 .jp-icon-insert:hover {
   opacity: 1; /* Make the icon visible on hover */
 }
-

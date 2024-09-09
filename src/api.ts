@@ -1,5 +1,3 @@
-const BASE_URL = 'http://localhost:8081/api/2.1/unity-catalog';
-
 export interface ICatalog {
   name: string;
 }
@@ -23,8 +21,8 @@ export interface IColumn {
 /**
  * Fetch the list of catalogs.
  */
-export async function fetchCatalogs() {
-  const response = await fetch(`${BASE_URL}/catalogs`, {
+export async function fetchCatalogs(hostUrl: string) {
+  const response = await fetch(`${hostUrl}/catalogs`, {
     method: 'GET',
     mode: 'cors'
   });
@@ -41,9 +39,9 @@ export async function fetchCatalogs() {
 /**
  * Fetch the schemas for a given catalog.
  */
-export async function fetchSchemas(catalogName: string) {
+export async function fetchSchemas(hostUrl: string, catalogName: string) {
   const response = await fetch(
-    `${BASE_URL}/schemas?catalog_name=${catalogName}`,
+    `${hostUrl}/schemas?catalog_name=${catalogName}`,
     {
       method: 'GET',
       mode: 'cors'
@@ -62,9 +60,13 @@ export async function fetchSchemas(catalogName: string) {
 /**
  * Fetch the tables for a given catalog and schema.
  */
-export async function fetchTables(catalogName: string, schemaName: string) {
+export async function fetchTables(
+  hostUrl: string,
+  catalogName: string,
+  schemaName: string
+) {
   const response = await fetch(
-    `${BASE_URL}/tables?catalog_name=${catalogName}&schema_name=${schemaName}`,
+    `${hostUrl}/tables?catalog_name=${catalogName}&schema_name=${schemaName}`,
     {
       method: 'GET',
       mode: 'cors'
