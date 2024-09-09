@@ -45,9 +45,6 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
           release_url: ${{ steps.populate-release.outputs.release_url }}
 
-      - name: Publish package distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-
       - name: "** Next Step **"
         if: ${{ success() }}
         run: |
