@@ -24,8 +24,9 @@ module.exports = {
   ],
   coverageReporters: ['lcov', 'text'],
   testRegex: 'src/.*/.*.spec.ts[x]?$',
-  transformIgnorePatterns: [`/node_modules/(?!${esModules}).+`, '<rootDir>/jest.setup.ts'],
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  transformIgnorePatterns: [
+    `/node_modules/(?!${esModules}).+`
+  ],
   transform: {
     '^.+\\.tsx?$': 'ts-jest'
   }

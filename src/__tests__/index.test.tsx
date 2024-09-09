@@ -4,7 +4,6 @@ import extension from '../index';
 import CatalogTreeWidget from '../catalogTree';
 import { JupyterFrontEnd } from '@jupyterlab/application';
 
-
 class ConcreteJupyterFrontEnd extends JupyterFrontEnd {
   name: string;
   namespace: string;
@@ -31,7 +30,10 @@ describe('JupyterLab extension', () => {
   let shell: ILabShell;
 
   beforeEach(() => {
-    app = new ConcreteJupyterFrontEnd({ restored: Promise.resolve(undefined), shell: undefined});
+    app = new ConcreteJupyterFrontEnd({
+      restored: Promise.resolve(undefined),
+      shell: undefined
+    });
     shell = {
       add: jest.fn()
     } as unknown as ILabShell;
@@ -39,6 +41,9 @@ describe('JupyterLab extension', () => {
 
   test('should add CatalogTreeWidget to the shell', () => {
     extension.activate(app, shell);
-    expect(shell.add).toHaveBeenCalledWith(expect.any(CatalogTreeWidget), 'left');
+    expect(shell.add).toHaveBeenCalledWith(
+      expect.any(CatalogTreeWidget),
+      'left'
+    );
   });
 });

@@ -8,15 +8,25 @@ import { INotebookTracker } from '@jupyterlab/notebook';
 // Mock the API functions
 jest.mock('../api');
 
-const mockFetchCatalogs = fetchCatalogs as jest.MockedFunction<typeof fetchCatalogs>;
-const mockFetchSchemas = fetchSchemas as jest.MockedFunction<typeof fetchSchemas>;
+const mockFetchCatalogs = fetchCatalogs as jest.MockedFunction<
+  typeof fetchCatalogs
+>;
+const mockFetchSchemas = fetchSchemas as jest.MockedFunction<
+  typeof fetchSchemas
+>;
 const mockFetchTables = fetchTables as jest.MockedFunction<typeof fetchTables>;
 
 // Moc
 describe('CatalogTree', () => {
   beforeEach(() => {
-    mockFetchCatalogs.mockResolvedValue([{ name: 'Catalog1' }, { name: 'Catalog2' }]);
-    mockFetchSchemas.mockResolvedValue([{ name: 'Schema1' }, { name: 'Schema2' }]);
+    mockFetchCatalogs.mockResolvedValue([
+      { name: 'Catalog1' },
+      { name: 'Catalog2' }
+    ]);
+    mockFetchSchemas.mockResolvedValue([
+      { name: 'Schema1' },
+      { name: 'Schema2' }
+    ]);
     mockFetchTables.mockResolvedValue([{ name: 'Table1' }, { name: 'Table2' }]);
   });
 
