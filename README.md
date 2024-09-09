@@ -4,6 +4,8 @@
 
 A JupyterLab extension for Unity Catalog
 
+![Junity Demo](docs/demo.gif)
+
 ## Requirements
 
 - JupyterLab >= 4.0.0
