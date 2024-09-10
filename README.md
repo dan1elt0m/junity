@@ -37,6 +37,12 @@ To adjust the `unityCatalogHostUrl`, follow these steps:
 3. Find the `junity:settings` setting.
 4. Update the URL to your desired endpoint.
 
+## Known Issues
+
+If both Jupyter Labs and Unity Catalog are running on localhost, you may run into CORS issues.
+To resolve this, you can add CORS settings to the Unity Catalog server or set up a reverse proxy (using Nginx, for example).
+Contact me if you need support with this.
+
 ## Contributing
 
 ### Development install
