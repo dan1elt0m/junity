@@ -37,11 +37,28 @@ To adjust the `unityCatalogHostUrl`, follow these steps:
 3. Find the `junity:settings` setting.
 4. Update the URL to your desired endpoint.
 
+If you can't see your catalogs being loaded in the Unity Catalog sidebar, make sure that the URL is correct and that the Unity Catalog server is running.
+If this is the case, then check Known Issues section below or check for errors in jupyter using a webinspector
+
 ## Known Issues
 
-If both Jupyter Labs and Unity Catalog are running on localhost, you may run into CORS issues.
-To resolve this, you can add CORS settings to the Unity Catalog server or set up a reverse proxy (using Nginx, for example).
-Contact me if you need support with this.
+This is more of a general problem with browsers trying to reach localhost services:
+
+- If both Jupyter Labs and Unity Catalog are running on localhost, you may run into CORS issues.
+  To resolve this, you can add CORS settings to the Unity Catalog server or set up a reverse proxy (For instance Nginx, or Apache).
+  Checkout the docker example to see how to set up a reverse proxy with Nginx.
+
+## Docker Example
+
+In the `docker` folder, you can find an example of how to run JupyterLab and Unity Catalog in Docker containers.
+To run the example, execute:
+
+```bash
+docker compose up --build -d
+```
+
+This will start JupyterLab on `http://localhost:8888` and Unity Catalog on `http://localhost:8080/api/2.1/unity-catalog`.
+You can access the example notebook by opening this URL in your browser: `http://localhost:8888/lab?token=junity/tree/example.ipynb`
 
 ## Contributing
 
