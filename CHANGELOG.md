@@ -4,10 +4,7 @@
 
 ## 0.1.3
 
-### Additions
-
-- Added a docker compose example
-- Added title and description to the junity settings page
+No merged PRs
 
 <!-- <END NEW CHANGELOG ENTRY> -->
 
