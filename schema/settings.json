@@ -1,5 +1,7 @@
 {
   "type": "object",
+  "title": "Junity",
+  "description": "Settings for the Junity extension.",
   "properties": {
     "unityCatalogHostUrl": {
       "type": "string",
