@@ -2,6 +2,15 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.1.3
+
+### Additions
+
+- Added a docker compose example
+- Added title and description to the junity settings page
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.1.2
 
 ([Full Changelog](https://github.com/dan1elt0m/junity/compare/7e580b3a5c9690b0124aaebbd30ac5cf7c0bfdee...b84ae9c6b5e0b18ca0efa92d758e9c93b06af9a1))
@@ -15,8 +24,6 @@
 ([GitHub contributors page for this release](https://github.com/dan1elt0m/junity/graphs/contributors?from=2024-09-08&to=2024-09-09&type=c))
 
 [@dan1elt0m](https://github.com/search?q=repo%3Adan1elt0m%2Fjunity+involves%3Adan1elt0m+updated%3A2024-09-08..2024-09-09&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## [0.1.2] - 2024-09-09
 
