@@ -131,3 +131,11 @@ More information are provided within the [ui-tests](./ui-tests/README.md) README
 ### Packaging the extension
 
 See [RELEASE](RELEASE.md)
+
+#### Remarks
+
+Also checkout my other library [dunky](https://github.com/dan1elt0m/dunky) for a more general purpose catalog viewer.
+
+```
+
+```
