@@ -134,7 +134,7 @@ See [RELEASE](RELEASE.md)
 
 #### Remarks
 
-Also checkout my other library [dunky](https://github.com/dan1elt0m/dunky) for a more general purpose catalog viewer.
+Also checkout my other library [dunky](https://github.com/dan1elt0m/dunky) for a matching jupyter kernel
 
 ```
 
