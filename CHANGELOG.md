@@ -2,13 +2,27 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.2.1
+
+([Full Changelog](https://github.com/dan1elt0m/junity/compare/v0.1.4...e5294fa4da4e179649608793a9a0e3d486a0eed2))
+
+### Merged PRs
+
+- Add support for auth token [#6](https://github.com/dan1elt0m/junity/pull/6) ([@dan1elt0m](https://github.com/dan1elt0m))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/dan1elt0m/junity/graphs/contributors?from=2024-10-04&to=2024-10-04&type=c))
+
+[@dan1elt0m](https://github.com/search?q=repo%3Adan1elt0m%2Fjunity+involves%3Adan1elt0m+updated%3A2024-10-04..2024-10-04&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.2.0
 
 ### Additions
 
 - Added support for authentication
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.1.4
 
