@@ -34,8 +34,9 @@ To adjust the `unityCatalogHostUrl`, follow these steps:
 
 1. Open JupyterLab.
 2. Navigate to the settings menu.
-3. Find the `junity:settings` setting.
+3. Find the `Junity` setting.
 4. Update the URL to your desired endpoint.
+5. Update the token if needed
 
 If you can't see your catalogs being loaded in the Unity Catalog sidebar, make sure that the URL is correct and that the Unity Catalog server is running.
 If this is the case, then check Known Issues section below or check for errors in jupyter using a webinspector

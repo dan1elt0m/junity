@@ -48,7 +48,8 @@ const getColumnIconClass = (dataType: string): string => {
 const CatalogTree: React.FC<{
   notebookTracker: INotebookTracker;
   hostUrl: string;
-}> = ({ notebookTracker, hostUrl }) => {
+  token: string;
+}> = ({ notebookTracker, hostUrl, token }) => {
   const [catalogs, setCatalogs] = useState<ICatalog[]>([]);
   const [schemas, setSchemas] = useState<{ [key: string]: ISchema[] }>({});
   const [tables, setTables] = useState<{ [key: string]: ITable[] }>({});
@@ -59,7 +60,7 @@ const CatalogTree: React.FC<{
 
   useEffect(() => {
     const loadCatalogs = async () => {
-      const catalogs = await fetchCatalogs(hostUrl);
+      const catalogs = await fetchCatalogs(hostUrl, token);
       setCatalogs(catalogs);
     };
     loadCatalogs();
@@ -70,15 +71,16 @@ const CatalogTree: React.FC<{
     const newTables: { [key: string]: ITable[] } = {};
 
     for (const catalog of catalogs) {
-      const fetchedSchemas = await fetchSchemas(hostUrl, catalog.name);
+      const fetchedSchemas = await fetchSchemas(catalog.name, hostUrl, token);
       newSchemas[catalog.name] = fetchedSchemas;
 
       for (const schema of fetchedSchemas) {
         const schemaKey = `${catalog.name}/${schema.name}`;
         const fetchedTables = await fetchTables(
-          hostUrl,
           catalog.name,
-          schema.name
+          schema.name,
+          hostUrl,
+          token
         );
         newTables[schemaKey] = fetchedTables;
       }
@@ -124,7 +126,7 @@ const CatalogTree: React.FC<{
   };
 
   const refreshData = async () => {
-    const catalogs = await fetchCatalogs(hostUrl);
+    const catalogs = await fetchCatalogs(hostUrl, token);
     setCatalogs(catalogs);
     await fetchAndSetSchemasAndTables(catalogs);
   };
@@ -178,7 +180,7 @@ const CatalogTree: React.FC<{
     });
 
     if (type === 'catalog' && !schemas[nodeName]) {
-      const fetchedSchemas = await fetchSchemas(hostUrl, nodeName);
+      const fetchedSchemas = await fetchSchemas(nodeName, hostUrl, token);
       setSchemas(prev => ({ ...prev, [nodeName]: fetchedSchemas }));
     }
 
@@ -192,9 +194,10 @@ const CatalogTree: React.FC<{
       }
       if (!tables[nodeName]) {
         const fetchedTables = await fetchTables(
-          hostUrl,
           parentName,
-          schemaName
+          schemaName,
+          hostUrl,
+          token
         );
         setTables(prev => ({ ...prev, [nodeName]: fetchedTables }));
       }

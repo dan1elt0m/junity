@@ -21,10 +21,13 @@ export interface IColumn {
 /**
  * Fetch the list of catalogs.
  */
-export async function fetchCatalogs(hostUrl: string) {
+export async function fetchCatalogs(hostUrl: string, token: string) {
   const response = await fetch(`${hostUrl}/catalogs`, {
     method: 'GET',
-    mode: 'cors'
+    mode: 'cors',
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
   });
   if (!response.ok) {
     throw new Error('Failed to fetch catalogs');
@@ -39,12 +42,19 @@ export async function fetchCatalogs(hostUrl: string) {
 /**
  * Fetch the schemas for a given catalog.
  */
-export async function fetchSchemas(hostUrl: string, catalogName: string) {
+export async function fetchSchemas(
+  catalogName: string,
+  hostUrl: string,
+  token: string
+) {
   const response = await fetch(
     `${hostUrl}/schemas?catalog_name=${catalogName}`,
     {
       method: 'GET',
-      mode: 'cors'
+      mode: 'cors',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     }
   );
   if (!response.ok) {
@@ -61,15 +71,19 @@ export async function fetchSchemas(hostUrl: string, catalogName: string) {
  * Fetch the tables for a given catalog and schema.
  */
 export async function fetchTables(
-  hostUrl: string,
   catalogName: string,
-  schemaName: string
+  schemaName: string,
+  hostUrl: string,
+  token: string
 ) {
   const response = await fetch(
     `${hostUrl}/tables?catalog_name=${catalogName}&schema_name=${schemaName}`,
     {
       method: 'GET',
-      mode: 'cors'
+      mode: 'cors',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     }
   );
   if (!response.ok) {

@@ -2,14 +2,19 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.2.0
+
+### Additions
+
+- Added support for authentication
+- <!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.1.3
 
 ### Additions
 
 - Added a docker compose example
 - Added title and description to the junity settings page
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.1.2
 
