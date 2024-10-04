@@ -19,11 +19,17 @@ const PLUGIN_ID = 'junity:settings';
 class CatalogTreeWidget extends ReactWidget {
   private notebookTracker: INotebookTracker;
   private hostUrl: string;
+  private token: string;
 
-  constructor(notebookTracker: INotebookTracker, hostUrl: string) {
+  constructor(
+    notebookTracker: INotebookTracker,
+    hostUrl: string,
+    token: string
+  ) {
     super();
     this.notebookTracker = notebookTracker;
     this.hostUrl = hostUrl;
+    this.token = token;
     this.id = 'catalog-tree-widget';
     this.title.closable = true;
     this.addClass('jp-CatalogTreeWidget');
@@ -32,11 +38,16 @@ class CatalogTreeWidget extends ReactWidget {
     this.hostUrl = hostUrl;
     this.update();
   }
+  updateToken(token: string) {
+    this.token = token;
+    this.update();
+  }
   render() {
     return (
       <CatalogTree
         notebookTracker={this.notebookTracker}
         hostUrl={this.hostUrl}
+        token={this.token}
       />
     );
   }
@@ -62,9 +73,12 @@ const extension: JupyterFrontEndPlugin<void> = {
      * @param setting Extension settings
      */
     let hostUrl = 'http://localhost:8080/api/2.1/unity-catalog';
+    let token = 'not-used';
     function loadSetting(setting: ISettingRegistry.ISettings): void {
       hostUrl = setting.get('unityCatalogHostUrl').composite as string;
+      token = setting.get('unityCatalogToken').composite as string;
       catalogTreeWidget.updateHostUrl(hostUrl);
+      catalogTreeWidget.updateToken(token);
       console.log(`Unity Catalog Host URL is set to '${hostUrl}'`);
     }
 
@@ -80,7 +94,11 @@ const extension: JupyterFrontEndPlugin<void> = {
       }
     );
 
-    const catalogTreeWidget = new CatalogTreeWidget(notebookTracker, hostUrl);
+    const catalogTreeWidget = new CatalogTreeWidget(
+      notebookTracker,
+      hostUrl,
+      token
+    );
     catalogTreeWidget.title.label = 'Catalog';
     catalogTreeWidget.title.iconClass = 'jp-icon-extension jp-SideBar-tabIcon';
     shell.add(catalogTreeWidget, 'left');
