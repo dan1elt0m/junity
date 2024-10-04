@@ -7,7 +7,16 @@
 ### Additions
 
 - Added support for authentication
-- <!-- <END NEW CHANGELOG ENTRY> -->
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
+## 0.1.4
+
+([Full Changelog](https://github.com/dan1elt0m/junity/compare/v0.1.2))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/dan1elt0m/junity/graphs/contributors?from=2024-09-09&to=2024-10-04&type=c))
 
 ## 0.1.3
 
