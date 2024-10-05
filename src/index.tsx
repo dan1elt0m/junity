@@ -75,8 +75,25 @@ const extension: JupyterFrontEndPlugin<void> = {
     let hostUrl = 'http://localhost:8080/api/2.1/unity-catalog';
     let token = 'not-used';
     function loadSetting(setting: ISettingRegistry.ISettings): void {
-      hostUrl = setting.get('unityCatalogHostUrl').composite as string;
-      token = setting.get('unityCatalogToken').composite as string;
+      const envHostUrl = process.env.UC_HOST_URL;
+      const envToken = process.env.UC_TOKEN;
+
+      hostUrl =
+        envHostUrl || (setting.get('unityCatalogHostUrl').composite as string);
+      token =
+        envToken || (setting.get('unityCatalogToken').composite as string);
+      // Update the settings to reflect the environment variables if they are set
+      if (envHostUrl) {
+        console.log('Found UC_HOST_URL environment variable');
+        console.log('Updating host URL settings');
+        setting.set('unityCatalogHostUrl', envHostUrl);
+      }
+      if (envToken) {
+        console.log('Found UC_TOKEN environment variable');
+        console.log('Updating token settings');
+        setting.set('unityCatalogToken', envToken);
+      }
+
       catalogTreeWidget.updateHostUrl(hostUrl);
       catalogTreeWidget.updateToken(token);
       console.log(`Unity Catalog Host URL is set to '${hostUrl}'`);
