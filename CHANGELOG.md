@@ -18,7 +18,6 @@
 
 [@dan1elt0m](https://github.com/search?q=repo%3Adan1elt0m%2Fjunity+involves%3Adan1elt0m+updated%3A2024-10-04..2024-10-04&type=Issues)
 
-
 ## 0.2.0
 
 ### Additions
