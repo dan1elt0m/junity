@@ -2,6 +2,8 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.2.1
 
 ([Full Changelog](https://github.com/dan1elt0m/junity/compare/v0.1.4...e5294fa4da4e179649608793a9a0e3d486a0eed2))
@@ -16,7 +18,6 @@
 
 [@dan1elt0m](https://github.com/search?q=repo%3Adan1elt0m%2Fjunity+involves%3Adan1elt0m+updated%3A2024-10-04..2024-10-04&type=Issues)
 
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.2.0
 

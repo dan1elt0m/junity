@@ -1,1 +1,7 @@
-module.exports = require('@jupyterlab/testutils/lib/babel.config');
+module.exports = {
+  presets: [
+    '@babel/preset-env',
+    '@babel/preset-react',
+    '@babel/preset-typescript'
+  ]
+};
