@@ -2,6 +2,20 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.2.2
+
+([Full Changelog](https://github.com/dan1elt0m/junity/compare/v0.2.1...f53803386c57d9bc9547f0255dfe4225443259e2))
+
+### Merged PRs
+
+- Add option to configure settings via environmental variables [#7](https://github.com/dan1elt0m/junity/pull/7) ([@dan1elt0m](https://github.com/dan1elt0m))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/dan1elt0m/junity/graphs/contributors?from=2024-10-04&to=2024-10-06&type=c))
+
+[@dan1elt0m](https://github.com/search?q=repo%3Adan1elt0m%2Fjunity+involves%3Adan1elt0m+updated%3A2024-10-04..2024-10-06&type=Issues)
+
 <!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.2.1
