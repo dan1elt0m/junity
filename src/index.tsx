@@ -4,7 +4,6 @@ import {
   ILabShell
 } from '@jupyterlab/application';
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
-import { requestAPI } from './handler';
 
 import { ReactWidget } from '@jupyterlab/ui-components';
 import { INotebookTracker } from '@jupyterlab/notebook';
@@ -17,6 +16,7 @@ import { ICommandPalette, IFrame } from '@jupyterlab/apputils';
 import { PageConfig } from '@jupyterlab/coreutils';
 
 import { ILauncher } from '@jupyterlab/launcher';
+import { requestAPI } from './handler';
 
 /**
  * The command IDs used by the server extension plugin.
@@ -88,7 +88,7 @@ const extension: JupyterFrontEndPlugin<void> = {
   id: PLUGIN_ID,
   autoStart: true,
   requires: [ILabShell, INotebookTracker, ISettingRegistry, ICommandPalette],
-  activate: (
+  activate: async (
     app: JupyterFrontEnd,
     shell: ILabShell,
     notebookTracker: INotebookTracker,
@@ -102,59 +102,46 @@ const extension: JupyterFrontEndPlugin<void> = {
      * @param setting Extension settings
      */
     console.log('Activating JupyterLab extension junity');
+    let catalogHostUrl: string = '';
+    let authToken: string = '';
+    let updatedSettings = false;
 
-    let hostUrl = 'http://localhost:8080/api/2.1/unity-catalog';
-    let token = 'not-used';
 
-    // Test the server extension
-    requestAPI<any>('hello')
-      .then(data => {
-        console.log(data);
-      })
-      .catch(reason => {
-        console.error(
-          `The junity server extension appears to be missing.\n${reason}`
-        );
-      });
+    // Load the settings for this extension
+    async function loadSetting(setting: ISettingRegistry.ISettings): Promise<void> {
+      if (!updatedSettings) {
+        try {
+          const settingsData = await requestAPI<any>('uc_settings');
+          let { data: { hostUrl: catalogHostUrl, token: authToken } } = settingsData;
+          if (catalogHostUrl) {
+            console.log('Found UC_HOST_URL environment variable');
+            console.log('Updating host URL settings: ', catalogHostUrl);
+            setting.set('unityCatalogHostUrl', catalogHostUrl);
+          } else {
+            catalogHostUrl = setting.get('unityCatalogHostUrl').composite as string;
+          }
 
-    // POST request
-    const dataToSend = { name: 'Daniel' };
-    requestAPI<any>('hello', {
-      body: JSON.stringify(dataToSend),
-      method: 'POST'
-    })
-      .then(reply => {
-        console.log(reply);
-      })
-      .catch(reason => {
-        console.error(
-          `Error on POST /junity-server/hello ${dataToSend}.\n${reason}`
-        );
-      });
+          if (authToken) {
+            console.log('Found UC_TOKEN environment variable');
+            console.log('Updating token settings');
+            setting.set('unityCatalogToken', authToken);
+          } else {
+            authToken = setting.get('unityCatalogToken').composite as string;
+          }
 
-    function loadSetting(setting: ISettingRegistry.ISettings): void {
-      const envHostUrl = process.env.UC_HOST_URL;
-      const envToken = process.env.UC_TOKEN;
+        } catch (reason) {
+          console.error(`The junity server extension appears to be missing.\n${reason}`);
+        }
+      } else {
+        catalogHostUrl = setting.get('unityCatalogHostUrl').composite as string;
+        authToken = setting.get('unityCatalogToken').composite as string;
+      }
 
-      hostUrl =
-        envHostUrl || (setting.get('unityCatalogHostUrl').composite as string);
-      token =
-        envToken || (setting.get('unityCatalogToken').composite as string);
+      catalogTreeWidget.updateHostUrl(catalogHostUrl);
+      catalogTreeWidget.updateToken(authToken);
       // Update the settings to reflect the environment variables if they are set
-      if (envHostUrl) {
-        console.log('Found UC_HOST_URL environment variable');
-        console.log('Updating host URL settings');
-        setting.set('unityCatalogHostUrl', envHostUrl);
-      }
-      if (envToken) {
-        console.log('Found UC_TOKEN environment variable');
-        console.log('Updating token settings');
-        setting.set('unityCatalogToken', envToken);
-      }
 
-      catalogTreeWidget.updateHostUrl(hostUrl);
-      catalogTreeWidget.updateToken(token);
-      console.log(`Unity Catalog Host URL is set to '${hostUrl}'`);
+      updatedSettings = true;
     }
 
     // Wait for the application to be restored and
@@ -171,8 +158,8 @@ const extension: JupyterFrontEndPlugin<void> = {
 
     const catalogTreeWidget = new CatalogTreeWidget(
       notebookTracker,
-      hostUrl,
-      token
+      catalogHostUrl,
+      authToken
     );
     catalogTreeWidget.title.label = 'Catalog';
     catalogTreeWidget.title.iconClass = 'jp-icon-extension jp-SideBar-tabIcon';
