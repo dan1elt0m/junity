@@ -110,8 +110,17 @@
         "access": "public"
     },
     "jupyterlab": {
+        "discovery": {
+            "server": {
+                "managers": [
+                    "pip"
+                ],
+                "base": {
+                    "name": "junity"
+                }
+            }
+        },
         "extension": true,
-        "schemaDir": "schema",
         "outputDir": "junity/labextension"
     },
     "eslintIgnore": [
@@ -176,20 +185,6 @@
             "eqeqeq": "error",
             "prefer-arrow-callback": "error"
         }
-    },
-     "jupyterlab": {
-        "discovery": {
-            "server": {
-                "managers": [
-                    "pip"
-                ],
-                "base": {
-                    "name": "junity"
-                }
-            }
-        },
-        "extension": true,
-        "outputDir": "junity/labextension"
     },
     "prettier": {
         "singleQuote": true,

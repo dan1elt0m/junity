@@ -11,7 +11,6 @@ import { INotebookTracker } from '@jupyterlab/notebook';
 import CatalogTree from './catalogTree';
 import * as React from 'react';
 import '../style/index.css'; // Import the CSS file
-import logger from './logger';
 
 const PLUGIN_ID = 'junity:settings';
 
@@ -74,7 +73,7 @@ const extension: JupyterFrontEndPlugin<void> = {
      *
      * @param setting Extension settings
      */
-    logger.info('Activating JupyterLab extension junity');
+    console.log('Activating JupyterLab extension junity');
 
     let hostUrl = 'http://localhost:8080/api/2.1/unity-catalog';
     let token = 'not-used';
@@ -115,13 +114,13 @@ const extension: JupyterFrontEndPlugin<void> = {
         envToken || (setting.get('unityCatalogToken').composite as string);
       // Update the settings to reflect the environment variables if they are set
       if (envHostUrl) {
-        logger.info('Found UC_HOST_URL environment variable');
-        logger.info('Updating host URL settings');
+        console.log('Found UC_HOST_URL environment variable');
+        console.log('Updating host URL settings');
         setting.set('unityCatalogHostUrl', envHostUrl);
       }
       if (envToken) {
-        logger.info('Found UC_TOKEN environment variable');
-        logger.info('Updating token settings');
+        console.log('Found UC_TOKEN environment variable');
+        console.log('Updating token settings');
         setting.set('unityCatalogToken', envToken);
       }
 
