@@ -12,6 +12,19 @@ import CatalogTree from './catalogTree';
 import * as React from 'react';
 import '../style/index.css'; // Import the CSS file
 
+import { ICommandPalette, IFrame } from '@jupyterlab/apputils';
+
+import { PageConfig } from '@jupyterlab/coreutils';
+
+import { ILauncher } from '@jupyterlab/launcher';
+
+/**
+ * The command IDs used by the server extension plugin.
+ */
+namespace CommandIDs {
+  export const get = 'server:get-file';
+}
+
 const PLUGIN_ID = 'junity:settings';
 
 /**
@@ -54,6 +67,19 @@ class CatalogTreeWidget extends ReactWidget {
   }
 }
 
+class IFrameWidget extends IFrame {
+  constructor() {
+    super();
+    const baseUrl = PageConfig.getBaseUrl();
+    this.url = baseUrl + 'junity-server/public/index.html';
+    this.id = 'doc-example';
+    this.title.label = 'Server Doc';
+    this.title.closable = true;
+    this.node.style.overflowY = 'auto';
+    this.sandbox = ['allow-scripts'];
+  }
+}
+
 /**
  * Initialization data for the jupyterlab-sidepanel extension.
 
@@ -61,12 +87,14 @@ class CatalogTreeWidget extends ReactWidget {
 const extension: JupyterFrontEndPlugin<void> = {
   id: PLUGIN_ID,
   autoStart: true,
-  requires: [ILabShell, INotebookTracker, ISettingRegistry],
+  requires: [ILabShell, INotebookTracker, ISettingRegistry, ICommandPalette],
   activate: (
     app: JupyterFrontEnd,
     shell: ILabShell,
     notebookTracker: INotebookTracker,
-    settings: ISettingRegistry
+    settings: ISettingRegistry,
+    palette: ICommandPalette,
+    launcher: ILauncher | null
   ) => {
     /**
      * Load the settings for this extension
@@ -85,7 +113,7 @@ const extension: JupyterFrontEndPlugin<void> = {
       })
       .catch(reason => {
         console.error(
-          `The jupyterlab_examples_server server extension appears to be missing.\n${reason}`
+          `The junity server extension appears to be missing.\n${reason}`
         );
       });
 
@@ -100,7 +128,7 @@ const extension: JupyterFrontEndPlugin<void> = {
       })
       .catch(reason => {
         console.error(
-          `Error on POST /jupyterlab-examples-server/hello ${dataToSend}.\n${reason}`
+          `Error on POST /junity-server/hello ${dataToSend}.\n${reason}`
         );
       });
 
@@ -151,6 +179,29 @@ const extension: JupyterFrontEndPlugin<void> = {
     shell.add(catalogTreeWidget, 'left');
 
     console.log('JupyterLab extension junity is activated!');
+
+    const { commands } = app;
+    const command = CommandIDs.get;
+    const category = 'Extension Examples';
+
+    commands.addCommand(command, {
+      label: 'Get Server Content in a IFrame Widget',
+      caption: 'Get Server Content in a IFrame Widget',
+      execute: () => {
+        const widget = new IFrameWidget();
+        shell.add(widget, 'main');
+      }
+    });
+
+    palette.addItem({ command, category: category });
+
+    if (launcher) {
+      // Add launcher
+      launcher.add({
+        command: command,
+        category: category
+      });
+    }
   }
 };
 

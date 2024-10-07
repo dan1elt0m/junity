@@ -13,19 +13,14 @@ from .handlers import setup_handlers
 def _jupyter_labextension_paths():
     return [{
         "src": "labextension",
-        "dest": "junity"
-    },
-    {
-            "src": "labextension",
-            "dest": "@jupyterlab-examples/server-extension"
-     }
+        "dest": "junity"}
     ]
 
 
 
 def _jupyter_server_extension_points():
     return [{
-        "module": "jupyterlab_examples_server"
+        "module": "junity"
     }]
 
 
@@ -38,5 +33,5 @@ def _load_jupyter_server_extension(server_app):
         JupyterLab application instance
     """
     setup_handlers(server_app.web_app)
-    name = "jupyterlab_examples_server"
+    name = "junity"
     server_app.log.info(f"Registered {name} server extension")

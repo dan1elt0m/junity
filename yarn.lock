@@ -2526,6 +2526,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@jupyterlab/launcher@npm:^4.2.5":
+  version: 4.2.5
+  resolution: "@jupyterlab/launcher@npm:4.2.5"
+  dependencies:
+    "@jupyterlab/apputils": ^4.3.5
+    "@jupyterlab/translation": ^4.2.5
+    "@jupyterlab/ui-components": ^4.2.5
+    "@lumino/algorithm": ^2.0.1
+    "@lumino/commands": ^2.3.0
+    "@lumino/coreutils": ^2.1.2
+    "@lumino/disposable": ^2.1.2
+    "@lumino/properties": ^2.0.1
+    "@lumino/widgets": ^2.3.2
+    react: ^18.2.0
+  checksum: 3d6c395e11dbfbe894f68e92509746bcd3a3f1e0369ba3b877829b18804fc528aba0a5fe476c6608d88993b09a031ea3afc673d68de1ed30b87528088895fa11
+  languageName: node
+  linkType: hard
+
 "@jupyterlab/lsp@npm:^4.2.5":
   version: 4.2.5
   resolution: "@jupyterlab/lsp@npm:4.2.5"
@@ -7604,6 +7622,7 @@ __metadata:
     "@babel/preset-typescript": ^7.25.7
     "@jupyterlab/application": ^4.0.0
     "@jupyterlab/builder": ^4.0.0
+    "@jupyterlab/launcher": ^4.2.5
     "@jupyterlab/testutils": ^4.0.0
     "@testing-library/dom": ^10.4.0
     "@testing-library/jest-dom": ^6.5.0

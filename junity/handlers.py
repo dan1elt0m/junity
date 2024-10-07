@@ -14,7 +14,7 @@ class RouteHandler(APIHandler):
     @tornado.web.authenticated
     def get(self):
         self.finish(json.dumps({
-            "data": "This is /jupyterlab-examples-server/hello endpoint!"
+            "data": "This is /junity-server/hello endpoint!"
         }))
 
     @tornado.web.authenticated
@@ -30,12 +30,12 @@ def setup_handlers(web_app):
 
     base_url = web_app.settings["base_url"]
     # Prepend the base_url so that it works in a JupyterHub setting
-    route_pattern = url_path_join(base_url, "jupyterlab-examples-server", "hello")
+    route_pattern = url_path_join(base_url, "junity-server", "hello")
     handlers = [(route_pattern, RouteHandler)]
     web_app.add_handlers(host_pattern, handlers)
 
     # Prepend the base_url so that it works in a JupyterHub setting
-    doc_url = url_path_join(base_url, "jupyterlab-examples-server", "public")
+    doc_url = url_path_join(base_url, "junity-server", "public")
     doc_dir = os.getenv(
         "JLAB_SERVER_EXAMPLE_STATIC_DIR",
         os.path.join(os.path.dirname(__file__), "public"),
