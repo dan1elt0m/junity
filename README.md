@@ -29,14 +29,17 @@ pip uninstall junity
 ## Configuration
 
 The default `unityCatalogHostUrl` is set to `http://localhost:8080/api/2.1/unity-catalog`.
+the default `token` is set to `"not-used"`.
 
-To adjust the `unityCatalogHostUrl`, follow these steps:
+To adjust the `unityCatalogHostUrl` or `token`, manually follow these steps:
 
 1. Open JupyterLab.
 2. Navigate to the settings menu.
 3. Find the `Junity` setting.
 4. Update the URL to your desired endpoint.
 5. Update the token if needed
+
+You can also set the `UC_HOST_URL` and `UC_TOKEN` environment variables to configure the extension.
 
 If you can't see your catalogs being loaded in the Unity Catalog sidebar, make sure that the URL is correct and that the Unity Catalog server is running.
 If this is the case, then check Known Issues section below or check for errors in jupyter using a webinspector
