@@ -1,19 +1,19 @@
 {
-  "type": "object",
-  "title": "Junity",
-  "description": "Settings for the Junity extension.",
-  "properties": {
-    "unityCatalogHostUrl": {
-      "type": "string",
-      "title": "Unity Catalog Host URL",
-      "default": "http://localhost:8080/api/2.1/unity-catalog",
-      "description": "The host URL for the Unity Catalog API."
-    },
-    "unityCatalogToken": {
-      "type": "string",
-      "title": "Unity Catalog Token",
-      "default": "not-used",
-      "description": "The token to use for the Unity Catalog API."
+    "title": "Junity",
+    "type": "object",
+    "description": "Settings for the Junity extension.",
+    "properties": {
+        "unityCatalogHostUrl": {
+            "default": "http://localhost:8080/api/2.1/unity-catalog",
+            "description": "The host URL for the Unity Catalog API.",
+            "title": "Unity Catalog Host URL",
+            "type": "string"
+        },
+        "unityCatalogToken": {
+            "default": "not-used",
+            "description": "The token to use for the Unity Catalog API.",
+            "title": "Unity Catalog Token",
+            "type": "string"
+        }
     }
-  }
 }
