@@ -1,2 +1,2 @@
+junity==0.2.3
 duckdb==1.0.0
-git+https://github.com/dan1elt0m/junity.git@add-env-var-server
