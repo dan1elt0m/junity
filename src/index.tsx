@@ -11,6 +11,20 @@ import CatalogTree from './catalogTree';
 import * as React from 'react';
 import '../style/index.css'; // Import the CSS file
 
+import { ICommandPalette, IFrame } from '@jupyterlab/apputils';
+
+import { PageConfig } from '@jupyterlab/coreutils';
+
+import { ILauncher } from '@jupyterlab/launcher';
+import { requestAPI } from './handler';
+
+/**
+ * The command IDs used by the server extension plugin.
+ */
+namespace CommandIDs {
+  export const get = 'server:get-file';
+}
+
 const PLUGIN_ID = 'junity:settings';
 
 /**
@@ -53,6 +67,19 @@ class CatalogTreeWidget extends ReactWidget {
   }
 }
 
+class IFrameWidget extends IFrame {
+  constructor() {
+    super();
+    const baseUrl = PageConfig.getBaseUrl();
+    this.url = baseUrl + 'junity-server/public/index.html';
+    this.id = 'doc-example';
+    this.title.label = 'Server Doc';
+    this.title.closable = true;
+    this.node.style.overflowY = 'auto';
+    this.sandbox = ['allow-scripts'];
+  }
+}
+
 /**
  * Initialization data for the jupyterlab-sidepanel extension.
 
@@ -60,43 +87,66 @@ class CatalogTreeWidget extends ReactWidget {
 const extension: JupyterFrontEndPlugin<void> = {
   id: PLUGIN_ID,
   autoStart: true,
-  requires: [ILabShell, INotebookTracker, ISettingRegistry],
-  activate: (
+  requires: [ILabShell, INotebookTracker, ISettingRegistry, ICommandPalette],
+  activate: async (
     app: JupyterFrontEnd,
     shell: ILabShell,
     notebookTracker: INotebookTracker,
-    settings: ISettingRegistry
+    settings: ISettingRegistry,
+    palette: ICommandPalette,
+    launcher: ILauncher | null
   ) => {
     /**
      * Load the settings for this extension
      *
      * @param setting Extension settings
      */
-    let hostUrl = 'http://localhost:8080/api/2.1/unity-catalog';
-    let token = 'not-used';
-    function loadSetting(setting: ISettingRegistry.ISettings): void {
-      const envHostUrl = process.env.UC_HOST_URL;
-      const envToken = process.env.UC_TOKEN;
+    console.log('Activating JupyterLab extension junity');
+    let catalogHostUrl: string = '';
+    let authToken: string = '';
+    let updatedSettings = false;
 
-      hostUrl =
-        envHostUrl || (setting.get('unityCatalogHostUrl').composite as string);
-      token =
-        envToken || (setting.get('unityCatalogToken').composite as string);
+    // Load the settings for this extension
+    async function loadSetting(
+      setting: ISettingRegistry.ISettings
+    ): Promise<void> {
+      if (!updatedSettings) {
+        try {
+          const settingsData = await requestAPI<any>('uc_settings');
+          let {
+            data: { hostUrl: catalogHostUrl, token: authToken }
+          } = settingsData;
+          if (catalogHostUrl) {
+            console.log('Found UC_HOST_URL environment variable');
+            console.log('Updating host URL settings: ', catalogHostUrl);
+            setting.set('unityCatalogHostUrl', catalogHostUrl);
+          } else {
+            catalogHostUrl = setting.get('unityCatalogHostUrl')
+              .composite as string;
+          }
+
+          if (authToken) {
+            console.log('Found UC_TOKEN environment variable');
+            console.log('Updating token settings');
+            setting.set('unityCatalogToken', authToken);
+          } else {
+            authToken = setting.get('unityCatalogToken').composite as string;
+          }
+        } catch (reason) {
+          console.error(
+            `The junity server extension appears to be missing.\n${reason}`
+          );
+        }
+      } else {
+        catalogHostUrl = setting.get('unityCatalogHostUrl').composite as string;
+        authToken = setting.get('unityCatalogToken').composite as string;
+      }
+
+      catalogTreeWidget.updateHostUrl(catalogHostUrl);
+      catalogTreeWidget.updateToken(authToken);
       // Update the settings to reflect the environment variables if they are set
-      if (envHostUrl) {
-        console.log('Found UC_HOST_URL environment variable');
-        console.log('Updating host URL settings');
-        setting.set('unityCatalogHostUrl', envHostUrl);
-      }
-      if (envToken) {
-        console.log('Found UC_TOKEN environment variable');
-        console.log('Updating token settings');
-        setting.set('unityCatalogToken', envToken);
-      }
 
-      catalogTreeWidget.updateHostUrl(hostUrl);
-      catalogTreeWidget.updateToken(token);
-      console.log(`Unity Catalog Host URL is set to '${hostUrl}'`);
+      updatedSettings = true;
     }
 
     // Wait for the application to be restored and
@@ -113,14 +163,37 @@ const extension: JupyterFrontEndPlugin<void> = {
 
     const catalogTreeWidget = new CatalogTreeWidget(
       notebookTracker,
-      hostUrl,
-      token
+      catalogHostUrl,
+      authToken
     );
     catalogTreeWidget.title.label = 'Catalog';
     catalogTreeWidget.title.iconClass = 'jp-icon-extension jp-SideBar-tabIcon';
     shell.add(catalogTreeWidget, 'left');
 
     console.log('JupyterLab extension junity is activated!');
+
+    const { commands } = app;
+    const command = CommandIDs.get;
+    const category = 'Extension Examples';
+
+    commands.addCommand(command, {
+      label: 'Get Server Content in a IFrame Widget',
+      caption: 'Get Server Content in a IFrame Widget',
+      execute: () => {
+        const widget = new IFrameWidget();
+        shell.add(widget, 'main');
+      }
+    });
+
+    palette.addItem({ command, category: category });
+
+    if (launcher) {
+      // Add launcher
+      launcher.add({
+        command: command,
+        category: category
+      });
+    }
   }
 };
 
