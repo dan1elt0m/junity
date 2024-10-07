@@ -106,19 +106,23 @@ const extension: JupyterFrontEndPlugin<void> = {
     let authToken: string = '';
     let updatedSettings = false;
 
-
     // Load the settings for this extension
-    async function loadSetting(setting: ISettingRegistry.ISettings): Promise<void> {
+    async function loadSetting(
+      setting: ISettingRegistry.ISettings
+    ): Promise<void> {
       if (!updatedSettings) {
         try {
           const settingsData = await requestAPI<any>('uc_settings');
-          let { data: { hostUrl: catalogHostUrl, token: authToken } } = settingsData;
+          let {
+            data: { hostUrl: catalogHostUrl, token: authToken }
+          } = settingsData;
           if (catalogHostUrl) {
             console.log('Found UC_HOST_URL environment variable');
             console.log('Updating host URL settings: ', catalogHostUrl);
             setting.set('unityCatalogHostUrl', catalogHostUrl);
           } else {
-            catalogHostUrl = setting.get('unityCatalogHostUrl').composite as string;
+            catalogHostUrl = setting.get('unityCatalogHostUrl')
+              .composite as string;
           }
 
           if (authToken) {
@@ -128,9 +132,10 @@ const extension: JupyterFrontEndPlugin<void> = {
           } else {
             authToken = setting.get('unityCatalogToken').composite as string;
           }
-
         } catch (reason) {
-          console.error(`The junity server extension appears to be missing.\n${reason}`);
+          console.error(
+            `The junity server extension appears to be missing.\n${reason}`
+          );
         }
       } else {
         catalogHostUrl = setting.get('unityCatalogHostUrl').composite as string;
