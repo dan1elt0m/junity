@@ -121,6 +121,7 @@
                 }
             }
         },
+        "schemaDir": "schema",
         "extension": true,
         "outputDir": "junity/labextension"
     },
