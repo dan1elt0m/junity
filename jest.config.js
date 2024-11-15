@@ -2,14 +2,18 @@ const jestJupyterLab = require('@jupyterlab/testutils/lib/jest-config');
 
 const esModules = [
   '@codemirror',
+  '@jupyter/react-components',
+  '@jupyter/web-components',
   '@jupyter/ydoc',
   '@jupyterlab/',
+  '@microsoft/',
   'lib0',
   'nanoid',
   'vscode-ws-jsonrpc',
   'y-protocols',
   'y-websocket',
-  'yjs'
+  'yjs',
+  'exenv-es6'
 ].join('|');
 
 const baseConfig = jestJupyterLab(__dirname);
@@ -17,17 +21,15 @@ const baseConfig = jestJupyterLab(__dirname);
 module.exports = {
   ...baseConfig,
   automock: false,
-  collectCoverageFrom: [
-    'src/**/*.{ts,tsx}',
-    '!src/**/*.d.ts',
-    '!src/**/.ipynb_checkpoints/*'
-  ],
-  coverageReporters: ['lcov', 'text'],
-  testRegex: 'src/.*/.*\\.(spec)\\.ts[x]?$',
-  transformIgnorePatterns: [`/node_modules/(?!${esModules}).+`],
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.ts?$',
+  transformIgnorePatterns: [`./node_modules/(?!${esModules}).+`],
   transform: {
     '^.+\\.tsx?$': 'babel-jest',
-    '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest'
+    '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
+    '^.+\\.css$': 'jest-css-modules-transform'
   },
-  roots: ['<rootDir>/src']
+  roots: ['<rootDir>/src'],
+  moduleNameMapper: {
+    '\\.svg$': '<rootDir>/src/__mocks__/svgMock.js'
+  }
 };
