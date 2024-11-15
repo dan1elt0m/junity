@@ -3,7 +3,7 @@ import { ISettingRegistry } from '@jupyterlab/settingregistry';
 import { ICommandPalette } from '@jupyterlab/apputils';
 import { INotebookTracker } from '@jupyterlab/notebook';
 import { ILauncher } from '@jupyterlab/launcher';
-import extension, { CatalogTreeWidget, loadSettingEnv } from '../index';
+import extension, { loadSettingEnv } from '../index';
 import { JupyterServer } from '@jupyterlab/testing';
 import { requestAPI } from '../handler';
 
