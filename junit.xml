@@ -1,39 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="3" failures="2" errors="0" time="6.075">
-  <testsuite name="junity" errors="0" failures="0" skipped="0" timestamp="2024-11-15T06:37:53" time="0.145" tests="1">
-    <testcase classname="junity should be tested" name="junity should be tested" time="0.003">
+<testsuites name="jest tests" tests="7" failures="0" errors="0" time="3.753">
+  <testsuite name="Junity extension" errors="0" failures="0" skipped="0" timestamp="2024-11-16T03:06:20" time="2.976" tests="3">
+    <testcase classname="Junity extension Activates without crashing" name="Junity extension Activates without crashing" time="0.053">
+    </testcase>
+    <testcase classname="Junity extension Should use default settings if no env vars are set" name="Junity extension Should use default settings if no env vars are set" time="0.002">
+    </testcase>
+    <testcase classname="Junity extension Should update settings if env vars are set" name="Junity extension Should update settings if env vars are set" time="0.005">
     </testcase>
   </testsuite>
-  <testsuite name="Junity" errors="0" failures="2" skipped="0" timestamp="2024-11-15T06:37:53" time="5.122" tests="2">
-    <testcase classname="Junity activates without crashing" name="Junity activates without crashing" time="1.3">
-      <failure>TypeError: _index.default.activate is not a function
-    at Object.activate (/Users/danieltom/git/xd/junity/src/__tests__/index.test.ts:103:21)
-    at Promise.then.completed (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/utils.js:298:28)
-    at new Promise (&lt;anonymous&gt;)
-    at callAsyncCircusFn (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/utils.js:231:10)
-    at _callCircusTest (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:316:40)
-    at processTicksAndRejections (node:internal/process/task_queues:95:5)
-    at _runTest (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:252:3)
-    at _runTestsForDescribeBlock (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:126:9)
-    at _runTestsForDescribeBlock (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:121:9)
-    at run (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:71:3)
-    at runAndTransformResultsToJestFormat (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
-    at jestAdapter (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
-    at runTestInternal (/Users/danieltom/git/xd/junity/node_modules/jest-runner/build/runTest.js:367:16)
-    at runTest (/Users/danieltom/git/xd/junity/node_modules/jest-runner/build/runTest.js:444:34)
-    at Object.worker (/Users/danieltom/git/xd/junity/node_modules/jest-runner/build/testWorker.js:106:12)</failure>
+  <testsuite name="getColumnIconClass" errors="0" failures="0" skipped="0" timestamp="2024-11-16T03:06:23" time="0.055" tests="3">
+    <testcase classname="getColumnIconClass should return the correct icon class for BOOLEAN type" name="getColumnIconClass should return the correct icon class for BOOLEAN type" time="0.001">
     </testcase>
-    <testcase classname="Junity should use environment variables when they are set" name="Junity should use environment variables when they are set" time="2.044">
-      <failure>Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
-
-Expected: &quot;unityCatalogHostUrl&quot;, &quot;http://example.com&quot;
-Received
-       1: &quot;unityCatalogHostUrl&quot;, &quot;http://mocked-url.com&quot;
-       2: &quot;unityCatalogToken&quot;, &quot;mocked-token&quot;
-
-Number of calls: 2
-    at Object.toHaveBeenCalledWith (/Users/danieltom/git/xd/junity/src/__tests__/index.test.ts:113:25)
-    at processTicksAndRejections (node:internal/process/task_queues:95:5)</failure>
+    <testcase classname="getColumnIconClass should return the correct icon class for STRING type" name="getColumnIconClass should return the correct icon class for STRING type" time="0.001">
+    </testcase>
+    <testcase classname="getColumnIconClass should return the default icon class for unknown type" name="getColumnIconClass should return the default icon class for unknown type" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="junity" errors="0" failures="0" skipped="0" timestamp="2024-11-16T03:06:23" time="0.017" tests="1">
+    <testcase classname="junity should be tested" name="junity should be tested" time="0.001">
     </testcase>
   </testsuite>
 </testsuites>
