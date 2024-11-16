@@ -18,7 +18,6 @@ jest.mock('../api', () => ({
   fetchCatalogs: jest.fn().mockResolvedValue([])
 }));
 
-
 const mockSettings = {
   load: jest.fn().mockResolvedValue({
     composite: {
@@ -41,8 +40,6 @@ const mockSettings = {
   get: jest.fn().mockReturnValue({ composite: '' }),
   changed: { connect: jest.fn() }
 } as unknown as ISettingRegistry;
-
-
 
 describe('Junity extension', () => {
   let app: JupyterFrontEnd;
@@ -108,10 +105,6 @@ describe('Junity extension', () => {
         }))
       };
     });
-
-
-
-
 
     // Mock the ServerConnection.makeRequest function
     jest.mock('@jupyterlab/application', () => ({
