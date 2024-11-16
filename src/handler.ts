@@ -12,7 +12,7 @@ import { ServerConnection } from '@jupyterlab/services';
 export async function requestAPI<T>(
   endPoint = '',
   init: RequestInit = {}
-): Promise<T> {
+): Promise<T | undefined> {
   // Make request to Jupyter API
   const settings = ServerConnection.makeSettings();
   const requestUrl = URLExt.join(
@@ -25,22 +25,24 @@ export async function requestAPI<T>(
   try {
     response = await ServerConnection.makeRequest(requestUrl, init, settings);
   } catch (error) {
-    throw new ServerConnection.NetworkError(error as any);
+    throw new ServerConnection.NetworkError(error as Error);
   }
 
-  let data: any = await response.text();
+  const data: string = await response.text();
 
   if (data.length > 0) {
     try {
-      data = JSON.parse(data);
-    } catch (error) {
+      return JSON.parse(data);
+    } catch {
       console.log('Not a JSON response body.', response);
     }
+  } else {
+    console.log('No data in response body');
   }
 
   if (!response.ok) {
-    throw new ServerConnection.ResponseError(response, data.message || data);
+    throw new ServerConnection.ResponseError(response, data);
   }
 
-  return data;
+  return;
 }

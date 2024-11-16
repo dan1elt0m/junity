@@ -284,7 +284,7 @@ export const CatalogTree: React.FC<{
     </ul>
   );
 
-  const renderCatalogs = (notebookTracker: INotebookTracker) => (
+  const renderCatalogs = () => (
     <ul>
       {catalogs.map(catalog => (
         <li key={catalog.name}>
@@ -312,7 +312,7 @@ export const CatalogTree: React.FC<{
       <div>
         <span className="grey-font small-font margin-left">Catalogs</span>
       </div>
-      {renderCatalogs(notebookTracker)}
+      {renderCatalogs()}
     </div>
   );
 };

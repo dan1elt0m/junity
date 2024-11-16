@@ -21,9 +21,9 @@ import { requestAPI } from './handler';
 /**
  * The command IDs used by the server extension plugin.
  */
-namespace CommandIDs {
-  export const get = 'server:get-file';
-}
+const CommandIDs = {
+  get: 'server:get-file'
+};
 
 const PLUGIN_ID = 'junity:settings';
 
@@ -80,14 +80,25 @@ class IFrameWidget extends IFrame {
   }
 }
 
+interface SettingsData {
+  data: {
+    hostUrl: string;
+    token: string;
+  };
+}
+
 // Load the settings for this extension
 export async function loadSettingEnv(
   setting: ISettingRegistry.ISettings
 ): Promise<void> {
   console.log('Loading Env Settings');
 
-  const settingsData = await requestAPI<any>('uc_settings');
-  let {
+  const settingsData = await requestAPI<SettingsData>('uc_settings');
+  if (!settingsData) {
+    console.log('No Env variable settings found');
+    return;
+  }
+  const {
     data: { hostUrl: catalogHostUrl, token: authToken }
   } = settingsData;
   if (catalogHostUrl) {

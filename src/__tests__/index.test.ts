@@ -33,7 +33,7 @@ const mockSettings = {
   set: jest.fn(),
   get: jest.fn().mockReturnValue({ composite: '' }),
   changed: { connect: jest.fn() }
-} as unknown as ISettingRegistry.ISettings;
+} as unknown as ISettingRegistry;
 
 describe('Junity extension', () => {
   let app: JupyterFrontEnd;
