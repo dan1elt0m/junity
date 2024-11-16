@@ -8,7 +8,7 @@
 
 ### Bugs fixed
 
-- Fix ignore of default settings when no env vars are set  [#9](https://github.com/dan1elt0m/junity/pull/9) ([@dan1elt0m](https://github.com/dan1elt0m))
+- Fix ignore of default settings when no env vars are set [#9](https://github.com/dan1elt0m/junity/pull/9) ([@dan1elt0m](https://github.com/dan1elt0m))
 
 ### Contributors to this release
 
