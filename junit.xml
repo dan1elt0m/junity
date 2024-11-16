@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="1" failures="0" errors="0" time="0.933">
-  <testsuite name="junity" errors="0" failures="0" skipped="0" timestamp="2024-10-05T19:29:27" time="0.187" tests="1">
-    <testcase classname="junity should be tested" name="junity should be tested" time="0.002">
+<testsuites name="jest tests" tests="7" failures="0" errors="0" time="3.753">
+  <testsuite name="Junity extension" errors="0" failures="0" skipped="0" timestamp="2024-11-16T03:06:20" time="2.976" tests="3">
+    <testcase classname="Junity extension Activates without crashing" name="Junity extension Activates without crashing" time="0.053">
+    </testcase>
+    <testcase classname="Junity extension Should use default settings if no env vars are set" name="Junity extension Should use default settings if no env vars are set" time="0.002">
+    </testcase>
+    <testcase classname="Junity extension Should update settings if env vars are set" name="Junity extension Should update settings if env vars are set" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="getColumnIconClass" errors="0" failures="0" skipped="0" timestamp="2024-11-16T03:06:23" time="0.055" tests="3">
+    <testcase classname="getColumnIconClass should return the correct icon class for BOOLEAN type" name="getColumnIconClass should return the correct icon class for BOOLEAN type" time="0.001">
+    </testcase>
+    <testcase classname="getColumnIconClass should return the correct icon class for STRING type" name="getColumnIconClass should return the correct icon class for STRING type" time="0.001">
+    </testcase>
+    <testcase classname="getColumnIconClass should return the default icon class for unknown type" name="getColumnIconClass should return the default icon class for unknown type" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="junity" errors="0" failures="0" skipped="0" timestamp="2024-11-16T03:06:23" time="0.017" tests="1">
+    <testcase classname="junity should be tested" name="junity should be tested" time="0.001">
     </testcase>
   </testsuite>
 </testsuites>

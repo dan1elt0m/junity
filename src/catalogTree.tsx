@@ -11,7 +11,7 @@ import {
 import '../style/index.css';
 import { INotebookTracker } from '@jupyterlab/notebook';
 
-const getColumnIconClass = (dataType: string): string => {
+export const getColumnIconClass = (dataType: string): string => {
   switch (dataType) {
     case 'BOOLEAN':
     case 'BINARY':
@@ -45,7 +45,7 @@ const getColumnIconClass = (dataType: string): string => {
   }
 };
 
-const CatalogTree: React.FC<{
+export const CatalogTree: React.FC<{
   notebookTracker: INotebookTracker;
   hostUrl: string;
   token: string;
@@ -60,6 +60,8 @@ const CatalogTree: React.FC<{
 
   useEffect(() => {
     const loadCatalogs = async () => {
+      console.log('Loading catalogs');
+      console.log('Host URL:', hostUrl);
       const catalogs = await fetchCatalogs(hostUrl, token);
       setCatalogs(catalogs);
     };
@@ -282,7 +284,7 @@ const CatalogTree: React.FC<{
     </ul>
   );
 
-  const renderCatalogs = (notebookTracker: INotebookTracker) => (
+  const renderCatalogs = () => (
     <ul>
       {catalogs.map(catalog => (
         <li key={catalog.name}>
@@ -310,7 +312,7 @@ const CatalogTree: React.FC<{
       <div>
         <span className="grey-font small-font margin-left">Catalogs</span>
       </div>
-      {renderCatalogs(notebookTracker)}
+      {renderCatalogs()}
     </div>
   );
 };

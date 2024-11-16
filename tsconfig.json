@@ -18,7 +18,15 @@
     "strict": true,
     "strictNullChecks": true,
     "target": "ES2018",
-    "types": ["node", "jest"]
+    "types": ["node", "jest"],
+    "skipLibCheck": true
   },
-  "include": ["src/*", "assets/*", "style/*", "babel.config.js"]
+  "include": [
+    "./src/**/*",
+    "./assets/**/*",
+    "./style/**/*",
+    "babel.config.js",
+    "jest.config.js",
+    "webpack.config.js"
+  ]
 }
