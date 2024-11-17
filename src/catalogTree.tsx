@@ -7,7 +7,7 @@ import {
   IColumn,
   ISchema,
   ITable
-} from './api';
+} from './catalogApi';
 import '../style/index.css';
 import { INotebookTracker } from '@jupyterlab/notebook';
 import { AxiosInstance } from 'axios';

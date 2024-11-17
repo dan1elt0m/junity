@@ -5,17 +5,17 @@ import { INotebookTracker } from '@jupyterlab/notebook';
 import { ILauncher } from '@jupyterlab/launcher';
 import junity from '../index';
 import { JupyterServer } from '@jupyterlab/testing';
-import { requestAPI } from '../handler';
+import { requestAPI } from '../serverApi';
 import { loadSettingEnv } from '../settings';
 // Add this at the top of your test file or in a setup file
 
 // Mock the requestAPI function
-jest.mock('../handler', () => ({
+jest.mock('../serverApi', () => ({
   requestAPI: jest.fn()
 }));
 
 // Mock the fetchCatalogs function, so no actual API calls are made to UC cat
-jest.mock('../api', () => ({
+jest.mock('../catalogApi', () => ({
   fetchCatalogs: jest.fn().mockResolvedValue([])
 }));
 
