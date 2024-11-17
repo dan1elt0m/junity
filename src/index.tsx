@@ -1,4 +1,8 @@
-import { ILabShell, JupyterFrontEnd, JupyterFrontEndPlugin } from '@jupyterlab/application';
+import {
+  ILabShell,
+  JupyterFrontEnd,
+  JupyterFrontEndPlugin
+} from '@jupyterlab/application';
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
 
 import { INotebookTracker } from '@jupyterlab/notebook';
@@ -20,7 +24,6 @@ const CommandIDs = {
 };
 
 const PLUGIN_ID = 'junity:settings';
-
 
 class IFrameWidget extends IFrame {
   constructor() {
@@ -92,7 +95,7 @@ const junity: JupyterFrontEndPlugin<void> = {
       notebookTracker,
       catalogHostUrl,
       googleAuthEnabled,
-      googleClientId,
+      googleClientId
     );
     catalogTreeWidget.title.label = 'Catalog';
     catalogTreeWidget.title.iconClass = 'jp-icon-extension jp-SideBar-tabIcon';

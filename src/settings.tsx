@@ -22,8 +22,12 @@ export async function loadSettingEnv(
     return;
   }
   const {
-    data: { hostUrl: catalogHostUrl, token: authToken,
-      googleAuthEnabled: googleAuthEnabled, googleClientId: googleClientId }
+    data: {
+      hostUrl: catalogHostUrl,
+      token: authToken,
+      googleAuthEnabled: googleAuthEnabled,
+      googleClientId: googleClientId
+    }
   } = settingsData;
   if (catalogHostUrl) {
     console.log('Found JY_HOST_URL environment variable');
@@ -38,7 +42,7 @@ export async function loadSettingEnv(
   if (googleAuthEnabled) {
     console.log('Found JY_GOOGLE_AUTH_ENABLED environment variable');
     console.log('Updating google auth settings');
-    console.log("googleAuthEnabled: ", googleAuthEnabled);
+    console.log('googleAuthEnabled: ', googleAuthEnabled);
     setting.set('googleAuthEnabled', googleAuthEnabled);
   }
   if (googleClientId) {

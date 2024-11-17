@@ -10,16 +10,16 @@
       "type": "string"
     },
     "googleAuthEnabled": {
-        "default": false,
-        "description": "Whether to use Google authentication.",
-        "title": "Google Auth Enabled",
-        "type": "boolean"
-     },
+      "default": false,
+      "description": "Whether to use Google authentication.",
+      "title": "Google Auth Enabled",
+      "type": "boolean"
+    },
     "googleClientId": {
-        "default": "not-used",
-        "description": "The Google client ID.",
-        "title": "Google Client ID",
-        "type": "string"
+      "default": "not-used",
+      "description": "The Google client ID.",
+      "title": "Google Client ID",
+      "type": "string"
     }
   }
 }

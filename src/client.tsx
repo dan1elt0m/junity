@@ -4,7 +4,7 @@ export function getClient(hostUrl: string) {
   return axios.create({
     baseURL: hostUrl,
     headers: {
-      'Content-type': 'application/json',
-    },
+      'Content-type': 'application/json'
+    }
   });
 }

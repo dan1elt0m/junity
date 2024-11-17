@@ -66,7 +66,7 @@ export const CatalogTree: React.FC<{
       const catalogs = await fetchCatalogs(apiClient, token);
       setCatalogs(catalogs);
     };
-    loadCatalogs()
+    loadCatalogs();
   }, []);
 
   const fetchAndSetSchemasAndTables = async (catalogs: ICatalog[]) => {
@@ -79,7 +79,12 @@ export const CatalogTree: React.FC<{
 
       for (const schema of fetchedSchemas) {
         const schemaKey = `${catalog.name}/${schema.name}`;
-        const fetchedTables = await fetchTables(apiClient, catalog.name, schema.name, token);
+        const fetchedTables = await fetchTables(
+          apiClient,
+          catalog.name,
+          schema.name,
+          token
+        );
         newTables[schemaKey] = fetchedTables;
       }
     }
@@ -198,7 +203,12 @@ export const CatalogTree: React.FC<{
         throw new Error('Schema name not found');
       }
       if (!tables[nodeName]) {
-        const fetchedTables = await fetchTables(apiClient, parentName, schemaName, token);
+        const fetchedTables = await fetchTables(
+          apiClient,
+          parentName,
+          schemaName,
+          token
+        );
         setTables(prev => ({ ...prev, [nodeName]: fetchedTables }));
       }
     }
@@ -308,8 +318,7 @@ export const CatalogTree: React.FC<{
         className={`expand-all-button ${allExpanded ? 'expand-all-button-rotate' : ''}`}
         onClick={toggleExpandAllNodes}
       ></button>
-      <button
-        className="logout-button" onClick={handleLogout}></button>
+      <button className="logout-button" onClick={handleLogout}></button>
       <div>
         <span className="grey-font small-font margin-left">Catalogs</span>
       </div>
