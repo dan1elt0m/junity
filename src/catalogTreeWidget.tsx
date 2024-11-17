@@ -3,11 +3,11 @@ import { INotebookTracker } from '@jupyterlab/notebook';
 import { GoogleOAuthProvider, GoogleLogin, CredentialResponse } from '@react-oauth/google';
 import CatalogTree from './catalogTree';
 import * as React from 'react';
-import { ISettingRegistry } from '@jupyterlab/settingregistry';
 import { getClient } from './client';
 import { AxiosInstance } from 'axios';
 import { QueryClient, QueryClientProvider, useMutation } from '@tanstack/react-query';
 import { UC_AUTH_API_PREFIX } from './constants';
+import Cookies from 'js-cookie';
 
 const queryClient = new QueryClient();
 
@@ -24,13 +24,13 @@ function useLoginWithToken(client: AxiosInstance) {
         subjectTokenType: 'urn:ietf:params:oauth:token-type:id_token',
         subjectToken: idToken,
       };
-
-      return client
-        .post(`${UC_AUTH_API_PREFIX}/auth/tokens`, JSON.stringify(params), {})
-        .then((response) => response.data)
-        .catch((e) => {
-          throw new Error(e.response?.data?.message || 'Failed to log in');
-        });
+      console.log("Requesting token exchange with UC");
+     try {
+        const response = await client.post(`${UC_AUTH_API_PREFIX}/auth/tokens`, JSON.stringify(params), {});
+        return response.data;
+      } catch {
+        console.error("Error during token exchange with UC");
+      }
     },
   });
 }
@@ -38,24 +38,52 @@ function useLoginWithToken(client: AxiosInstance) {
 const CatalogTreeWidgetComponent: React.FC<{
   notebookTracker: INotebookTracker;
   hostUrl: string;
-  token: string;
   googleAuthEnabled: boolean;
   googleClientId: string;
-  settings: ISettingRegistry;
   authenticated: boolean;
   setAuthenticated: (authenticated: boolean) => void;
-}> = ({ notebookTracker, hostUrl, token, googleAuthEnabled, googleClientId, settings,authenticated, setAuthenticated }) => {
+  token: string;
+  updateToken: (token: string) => void;
+}> = ({ notebookTracker, hostUrl,  googleAuthEnabled, googleClientId,authenticated, setAuthenticated, token, updateToken }) => {
   const apiClient = getClient(hostUrl);
   const loginWithToken = useLoginWithToken(apiClient);
 
+ React.useEffect(() => {
+    const authCookie = Cookies.get('authenticated');
+    if (authCookie === 'true') {
+      setAuthenticated(true);
+    }
+  }, [setAuthenticated]);
+
+  React.useEffect(() => {
+    const tokenCookie = Cookies.get('access_token');
+    if ( tokenCookie ) {
+      updateToken(tokenCookie);
+    }
+  }, [updateToken]);
+
   const handleGoogleSignIn = async (response: CredentialResponse) => {
+    console.log("Handling Google Sign In response");
     if (response && response.credential) {
+      console.log("Received Google Sign In credential");
       try {
         const loginResponse = await loginWithToken.mutateAsync(response.credential);
+
+        const expiresAt = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
+        console.log('Cookie expires at:', expiresAt);
+
+        // Set the authenticated state
+        Cookies.set('authenticated', 'true', {
+        expires: expiresAt,
+      });
+        Cookies.set('access_token', loginResponse.access_token, {
+          expires: expiresAt,
+          secure: true,
+          sameSite: 'strict'
+        })
+        updateToken(loginResponse.access_token);
         setAuthenticated(true);
         console.log('Successfully authenticated');
-        const junitySettings = await settings.load("junity:settings");
-        junitySettings.set('unityCatalogToken', loginResponse.access_token);
       } catch (error) {
         console.error('Failed to log in to Unity Catalog:', error);
       }
@@ -64,11 +92,15 @@ const CatalogTreeWidgetComponent: React.FC<{
     }
   };
 
+  const handleGoogleSignInError = (error: void) => {
+    console.error('Failed to log in to Unity Catalog:', error);
+  }
+
   return (
     <div>
-      {googleAuthEnabled && token === 'not-set' ? (
+      {googleAuthEnabled && !authenticated ? (
         <GoogleOAuthProvider clientId={googleClientId}>
-          <GoogleLogin onSuccess={handleGoogleSignIn} />
+          <GoogleLogin onSuccess={handleGoogleSignIn} onError={handleGoogleSignInError} />
         </GoogleOAuthProvider>
       ) : (
         <CatalogTree notebookTracker={notebookTracker} apiClient={apiClient} token={token} />
@@ -80,28 +112,24 @@ const CatalogTreeWidgetComponent: React.FC<{
 export class CatalogTreeWidget extends ReactWidget {
   private notebookTracker: INotebookTracker;
   public hostUrl: string;
-  private token: string;
   public authenticated: boolean;
   private googleAuthEnabled: boolean = false;
   private googleClientId: string = '';
-  private settings: ISettingRegistry;
+  private token: string;
 
   constructor(
     notebookTracker: INotebookTracker,
     hostUrl: string,
-    token: string,
     googleAuthEnabled: boolean,
     googleClientId: string,
-    settings: ISettingRegistry
   ) {
     super();
     this.notebookTracker = notebookTracker;
     this.hostUrl = hostUrl;
-    this.token = token;
     this.authenticated = false;
+    this.token = Cookies.get('access_token') || '';
     this.googleAuthEnabled = googleAuthEnabled;
     this.googleClientId = googleClientId;
-    this.settings = settings;
     this.id = 'catalog-tree-widget';
     this.title.closable = true;
     this.addClass('jp-CatalogTreeWidget');
@@ -112,13 +140,13 @@ export class CatalogTreeWidget extends ReactWidget {
     this.update();
   }
 
-  updateToken(token: string) {
-    this.token = token;
+  updateAuthenticationEnabled(googleAuthEnabled: boolean) {
+    this.googleAuthEnabled = googleAuthEnabled;
     this.update();
   }
 
-  updateAuthenticationEnabled(googleAuthEnabled: boolean) {
-    this.googleAuthEnabled = googleAuthEnabled;
+  updateToken(token: string) {
+    this.token = token;
     this.update();
   }
 
@@ -138,12 +166,12 @@ export class CatalogTreeWidget extends ReactWidget {
       <CatalogTreeWidgetComponent
         notebookTracker={this.notebookTracker}
         hostUrl={this.hostUrl}
-        token={this.token}
         googleAuthEnabled={this.googleAuthEnabled}
         googleClientId={this.googleClientId}
-        settings={this.settings}
         authenticated={this.authenticated}
         setAuthenticated={(authenticated) => this.setAuthenticated(authenticated)}
+        token={this.token}
+        updateToken={(token: string) => this.updateToken(token)}
       />
       </QueryClientProvider>
 

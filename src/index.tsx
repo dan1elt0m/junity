@@ -58,7 +58,6 @@ const junity: JupyterFrontEndPlugin<void> = {
      */
     console.log('Activating JupyterLab extension junity');
     let catalogHostUrl: string = '';
-    let authToken: string = '';
     let googleAuthEnabled = false;
     let googleClientId: string = '';
 
@@ -68,9 +67,6 @@ const junity: JupyterFrontEndPlugin<void> = {
     ): Promise<void> {
       catalogHostUrl = setting.get('unityCatalogHostUrl').composite as string;
       catalogTreeWidget.updateHostUrl(catalogHostUrl);
-
-      authToken = setting.get('unityCatalogToken').composite as string;
-      catalogTreeWidget.updateToken(authToken);
 
       googleAuthEnabled = setting.get('googleAuthEnabled').composite as boolean;
       catalogTreeWidget.updateAuthenticationEnabled(googleAuthEnabled);
@@ -92,16 +88,11 @@ const junity: JupyterFrontEndPlugin<void> = {
       }
     );
 
-
-
-
     const catalogTreeWidget = new CatalogTreeWidget(
       notebookTracker,
       catalogHostUrl,
-      authToken,
       googleAuthEnabled,
       googleClientId,
-      settings
     );
     catalogTreeWidget.title.label = 'Catalog';
     catalogTreeWidget.title.iconClass = 'jp-icon-extension jp-SideBar-tabIcon';

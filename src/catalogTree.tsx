@@ -11,6 +11,7 @@ import {
 import '../style/index.css';
 import { INotebookTracker } from '@jupyterlab/notebook';
 import { AxiosInstance } from 'axios';
+import Cookies from 'js-cookie';
 
 export const getColumnIconClass = (dataType: string): string => {
   switch (dataType) {
@@ -65,8 +66,8 @@ export const CatalogTree: React.FC<{
       const catalogs = await fetchCatalogs(apiClient, token);
       setCatalogs(catalogs);
     };
-    loadCatalogs();
-  }, [apiClient, token]);
+    loadCatalogs()
+  }, []);
 
   const fetchAndSetSchemasAndTables = async (catalogs: ICatalog[]) => {
     const newSchemas: { [key: string]: ISchema[] } = {};
@@ -123,9 +124,16 @@ export const CatalogTree: React.FC<{
   };
 
   const refreshData = async () => {
+    console.log('Refreshing data');
     const catalogs = await fetchCatalogs(apiClient, token);
     setCatalogs(catalogs);
     await fetchAndSetSchemasAndTables(catalogs);
+  };
+
+  const handleLogout = () => {
+    Cookies.remove('authenticated');
+    Cookies.remove('access_token');
+    window.location.reload();
   };
 
   const insertPathToNotebook = (
@@ -300,6 +308,8 @@ export const CatalogTree: React.FC<{
         className={`expand-all-button ${allExpanded ? 'expand-all-button-rotate' : ''}`}
         onClick={toggleExpandAllNodes}
       ></button>
+      <button
+        className="logout-button" onClick={handleLogout}></button>
       <div>
         <span className="grey-font small-font margin-left">Catalogs</span>
       </div>

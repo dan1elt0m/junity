@@ -9,12 +9,6 @@
       "title": "Unity Catalog Host URL",
       "type": "string"
     },
-    "unityCatalogToken": {
-      "default": "not-set",
-      "description": "The token to use for the Unity Catalog API.",
-      "title": "Unity Catalog Token",
-      "type": "string"
-    },
     "googleAuthEnabled": {
         "default": false,
         "description": "Whether to use Google authentication.",

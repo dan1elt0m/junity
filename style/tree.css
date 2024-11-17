@@ -124,3 +124,17 @@ li {
 .jp-icon-insert:hover {
   opacity: 1; /* Make the icon visible on hover */
 }
+
+.logout-button {
+  background-image: url('../assets/tree/icon-logout-black.svg');
+  position: absolute;
+  top: 10px;
+  right: 50px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
