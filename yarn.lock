@@ -3263,6 +3263,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-oauth/google@npm:^0.12.1":
+  version: 0.12.1
+  resolution: "@react-oauth/google@npm:0.12.1"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: fff63a0fc0b367519b48422c39f6ebc73226e4442ae148d752d05083a185660e66d047fcc8d88b962de97980cfb71f726de0a96ff5f00af0d7e68f333560a7c3
+  languageName: node
+  linkType: hard
+
 "@rjsf/core@npm:^5.13.4":
   version: 5.22.4
   resolution: "@rjsf/core@npm:5.22.4"
@@ -3316,6 +3326,24 @@ __metadata:
   dependencies:
     "@sinonjs/commons": "npm:^3.0.0"
   checksum: 614d30cb4d5201550c940945d44c9e0b6d64a888ff2cd5b357f95ad6721070d6b8839cd10e15b76bf5e14af0bcc1d8f9ec00d49a46318f1f669a4bec1d7f3148
+  languageName: node
+  linkType: hard
+
+"@tanstack/query-core@npm:5.60.5":
+  version: 5.60.5
+  resolution: "@tanstack/query-core@npm:5.60.5"
+  checksum: 7fe1b85c2582d076f9662fdef9b6b486856c9fe79f3bb69710db129ab21db44f3c90c2e65db5c95dbc01a6a36cf9c8d9b9ba3fae704d1008899442e9b142a1a3
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^5.60.5":
+  version: 5.60.5
+  resolution: "@tanstack/react-query@npm:5.60.5"
+  dependencies:
+    "@tanstack/query-core": "npm:5.60.5"
+  peerDependencies:
+    react: ^18 || ^19
+  checksum: 25ff97faa74a0efff004d56674115c68d003040756914ca881060611a1ac246300deacc22309277cb0d012c2aee92b34a02089fb028f4e6a1818b8c247640674
   languageName: node
   linkType: hard
 
@@ -4276,6 +4304,17 @@ __metadata:
   dependencies:
     possible-typed-array-names: "npm:^1.0.0"
   checksum: 1aa3ffbfe6578276996de660848b6e95669d9a95ad149e3dd0c0cda77db6ee1dbd9d1dd723b65b6d277b882dd0c4b91a654ae9d3cf9e1254b7e93e4908d78fd3
+  languageName: node
+  linkType: hard
+
+"axios@npm:^1.7.7":
+  version: 1.7.7
+  resolution: "axios@npm:1.7.7"
+  dependencies:
+    follow-redirects: "npm:^1.15.6"
+    form-data: "npm:^4.0.0"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: 882d4fe0ec694a07c7f5c1f68205eb6dc5a62aecdb632cc7a4a3d0985188ce3030e0b277e1a8260ac3f194d314ae342117660a151fabffdc5081ca0b5a8b47fe
   languageName: node
   linkType: hard
 
@@ -6047,6 +6086,16 @@ __metadata:
   version: 1.1.0
   resolution: "fn.name@npm:1.1.0"
   checksum: e357144f48cfc9a7f52a82bbc6c23df7c8de639fce049cac41d41d62cabb740cdb9f14eddc6485e29c933104455bdd7a69bb14a9012cef9cd4fa252a4d0cf293
+  languageName: node
+  linkType: hard
+
+"follow-redirects@npm:^1.15.6":
+  version: 1.15.9
+  resolution: "follow-redirects@npm:1.15.9"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: 859e2bacc7a54506f2bf9aacb10d165df78c8c1b0ceb8023f966621b233717dab56e8d08baadc3ad3b9db58af290413d585c999694b7c146aaf2616340c3d2a6
   languageName: node
   linkType: hard
 
@@ -7843,6 +7892,8 @@ __metadata:
     "@jupyterlab/builder": ^4.3.0
     "@jupyterlab/launcher": ^4.2.5
     "@jupyterlab/testutils": ^4.3.0
+    "@react-oauth/google": ^0.12.1
+    "@tanstack/react-query": ^5.60.5
     "@testing-library/dom": ^10.4.0
     "@testing-library/jest-dom": ^6.5.0
     "@testing-library/react": ^16.0.1
@@ -7854,6 +7905,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^8.14.0
     "@typescript-eslint/parser": ^8.14.0
     autoprefixer: ^10.4.20
+    axios: ^1.7.7
     cors: ^2.8.5
     css-loader: ^7.1.2
     eslint: ^8.36.0
@@ -9287,6 +9339,13 @@ __metadata:
     object-assign: "npm:^4.1.1"
     react-is: "npm:^16.13.1"
   checksum: c056d3f1c057cb7ff8344c645450e14f088a915d078dcda795041765047fa080d38e5d626560ccaac94a4e16e3aa15f3557c1a9a8d1174530955e992c675e459
+  languageName: node
+  linkType: hard
+
+"proxy-from-env@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "proxy-from-env@npm:1.1.0"
+  checksum: ed7fcc2ba0a33404958e34d95d18638249a68c430e30fcb6c478497d72739ba64ce9810a24f53a7d921d0c065e5b78e3822759800698167256b04659366ca4d4
   languageName: node
   linkType: hard
 

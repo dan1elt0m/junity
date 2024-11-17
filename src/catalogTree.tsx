@@ -10,6 +10,7 @@ import {
 } from './api';
 import '../style/index.css';
 import { INotebookTracker } from '@jupyterlab/notebook';
+import { AxiosInstance } from 'axios';
 
 export const getColumnIconClass = (dataType: string): string => {
   switch (dataType) {
@@ -47,9 +48,9 @@ export const getColumnIconClass = (dataType: string): string => {
 
 export const CatalogTree: React.FC<{
   notebookTracker: INotebookTracker;
-  hostUrl: string;
+  apiClient: AxiosInstance;
   token: string;
-}> = ({ notebookTracker, hostUrl, token }) => {
+}> = ({ notebookTracker, apiClient, token }) => {
   const [catalogs, setCatalogs] = useState<ICatalog[]>([]);
   const [schemas, setSchemas] = useState<{ [key: string]: ISchema[] }>({});
   const [tables, setTables] = useState<{ [key: string]: ITable[] }>({});
@@ -61,29 +62,23 @@ export const CatalogTree: React.FC<{
   useEffect(() => {
     const loadCatalogs = async () => {
       console.log('Loading catalogs');
-      console.log('Host URL:', hostUrl);
-      const catalogs = await fetchCatalogs(hostUrl, token);
+      const catalogs = await fetchCatalogs(apiClient, token);
       setCatalogs(catalogs);
     };
     loadCatalogs();
-  }, []);
+  }, [apiClient, token]);
 
   const fetchAndSetSchemasAndTables = async (catalogs: ICatalog[]) => {
     const newSchemas: { [key: string]: ISchema[] } = {};
     const newTables: { [key: string]: ITable[] } = {};
 
     for (const catalog of catalogs) {
-      const fetchedSchemas = await fetchSchemas(catalog.name, hostUrl, token);
+      const fetchedSchemas = await fetchSchemas(apiClient, catalog.name, token);
       newSchemas[catalog.name] = fetchedSchemas;
 
       for (const schema of fetchedSchemas) {
         const schemaKey = `${catalog.name}/${schema.name}`;
-        const fetchedTables = await fetchTables(
-          catalog.name,
-          schema.name,
-          hostUrl,
-          token
-        );
+        const fetchedTables = await fetchTables(apiClient, catalog.name, schema.name, token);
         newTables[schemaKey] = fetchedTables;
       }
     }
@@ -128,7 +123,7 @@ export const CatalogTree: React.FC<{
   };
 
   const refreshData = async () => {
-    const catalogs = await fetchCatalogs(hostUrl, token);
+    const catalogs = await fetchCatalogs(apiClient, token);
     setCatalogs(catalogs);
     await fetchAndSetSchemasAndTables(catalogs);
   };
@@ -182,7 +177,7 @@ export const CatalogTree: React.FC<{
     });
 
     if (type === 'catalog' && !schemas[nodeName]) {
-      const fetchedSchemas = await fetchSchemas(nodeName, hostUrl, token);
+      const fetchedSchemas = await fetchSchemas(apiClient, nodeName, token);
       setSchemas(prev => ({ ...prev, [nodeName]: fetchedSchemas }));
     }
 
@@ -195,12 +190,7 @@ export const CatalogTree: React.FC<{
         throw new Error('Schema name not found');
       }
       if (!tables[nodeName]) {
-        const fetchedTables = await fetchTables(
-          parentName,
-          schemaName,
-          hostUrl,
-          token
-        );
+        const fetchedTables = await fetchTables(apiClient, parentName, schemaName, token);
         setTables(prev => ({ ...prev, [nodeName]: fetchedTables }));
       }
     }
@@ -256,6 +246,7 @@ export const CatalogTree: React.FC<{
       ))}
     </ul>
   );
+
   const renderSchemas = (schemas: ISchema[], catalogName: string) => (
     <ul>
       {schemas.map(schema => (

@@ -4,16 +4,28 @@
   "description": "Settings for the Junity extension.",
   "properties": {
     "unityCatalogHostUrl": {
-      "default": "http://localhost:8080/api/2.1/unity-catalog",
+      "default": "http://localhost:8080",
       "description": "The host URL for the Unity Catalog API.",
       "title": "Unity Catalog Host URL",
       "type": "string"
     },
     "unityCatalogToken": {
-      "default": "not-used",
+      "default": "not-set",
       "description": "The token to use for the Unity Catalog API.",
       "title": "Unity Catalog Token",
       "type": "string"
+    },
+    "googleAuthEnabled": {
+        "default": false,
+        "description": "Whether to use Google authentication.",
+        "title": "Google Auth Enabled",
+        "type": "boolean"
+     },
+    "googleClientId": {
+        "default": "not-used",
+        "description": "The Google client ID.",
+        "title": "Google Client ID",
+        "type": "string"
     }
   }
 }

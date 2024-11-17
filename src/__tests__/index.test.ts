@@ -3,9 +3,10 @@ import { ISettingRegistry } from '@jupyterlab/settingregistry';
 import { ICommandPalette } from '@jupyterlab/apputils';
 import { INotebookTracker } from '@jupyterlab/notebook';
 import { ILauncher } from '@jupyterlab/launcher';
-import extension, { loadSettingEnv } from '../index';
+import junity from '../index';
 import { JupyterServer } from '@jupyterlab/testing';
 import { requestAPI } from '../handler';
+import { loadSettingEnv } from '../settings';
 // Add this at the top of your test file or in a setup file
 
 // Mock the requestAPI function
@@ -153,7 +154,7 @@ describe('Junity extension', () => {
   });
 
   test('Activates without crashing', async () => {
-    await extension.activate(
+    await junity.activate(
       app,
       shell,
       notebookTracker,
@@ -165,7 +166,7 @@ describe('Junity extension', () => {
   });
 
   test('Should use default settings if no env vars are set', async () => {
-    await extension.activate(
+    await junity.activate(
       app,
       shell,
       notebookTracker,

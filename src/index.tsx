@@ -1,22 +1,16 @@
-import {
-  JupyterFrontEnd,
-  JupyterFrontEndPlugin,
-  ILabShell
-} from '@jupyterlab/application';
+import { ILabShell, JupyterFrontEnd, JupyterFrontEndPlugin } from '@jupyterlab/application';
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
 
-import { ReactWidget } from '@jupyterlab/ui-components';
 import { INotebookTracker } from '@jupyterlab/notebook';
-import CatalogTree from './catalogTree';
-import * as React from 'react';
-import '../style/index.css'; // Import the CSS file
 
+import '../style/index.css'; // Import the CSS file
 import { ICommandPalette, IFrame } from '@jupyterlab/apputils';
 
 import { PageConfig } from '@jupyterlab/coreutils';
 
 import { ILauncher } from '@jupyterlab/launcher';
-import { requestAPI } from './handler';
+import { CatalogTreeWidget } from './catalogTreeWidget';
+import { loadSettingEnv } from './settings';
 
 /**
  * The command IDs used by the server extension plugin.
@@ -27,45 +21,6 @@ const CommandIDs = {
 
 const PLUGIN_ID = 'junity:settings';
 
-/**
- * A widget to display the catalog tree.
- */
-export class CatalogTreeWidget extends ReactWidget {
-  private notebookTracker: INotebookTracker;
-  public hostUrl: string;
-  private token: string;
-
-  constructor(
-    notebookTracker: INotebookTracker,
-    hostUrl: string,
-    token: string
-  ) {
-    super();
-    this.notebookTracker = notebookTracker;
-    this.hostUrl = hostUrl;
-    this.token = token;
-    this.id = 'catalog-tree-widget';
-    this.title.closable = true;
-    this.addClass('jp-CatalogTreeWidget');
-  }
-  updateHostUrl(hostUrl: string) {
-    this.hostUrl = hostUrl;
-    this.update();
-  }
-  updateToken(token: string) {
-    this.token = token;
-    this.update();
-  }
-  render() {
-    return (
-      <CatalogTree
-        notebookTracker={this.notebookTracker}
-        hostUrl={this.hostUrl}
-        token={this.token}
-      />
-    );
-  }
-}
 
 class IFrameWidget extends IFrame {
   constructor() {
@@ -80,44 +35,11 @@ class IFrameWidget extends IFrame {
   }
 }
 
-interface SettingsData {
-  data: {
-    hostUrl: string;
-    token: string;
-  };
-}
-
-// Load the settings for this extension
-export async function loadSettingEnv(
-  setting: ISettingRegistry.ISettings
-): Promise<void> {
-  console.log('Loading Env Settings');
-
-  const settingsData = await requestAPI<SettingsData>('uc_settings');
-  if (!settingsData) {
-    console.log('No Env variable settings found');
-    return;
-  }
-  const {
-    data: { hostUrl: catalogHostUrl, token: authToken }
-  } = settingsData;
-  if (catalogHostUrl) {
-    console.log('Found UC_HOST_URL environment variable');
-    console.log('Updating host URL settings: ', catalogHostUrl);
-    setting.set('unityCatalogHostUrl', catalogHostUrl);
-  }
-  if (authToken) {
-    console.log('Found UC_TOKEN environment variable');
-    console.log('Updating token settings');
-    setting.set('unityCatalogToken', authToken);
-  }
-}
-
 /**
- * Initialization data for the jupyterlab-sidepanel extension.
+ * Initialization data for the junity jupyterlab-sidepanel extension.
 
  */
-const extension: JupyterFrontEndPlugin<void> = {
+const junity: JupyterFrontEndPlugin<void> = {
   id: PLUGIN_ID,
   autoStart: true,
   requires: [ILabShell, INotebookTracker, ISettingRegistry, ICommandPalette],
@@ -137,15 +59,24 @@ const extension: JupyterFrontEndPlugin<void> = {
     console.log('Activating JupyterLab extension junity');
     let catalogHostUrl: string = '';
     let authToken: string = '';
+    let googleAuthEnabled = false;
+    let googleClientId: string = '';
 
     // Load the settings for this extension
     async function loadSettingPlugin(
       setting: ISettingRegistry.ISettings
     ): Promise<void> {
       catalogHostUrl = setting.get('unityCatalogHostUrl').composite as string;
-      authToken = setting.get('unityCatalogToken').composite as string;
       catalogTreeWidget.updateHostUrl(catalogHostUrl);
+
+      authToken = setting.get('unityCatalogToken').composite as string;
       catalogTreeWidget.updateToken(authToken);
+
+      googleAuthEnabled = setting.get('googleAuthEnabled').composite as boolean;
+      catalogTreeWidget.updateAuthenticationEnabled(googleAuthEnabled);
+
+      googleClientId = setting.get('googleClientId').composite as string;
+      catalogTreeWidget.updateGoogleClientId(googleClientId);
     }
 
     // Wait for the application to be restored and
@@ -161,10 +92,16 @@ const extension: JupyterFrontEndPlugin<void> = {
       }
     );
 
+
+
+
     const catalogTreeWidget = new CatalogTreeWidget(
       notebookTracker,
       catalogHostUrl,
-      authToken
+      authToken,
+      googleAuthEnabled,
+      googleClientId,
+      settings
     );
     catalogTreeWidget.title.label = 'Catalog';
     catalogTreeWidget.title.iconClass = 'jp-icon-extension jp-SideBar-tabIcon';
@@ -197,5 +134,5 @@ const extension: JupyterFrontEndPlugin<void> = {
   }
 };
 
-export default extension;
-export const activate = extension.activate;
+export default junity;
+export const activate = junity.activate;
