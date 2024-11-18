@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import { CatalogTree } from '../components/catalogTree';
 import { NotebookTrackerContext } from '../context/notebookTracker';
 import AuthContext from '../context/auth';
@@ -29,12 +29,20 @@ describe('CatalogTree', () => {
     mockUseListTables.mockReturnValue({
       data: { tables: [{ name: 'Table1', columns: [{ name: 'Column1', type_name: 'string' }] }] },
     });
+  // Mock window.location.reload
+    Object.defineProperty(window, 'location', {
+      value: {
+        ...window.location,
+        reload: jest.fn(),
+      },
+      writable: true,
+    });
   });
 
   it('renders catalogs', () => {
     render(
       <NotebookTrackerContext.Provider value={null}>
-        <AuthContext.Provider value={{ authenticated: true }}>
+        <AuthContext.Provider value={{ authenticated: true, accessToken:'', currentUser: '' }}>
           <CatalogTree />
         </AuthContext.Provider>
       </NotebookTrackerContext.Provider>
@@ -47,7 +55,7 @@ describe('CatalogTree', () => {
   it('expands and collapses catalogs', () => {
     render(
       <NotebookTrackerContext.Provider value={null}>
-        <AuthContext.Provider value={{ authenticated: true }}>
+        <AuthContext.Provider value={{ authenticated: true, accessToken:'', currentUser:'' }}>
           <CatalogTree />
         </AuthContext.Provider>
       </NotebookTrackerContext.Provider>
@@ -65,7 +73,7 @@ describe('CatalogTree', () => {
   it('expands and collapses schemas', () => {
     render(
       <NotebookTrackerContext.Provider value={null}>
-        <AuthContext.Provider value={{ authenticated: true }}>
+        <AuthContext.Provider value={{ authenticated: true, accessToken: '', currentUser: ''}}>
           <CatalogTree />
         </AuthContext.Provider>
       </NotebookTrackerContext.Provider>

@@ -186,9 +186,14 @@ export const CatalogTree: React.FC<unknown> = () => {
       <button
         className={`expand-all-button ${allExpanded ? 'expand-all-button-rotate' : ''}`}
         onClick={toggleExpandAllNodes}
+        aria-label="expand-all"
       ></button>
       {authContext.authenticated && (
-        <button className="logout-button" onClick={handleLogout}></button>
+        <button
+          className="logout-button"
+          onClick={handleLogout}>
+          aria-label="logout"
+        </button>
       )}
       <div>
         <span className="grey-font small-font margin-left">Catalogs</span>
