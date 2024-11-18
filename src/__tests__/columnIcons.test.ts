@@ -1,4 +1,4 @@
-import { getColumnIconClass } from '../catalogTree';
+import { getColumnIconClass } from '../utils/columnIcons';
 
 describe('getColumnIconClass', () => {
   it('should return the correct icon class for BOOLEAN type', () => {

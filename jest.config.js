@@ -21,7 +21,7 @@ const baseConfig = jestJupyterLab(__dirname);
 module.exports = {
   ...baseConfig,
   automock: false,
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.ts?$',
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|tsx)?$',
   transformIgnorePatterns: [`./node_modules/(?!${esModules}).+`],
   transform: {
     '^.+\\.tsx?$': 'babel-jest',

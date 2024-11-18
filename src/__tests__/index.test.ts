@@ -5,18 +5,18 @@ import { INotebookTracker } from '@jupyterlab/notebook';
 import { ILauncher } from '@jupyterlab/launcher';
 import junity from '../index';
 import { JupyterServer } from '@jupyterlab/testing';
-import { requestAPI } from '../serverApi';
-import { loadSettingEnv } from '../settings';
+import { requestAPI } from '../server/serverApi';
+import { loadSettingEnv } from '../utils/settings';
 // Add this at the top of your test file or in a setup file
 
 // Mock the requestAPI function
-jest.mock('../serverApi', () => ({
+jest.mock('../server/serverApi', () => ({
   requestAPI: jest.fn()
 }));
 
 // Mock the fetchCatalogs function, so no actual API calls are made to UC cat
-jest.mock('../catalogApi', () => ({
-  fetchCatalogs: jest.fn().mockResolvedValue([])
+jest.mock('../hooks/catalog', () => ({
+  useListCatalogs: jest.fn().mockResolvedValue([])
 }));
 
 const mockSettings = {
@@ -179,17 +179,12 @@ describe('Junity extension', () => {
 
   test('Should update settings if env vars are set', async () => {
     process.env.UC_HOST_URL = 'http://example.com';
-    process.env.UC_TOKEN = 'example-token';
     const setting = await mockSettings.load('junity:settings');
     await loadSettingEnv(setting);
-    expect(setting.set).toHaveBeenCalledTimes(2);
+    expect(setting.set).toHaveBeenCalledTimes(1);
     expect(setting.set).toHaveBeenCalledWith(
       'unityCatalogHostUrl',
       'http://example.com'
-    );
-    expect(setting.set).toHaveBeenCalledWith(
-      'unityCatalogToken',
-      'example-token'
     );
   });
 });

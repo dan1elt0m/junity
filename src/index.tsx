@@ -1,20 +1,15 @@
-import {
-  ILabShell,
-  JupyterFrontEnd,
-  JupyterFrontEndPlugin
-} from '@jupyterlab/application';
+import { ILabShell, JupyterFrontEnd, JupyterFrontEndPlugin } from '@jupyterlab/application';
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
 
 import { INotebookTracker } from '@jupyterlab/notebook';
 
 import '../style/index.css'; // Import the CSS file
-import { ICommandPalette, IFrame } from '@jupyterlab/apputils';
-
-import { PageConfig } from '@jupyterlab/coreutils';
+import { ICommandPalette } from '@jupyterlab/apputils';
 
 import { ILauncher } from '@jupyterlab/launcher';
-import { CatalogTreeWidget } from './catalogTreeWidget';
-import { loadSettingEnv } from './settings';
+import { CatalogTreeWidget } from './widgets/catalogTreeWidget';
+import { loadSettingEnv } from './utils/settings';
+import { DocsWidget } from './widgets/docs';
 
 /**
  * The command IDs used by the server extension plugin.
@@ -25,22 +20,8 @@ const CommandIDs = {
 
 const PLUGIN_ID = 'junity:settings';
 
-class IFrameWidget extends IFrame {
-  constructor() {
-    super();
-    const baseUrl = PageConfig.getBaseUrl();
-    this.url = baseUrl + 'junity-server/public/index.html';
-    this.id = 'doc-example';
-    this.title.label = 'Server Doc';
-    this.title.closable = true;
-    this.node.style.overflowY = 'auto';
-    this.sandbox = ['allow-scripts'];
-  }
-}
-
 /**
- * Initialization data for the junity jupyterlab-sidepanel extension.
-
+ * Initialization of the junity extension.
  */
 const junity: JupyterFrontEndPlugin<void> = {
   id: PLUGIN_ID,
@@ -101,17 +82,16 @@ const junity: JupyterFrontEndPlugin<void> = {
     catalogTreeWidget.title.iconClass = 'jp-icon-extension jp-SideBar-tabIcon';
     shell.add(catalogTreeWidget, 'left');
 
-    console.log('JupyterLab extension junity is activated!');
 
     const { commands } = app;
     const command = CommandIDs.get;
-    const category = 'Extension Examples';
+    const category = 'Extension Documentation';
 
     commands.addCommand(command, {
-      label: 'Get Server Content in a IFrame Widget',
-      caption: 'Get Server Content in a IFrame Widget',
+      label: 'Junity Documentation',
+      caption: 'Junity Documentation',
       execute: () => {
-        const widget = new IFrameWidget();
+        const widget = new DocsWidget();
         shell.add(widget, 'main');
       }
     });
@@ -125,6 +105,7 @@ const junity: JupyterFrontEndPlugin<void> = {
         category: category
       });
     }
+    console.log('JupyterLab extension junity is activated!');
   }
 };
 

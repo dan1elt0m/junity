@@ -1,5 +1,5 @@
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
-import { requestAPI } from './serverApi';
+import { requestAPI } from '../server/serverApi';
 
 interface SettingsData {
   data: {

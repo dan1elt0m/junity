@@ -5,17 +5,20 @@ import {
   GoogleLogin,
   CredentialResponse
 } from '@react-oauth/google';
-import CatalogTree from './catalogTree';
+import CatalogTree from '../components/catalogTree';
 import * as React from 'react';
-import { getClient } from './client';
-import { AxiosInstance } from 'axios';
+import { getClient } from '../context/client';
 import {
   QueryClient,
   QueryClientProvider,
   useMutation
 } from '@tanstack/react-query';
-import { UC_AUTH_API_PREFIX } from './constants';
+import { UC_AUTH_API_PREFIX } from '../utils/constants';
 import Cookies from 'js-cookie';
+import { ClientContext } from '../context/client';
+import { useContext } from 'react';
+import { NotebookTrackerContext } from '../context/notebookTracker';
+import  AuthContext from '../context/auth';
 
 const queryClient = new QueryClient();
 
@@ -23,7 +26,8 @@ interface LoginResponse {
   access_token: string;
 }
 
-function useLoginWithToken(client: AxiosInstance) {
+function useLoginWithToken() {
+  const apiClient = useContext(ClientContext);
   return useMutation<LoginResponse, Error, string>({
     mutationFn: async idToken => {
       const params = {
@@ -34,7 +38,7 @@ function useLoginWithToken(client: AxiosInstance) {
       };
       console.log('Requesting token exchange with UC');
       try {
-        const response = await client.post(
+        const response = await apiClient.post(
           `${UC_AUTH_API_PREFIX}/auth/tokens`,
           JSON.stringify(params),
           {}
@@ -48,26 +52,17 @@ function useLoginWithToken(client: AxiosInstance) {
 }
 
 const CatalogTreeWidgetComponent: React.FC<{
-  notebookTracker: INotebookTracker;
-  hostUrl: string;
   googleAuthEnabled: boolean;
   googleClientId: string;
-  authenticated: boolean;
   setAuthenticated: (authenticated: boolean) => void;
-  token: string;
   updateToken: (token: string) => void;
 }> = ({
-  notebookTracker,
-  hostUrl,
   googleAuthEnabled,
   googleClientId,
-  authenticated,
   setAuthenticated,
-  token,
   updateToken
 }) => {
-  const apiClient = getClient(hostUrl);
-  const loginWithToken = useLoginWithToken(apiClient);
+  const loginWithToken = useLoginWithToken();
 
   React.useEffect(() => {
     const authCookie = Cookies.get('authenticated');
@@ -81,7 +76,7 @@ const CatalogTreeWidgetComponent: React.FC<{
     if (tokenCookie) {
       updateToken(tokenCookie);
     }
-  }, [updateToken]);
+  }, []);
 
   const handleGoogleSignIn = async (response: CredentialResponse) => {
     console.log('Handling Google Sign In response');
@@ -119,9 +114,11 @@ const CatalogTreeWidgetComponent: React.FC<{
     console.error('Failed to log in to Unity Catalog:', error);
   };
 
+  const authContext = useContext(AuthContext);
+
   return (
     <div>
-      {googleAuthEnabled && !authenticated ? (
+      {googleAuthEnabled && !authContext.authenticated ? (
         <GoogleOAuthProvider clientId={googleClientId}>
           <GoogleLogin
             onSuccess={handleGoogleSignIn}
@@ -129,11 +126,7 @@ const CatalogTreeWidgetComponent: React.FC<{
           />
         </GoogleOAuthProvider>
       ) : (
-        <CatalogTree
-          notebookTracker={notebookTracker}
-          apiClient={apiClient}
-          token={token}
-        />
+        <CatalogTree/>
       )}
     </div>
   );
@@ -192,20 +185,22 @@ export class CatalogTreeWidget extends ReactWidget {
 
   render() {
     return (
+      <AuthContext.Provider value={{ accessToken: this.token, authenticated: this.authenticated, currentUser: '' }}>
+      <NotebookTrackerContext.Provider value={this.notebookTracker}>
+      <ClientContext.Provider value={getClient(this.hostUrl, this.token)}>
       <QueryClientProvider client={queryClient}>
         <CatalogTreeWidgetComponent
-          notebookTracker={this.notebookTracker}
-          hostUrl={this.hostUrl}
           googleAuthEnabled={this.googleAuthEnabled}
           googleClientId={this.googleClientId}
-          authenticated={this.authenticated}
           setAuthenticated={authenticated =>
             this.setAuthenticated(authenticated)
           }
-          token={this.token}
           updateToken={(token: string) => this.updateToken(token)}
         />
       </QueryClientProvider>
+      </ClientContext.Provider>
+      </NotebookTrackerContext.Provider>
+      </AuthContext.Provider>
     );
   }
 }
