@@ -1,7 +1,4 @@
-import {
-  useQuery,
-  UseQueryOptions,
-} from '@tanstack/react-query';
+import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 import { UC_API_PREFIX } from '../utils/constants';
 import { useContext } from 'react';
 import { ClientContext } from '../context/client';
@@ -35,8 +32,8 @@ export function useListSchemas({ catalog, options }: ListSchemasParams) {
       const searchParams = new URLSearchParams({ catalog_name: catalog });
       return apiClient
         .get(`${UC_API_PREFIX}/schemas?${searchParams.toString()}`)
-        .then((response) => response.data);
+        .then(response => response.data);
     },
-    ...options,
+    ...options
   });
 }

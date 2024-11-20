@@ -6,9 +6,11 @@ export function getClient(hostUrl: string, token: string) {
     baseURL: hostUrl,
     headers: {
       'Content-type': 'application/json',
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`
     }
   });
 }
 
-export const ClientContext = createContext(getClient('http://localhost:8080', ''));
+export const ClientContext = createContext(
+  getClient('http://localhost:8080', '')
+);

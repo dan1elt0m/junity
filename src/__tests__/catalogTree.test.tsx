@@ -4,10 +4,9 @@ import '@testing-library/jest-dom';
 import { CatalogTree } from '../components/catalogTree';
 import { NotebookTrackerContext } from '../context/notebookTracker';
 import AuthContext from '../context/auth';
-import { useListCatalogs} from '../hooks/catalog';
+import { useListCatalogs } from '../hooks/catalog';
 import { useListSchemas } from '../hooks/schema';
 import { useListTables } from '../hooks/table';
-
 
 // Mock the hooks
 jest.mock('../hooks/catalog');
@@ -21,28 +20,37 @@ const mockUseListTables = useListTables as jest.Mock;
 describe('CatalogTree', () => {
   beforeEach(() => {
     mockUseListCatalogs.mockReturnValue({
-      data: { catalogs: [{ name: 'Catalog1' }, { name: 'Catalog2' }] },
+      data: { catalogs: [{ name: 'Catalog1' }, { name: 'Catalog2' }] }
     });
     mockUseListSchemas.mockReturnValue({
-      data: { schemas: [{ name: 'Schema1' }, { name: 'Schema2' }] },
+      data: { schemas: [{ name: 'Schema1' }, { name: 'Schema2' }] }
     });
     mockUseListTables.mockReturnValue({
-      data: { tables: [{ name: 'Table1', columns: [{ name: 'Column1', type_name: 'string' }] }] },
+      data: {
+        tables: [
+          {
+            name: 'Table1',
+            columns: [{ name: 'Column1', type_name: 'string' }]
+          }
+        ]
+      }
     });
-  // Mock window.location.reload
+    // Mock window.location.reload
     Object.defineProperty(window, 'location', {
       value: {
         ...window.location,
-        reload: jest.fn(),
+        reload: jest.fn()
       },
-      writable: true,
+      writable: true
     });
   });
 
   it('renders catalogs', () => {
     render(
       <NotebookTrackerContext.Provider value={null}>
-        <AuthContext.Provider value={{ authenticated: true, accessToken:'', currentUser: '' }}>
+        <AuthContext.Provider
+          value={{ authenticated: true, accessToken: '', currentUser: '' }}
+        >
           <CatalogTree />
         </AuthContext.Provider>
       </NotebookTrackerContext.Provider>
@@ -55,7 +63,9 @@ describe('CatalogTree', () => {
   it('expands and collapses catalogs', () => {
     render(
       <NotebookTrackerContext.Provider value={null}>
-        <AuthContext.Provider value={{ authenticated: true, accessToken:'', currentUser:'' }}>
+        <AuthContext.Provider
+          value={{ authenticated: true, accessToken: '', currentUser: '' }}
+        >
           <CatalogTree />
         </AuthContext.Provider>
       </NotebookTrackerContext.Provider>
@@ -73,7 +83,9 @@ describe('CatalogTree', () => {
   it('expands and collapses schemas', () => {
     render(
       <NotebookTrackerContext.Provider value={null}>
-        <AuthContext.Provider value={{ authenticated: true, accessToken: '', currentUser: ''}}>
+        <AuthContext.Provider
+          value={{ authenticated: true, accessToken: '', currentUser: '' }}
+        >
           <CatalogTree />
         </AuthContext.Provider>
       </NotebookTrackerContext.Provider>
@@ -90,7 +102,9 @@ describe('CatalogTree', () => {
   it('logs out the user', () => {
     render(
       <NotebookTrackerContext.Provider value={null}>
-        <AuthContext.Provider value={{ authenticated: true, accessToken:'', currentUser: '' }}>
+        <AuthContext.Provider
+          value={{ authenticated: true, accessToken: '', currentUser: '' }}
+        >
           <CatalogTree />
         </AuthContext.Provider>
       </NotebookTrackerContext.Provider>

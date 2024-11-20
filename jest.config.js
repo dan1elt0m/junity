@@ -31,5 +31,10 @@ module.exports = {
   roots: ['<rootDir>/src'],
   moduleNameMapper: {
     '\\.svg$': '<rootDir>/src/__mocks__/svgMock.js'
+  },
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  testEnvironmentOptions: {
+    customExportConditions: [''],
+    testUrl: 'http://localhost'
   }
 };

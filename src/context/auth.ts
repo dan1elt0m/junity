@@ -9,7 +9,7 @@ interface AuthContextProps {
 const AuthContext = React.createContext<AuthContextProps>({
   accessToken: '',
   authenticated: false,
-  currentUser: '',
+  currentUser: ''
 });
 
 AuthContext.displayName = 'AuthContext';

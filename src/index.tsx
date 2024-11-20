@@ -1,4 +1,8 @@
-import { ILabShell, JupyterFrontEnd, JupyterFrontEndPlugin } from '@jupyterlab/application';
+import {
+  ILabShell,
+  JupyterFrontEnd,
+  JupyterFrontEndPlugin
+} from '@jupyterlab/application';
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
 
 import { INotebookTracker } from '@jupyterlab/notebook';
@@ -81,7 +85,6 @@ const junity: JupyterFrontEndPlugin<void> = {
     catalogTreeWidget.title.label = 'Catalog';
     catalogTreeWidget.title.iconClass = 'jp-icon-extension jp-SideBar-tabIcon';
     shell.add(catalogTreeWidget, 'left');
-
 
     const { commands } = app;
     const command = CommandIDs.get;

@@ -18,7 +18,7 @@ import Cookies from 'js-cookie';
 import { ClientContext } from '../context/client';
 import { useContext } from 'react';
 import { NotebookTrackerContext } from '../context/notebookTracker';
-import  AuthContext from '../context/auth';
+import AuthContext from '../context/auth';
 
 const queryClient = new QueryClient();
 
@@ -56,12 +56,7 @@ const CatalogTreeWidgetComponent: React.FC<{
   googleClientId: string;
   setAuthenticated: (authenticated: boolean) => void;
   updateToken: (token: string) => void;
-}> = ({
-  googleAuthEnabled,
-  googleClientId,
-  setAuthenticated,
-  updateToken
-}) => {
+}> = ({ googleAuthEnabled, googleClientId, setAuthenticated, updateToken }) => {
   const loginWithToken = useLoginWithToken();
 
   React.useEffect(() => {
@@ -76,7 +71,7 @@ const CatalogTreeWidgetComponent: React.FC<{
     if (tokenCookie) {
       updateToken(tokenCookie);
     }
-  }, []);
+  }, [updateToken]);
 
   const handleGoogleSignIn = async (response: CredentialResponse) => {
     console.log('Handling Google Sign In response');
@@ -126,7 +121,7 @@ const CatalogTreeWidgetComponent: React.FC<{
           />
         </GoogleOAuthProvider>
       ) : (
-        <CatalogTree/>
+        <CatalogTree />
       )}
     </div>
   );
@@ -185,21 +180,27 @@ export class CatalogTreeWidget extends ReactWidget {
 
   render() {
     return (
-      <AuthContext.Provider value={{ accessToken: this.token, authenticated: this.authenticated, currentUser: '' }}>
-      <NotebookTrackerContext.Provider value={this.notebookTracker}>
-      <ClientContext.Provider value={getClient(this.hostUrl, this.token)}>
-      <QueryClientProvider client={queryClient}>
-        <CatalogTreeWidgetComponent
-          googleAuthEnabled={this.googleAuthEnabled}
-          googleClientId={this.googleClientId}
-          setAuthenticated={authenticated =>
-            this.setAuthenticated(authenticated)
-          }
-          updateToken={(token: string) => this.updateToken(token)}
-        />
-      </QueryClientProvider>
-      </ClientContext.Provider>
-      </NotebookTrackerContext.Provider>
+      <AuthContext.Provider
+        value={{
+          accessToken: this.token,
+          authenticated: this.authenticated,
+          currentUser: ''
+        }}
+      >
+        <NotebookTrackerContext.Provider value={this.notebookTracker}>
+          <ClientContext.Provider value={getClient(this.hostUrl, this.token)}>
+            <QueryClientProvider client={queryClient}>
+              <CatalogTreeWidgetComponent
+                googleAuthEnabled={this.googleAuthEnabled}
+                googleClientId={this.googleClientId}
+                setAuthenticated={authenticated =>
+                  this.setAuthenticated(authenticated)
+                }
+                updateToken={(token: string) => this.updateToken(token)}
+              />
+            </QueryClientProvider>
+          </ClientContext.Provider>
+        </NotebookTrackerContext.Provider>
       </AuthContext.Provider>
     );
   }

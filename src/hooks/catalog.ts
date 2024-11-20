@@ -27,10 +27,10 @@ export function useListCatalogs() {
     queryFn: async () => {
       return apiClient
         .get(`${UC_API_PREFIX}/catalogs`)
-        .then((response) => response.data)
-        .catch((e) => {
-          throw new Error('Failed to fetch catalogs');
+        .then(response => response.data)
+        .catch(e => {
+          throw new Error(`Failed to fetch catalogs. Error ${e}`);
         });
-    },
+    }
   });
 }

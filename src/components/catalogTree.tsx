@@ -12,22 +12,24 @@ import AuthContext from '../context/auth';
 
 // Renders the catalog tree
 export const CatalogTree: React.FC<unknown> = () => {
-  const notebookTracker = useContext(NotebookTrackerContext)
+  const notebookTracker = useContext(NotebookTrackerContext);
   const authContext = useContext(AuthContext);
   const [catalogToExpand, setCatalogToExpand] = useState<string>();
   const [schemaToExpand, setSchemaToExpand] = useState<string>();
-  const [schemas, setSchemas] = useState<{ [key: string]: SchemaInterface[] }>({});
+  const [schemas, setSchemas] = useState<{ [key: string]: SchemaInterface[] }>(
+    {}
+  );
   const [tables, setTables] = useState<{ [key: string]: TableInterface[] }>({});
   const [allExpanded, setAllExpanded] = useState<boolean>(false);
   const listCatalogsRequest = useListCatalogs();
   const listSchemasRequest = useListSchemas({
     catalog: catalogToExpand!,
-    options: { enabled: !!catalogToExpand },
+    options: { enabled: !!catalogToExpand }
   });
   const listTablesRequest = useListTables({
     catalog: catalogToExpand!,
     schema: schemaToExpand!,
-    options: { enabled: !!schemaToExpand },
+    options: { enabled: !!schemaToExpand }
   });
 
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(
@@ -36,13 +38,19 @@ export const CatalogTree: React.FC<unknown> = () => {
 
   useEffect(() => {
     if (listSchemasRequest.data?.schemas) {
-      setSchemas(prev => ({ ...prev, [catalogToExpand!]: listSchemasRequest.data.schemas }));
+      setSchemas(prev => ({
+        ...prev,
+        [catalogToExpand!]: listSchemasRequest.data.schemas
+      }));
     }
   }, [catalogToExpand, listSchemasRequest.data?.schemas]);
 
   useEffect(() => {
     if (listTablesRequest.data?.tables) {
-      setTables(prev => ({ ...prev, [`${catalogToExpand}/${schemaToExpand}`]: listTablesRequest.data.tables }));
+      setTables(prev => ({
+        ...prev,
+        [`${catalogToExpand}/${schemaToExpand}`]: listTablesRequest.data.tables
+      }));
     }
   }, [schemaToExpand, listTablesRequest.data?.tables]);
 
@@ -81,9 +89,7 @@ export const CatalogTree: React.FC<unknown> = () => {
     setExpandedNodes(newSet);
   };
 
-  const renderColumns = (
-    columns: ColumnInterface[],
-  ) => (
+  const renderColumns = (columns: ColumnInterface[]) => (
     <ul>
       {columns.map(column => (
         <li key={column.name} className="column-name">
@@ -108,7 +114,11 @@ export const CatalogTree: React.FC<unknown> = () => {
     <ul>
       {tables.map(table => (
         <li key={table.name} className="tree-node">
-          <div onClick={() => toggleNode(`${catalogName}/${schemaName}/${table.name}`)}>
+          <div
+            onClick={() =>
+              toggleNode(`${catalogName}/${schemaName}/${table.name}`)
+            }
+          >
             <span
               className={`jp-icon-expand ${expandedNodes.has(`${catalogName}/${schemaName}/${table.name}`) ? 'jp-icon-rotate' : ''}`}
             ></span>
@@ -118,7 +128,8 @@ export const CatalogTree: React.FC<unknown> = () => {
               onClick={e => {
                 e.stopPropagation(); // Prevent triggering the toggleNode
                 insertPathToNotebook(
-                  `${catalogName}.${schemaName}.${table.name}`, notebookTracker!
+                  `${catalogName}.${schemaName}.${table.name}`,
+                  notebookTracker!
                 );
               }}
             ></span>
@@ -137,9 +148,10 @@ export const CatalogTree: React.FC<unknown> = () => {
         <li key={schema.name}>
           <div
             onClick={() => {
-              toggleNode(`${catalogName}/${schema.name}`)
-              setSchemaToExpand(schema.name)
-            }}>
+              toggleNode(`${catalogName}/${schema.name}`);
+              setSchemaToExpand(schema.name);
+            }}
+          >
             <span
               className={`jp-icon-expand ${expandedNodes.has(`${catalogName}/${schema.name}`) ? 'jp-icon-rotate' : ''}`}
             ></span>
@@ -164,10 +176,12 @@ export const CatalogTree: React.FC<unknown> = () => {
     <ul>
       {listCatalogsRequest.data?.catalogs.map(catalog => (
         <li key={catalog.name}>
-          <div onClick={() => {
-            toggleNode(catalog.name)
-            setCatalogToExpand(catalog.name)
-          }}>
+          <div
+            onClick={() => {
+              toggleNode(catalog.name);
+              setCatalogToExpand(catalog.name);
+            }}
+          >
             <span
               className={`jp-icon-expand ${expandedNodes.has(catalog.name) ? 'jp-icon-rotate' : ''}`}
             ></span>
@@ -189,9 +203,7 @@ export const CatalogTree: React.FC<unknown> = () => {
         aria-label="expand-all"
       ></button>
       {authContext.authenticated && (
-        <button
-          className="logout-button"
-          onClick={handleLogout}>
+        <button className="logout-button" onClick={handleLogout}>
           aria-label="logout"
         </button>
       )}

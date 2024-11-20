@@ -43,13 +43,13 @@ export function useListTables({ catalog, schema, options }: ListTablesParams) {
     queryFn: async () => {
       const searchParams = new URLSearchParams({
         catalog_name: catalog,
-        schema_name: schema,
+        schema_name: schema
       });
 
       return apiClient
         .get(`${UC_API_PREFIX}/tables?${searchParams.toString()}`)
-        .then((response) => response.data);
+        .then(response => response.data);
     },
-    ...options,
+    ...options
   });
 }
