@@ -2,7 +2,6 @@ import { BroadcastChannel } from 'worker_threads';
 import { ucServer } from './src/__mocks__/ucServer';
 
 Reflect.set(globalThis, 'BroadcastChannel', BroadcastChannel);
-// global.XMLHttpRequest = xhr2;
 
 beforeAll(() => {
   // Start the interception.
