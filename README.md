@@ -35,7 +35,7 @@ Possible editor / env settings are:
 
 - `hostUrl / JY_HOST_URL`: The URL of the Unity Catalog server. Default is `http://localhost:8080`.
 - `accessToken / JY_ACCESS_TOKEN`: The token to authenticate with the Unity Catalog server. Default is `None`.
-- `googleAuthEnabled / JY_GOOGLE_AUTH_ENABLED`: Enable or disable authentication. Default is `False`.
+- `googleAuthEnabled / JY_GOOGLE_AUTH_ENABLED`: Enable or disable authentication. Default is `False`. If enabled, the `googleClientId` setting is required. In addition, the UC server must be configured to accept Google authentication and user must exist in the UC server.
 - `googleClientId / JY_GOOGLE_CLIENT_ID`: The Google client ID for authentication. Default is `None`.
 
 Settings can be configured partially in editor and partially in env variables. The env variables overwrite
@@ -149,7 +149,3 @@ See [RELEASE](RELEASE.md)
 #### Remarks
 
 Also checkout my other library [dunky](https://github.com/dan1elt0m/dunky) for a matching jupyter kernel
-
-```
-
-```
