@@ -21,7 +21,6 @@
       "type": "boolean"
     },
     "googleClientId": {
-      "default": "not-used",
       "description": "The Google client ID.",
       "title": "Google Client ID",
       "type": "string"

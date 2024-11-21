@@ -1,4 +1,3 @@
-// catalogTreeWidget.test.tsx
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -88,5 +87,32 @@ describe('CatalogTreeWidgetComponent', () => {
     );
 
     expect(screen.getByText('Catalogs')).toBeInTheDocument();
+  });
+
+  it('should render error message when googleAuthEnabled is true but googleClientId is not set', () => {
+    render(
+      <AuthContext.Provider
+        value={{
+          accessToken: '',
+          authenticated: false,
+          currentUser: ''
+        }}
+      >
+        <NotebookTrackerContext.Provider value={mockNotebookTracker}>
+          <ClientContext.Provider value={apiClient}>
+            <QueryClientProvider client={queryClient}>
+              <CatalogTreeWidgetComponent
+                googleAuthEnabled={true}
+                googleClientId=""
+                setAuthenticated={mockSetAuthenticated}
+                updateToken={mockUpdateToken}
+              />
+            </QueryClientProvider>
+          </ClientContext.Provider>
+        </NotebookTrackerContext.Provider>
+      </AuthContext.Provider>
+    );
+
+    expect(screen.getByText('Error: Google authentication is enabled, but no client ID is set.')).toBeInTheDocument();
   });
 });
