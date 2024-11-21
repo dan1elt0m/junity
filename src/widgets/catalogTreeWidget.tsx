@@ -75,7 +75,9 @@ export const CatalogTreeWidgetComponent: React.FC<{
 
   React.useEffect(() => {
     if (googleAuthEnabled && !googleClientId) {
-      console.error('Google authentication is enabled, but no client ID is set.');
+      console.error(
+        'Google authentication is enabled, but no client ID is set.'
+      );
     }
   }, []);
 
@@ -119,12 +121,13 @@ export const CatalogTreeWidgetComponent: React.FC<{
 
   return (
     <div>
-     {googleAuthEnabled && !googleClientId ? (
-        <div>Error: Google authentication is enabled, but no client ID is set.</div>
-      ) :
-      googleAuthEnabled &&
-      !authContext.authenticated &&
-      !authContext.accessToken ? (
+      {googleAuthEnabled && !googleClientId ? (
+        <div>
+          Error: Google authentication is enabled, but no client ID is set.
+        </div>
+      ) : googleAuthEnabled &&
+        !authContext.authenticated &&
+        !authContext.accessToken ? (
         <GoogleOAuthProvider clientId={googleClientId}>
           <GoogleLogin
             onSuccess={handleGoogleSignIn}

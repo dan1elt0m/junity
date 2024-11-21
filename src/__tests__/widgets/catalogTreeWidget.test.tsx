@@ -113,6 +113,10 @@ describe('CatalogTreeWidgetComponent', () => {
       </AuthContext.Provider>
     );
 
-    expect(screen.getByText('Error: Google authentication is enabled, but no client ID is set.')).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        'Error: Google authentication is enabled, but no client ID is set.'
+      )
+    ).toBeInTheDocument();
   });
 });
