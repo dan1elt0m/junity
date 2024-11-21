@@ -1,7 +1,9 @@
 import { INotebookTracker } from '@jupyterlab/notebook';
 
-export const insertPathToNotebook = (
-  path: string,
+
+// Inserts entity from the catalog explorer to the current cell's editor
+export const insertEntityToNotebook = (
+  entity: string,
   notebookTracker: INotebookTracker
 ) => {
   // Get the current notebook instance
@@ -26,8 +28,8 @@ export const insertPathToNotebook = (
     return;
   } // Check if replaceSelection is defined
   if (typeof editor.replaceSelection === 'function') {
-    // Insert the path at the current cursor position
-    editor.replaceSelection(path);
+    // Insert the Entity at the current cursor position
+    editor.replaceSelection(entity);
   } else {
     console.error('replaceSelection method is not available on the editor');
   }

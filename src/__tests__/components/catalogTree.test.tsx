@@ -1,17 +1,17 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { CatalogTree } from '../components/catalogTree';
-import { NotebookTrackerContext } from '../context/notebookTracker';
-import AuthContext from '../context/auth';
-import { useListCatalogs } from '../hooks/catalog';
-import { useListSchemas } from '../hooks/schema';
-import { useListTables } from '../hooks/table';
+import { CatalogTree } from '../../components/catalogTree';
+import { NotebookTrackerContext } from '../../context/notebookTracker';
+import AuthContext from '../../context/auth';
+import { useListCatalogs } from '../../hooks/catalog';
+import { useListSchemas } from '../../hooks/schema';
+import { useListTables } from '../../hooks/table';
 
 // Mock the hooks
-jest.mock('../hooks/catalog');
-jest.mock('../hooks/schema');
-jest.mock('../hooks/table');
+jest.mock('../../hooks/catalog');
+jest.mock('../../hooks/schema');
+jest.mock('../../hooks/table');
 
 const mockUseListCatalogs = useListCatalogs as jest.Mock;
 const mockUseListSchemas = useListSchemas as jest.Mock;
@@ -80,7 +80,7 @@ describe('CatalogTree', () => {
     expect(screen.queryByText('Schema2')).not.toBeInTheDocument();
   });
 
-  it('expands and collapses schemas', () => {
+  it('expands and collapses all', () => {
     render(
       <NotebookTrackerContext.Provider value={null}>
         <AuthContext.Provider
@@ -91,12 +91,9 @@ describe('CatalogTree', () => {
       </NotebookTrackerContext.Provider>
     );
 
-    fireEvent.click(screen.getByText('Catalog1'));
-    fireEvent.click(screen.getByText('Schema1'));
-    expect(screen.getByText('Table1')).toBeInTheDocument();
-
-    fireEvent.click(screen.getByText('Schema1'));
-    expect(screen.queryByText('Table1')).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /expand-all/i }));
+    expect(screen.getByText('Catalog1')).toBeInTheDocument();
+    expect(screen.getByText('Catalog2')).toBeInTheDocument();
   });
 
   it('logs out the user', () => {

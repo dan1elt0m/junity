@@ -1,56 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="12" failures="1" errors="0" time="4.713">
-  <testsuite name="getColumnIconClass" errors="0" failures="0" skipped="0" timestamp="2024-11-19T06:36:23" time="0.453" tests="3">
+<testsuites name="jest tests" tests="18" failures="0" errors="0" time="4.678">
+  <testsuite name="getColumnIconClass" errors="0" failures="0" skipped="0" timestamp="2024-11-21T03:48:06" time="0.346" tests="3">
     <testcase classname="getColumnIconClass should return the correct icon class for BOOLEAN type" name="getColumnIconClass should return the correct icon class for BOOLEAN type" time="0.003">
     </testcase>
     <testcase classname="getColumnIconClass should return the correct icon class for STRING type" name="getColumnIconClass should return the correct icon class for STRING type" time="0">
     </testcase>
-    <testcase classname="getColumnIconClass should return the default icon class for unknown type" name="getColumnIconClass should return the default icon class for unknown type" time="0">
+    <testcase classname="getColumnIconClass should return the default icon class for unknown type" name="getColumnIconClass should return the default icon class for unknown type" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="useListCatalogs" errors="0" failures="0" skipped="0" timestamp="2024-11-19T06:36:23" time="0.802" tests="1">
-    <testcase classname="useListCatalogs fetches and returns catalogs" name="useListCatalogs fetches and returns catalogs" time="0.074">
+  <testsuite name="insertEntityToNotebook" errors="0" failures="0" skipped="0" timestamp="2024-11-21T03:48:06" time="0.348" tests="5">
+    <testcase classname="insertEntityToNotebook should insert the path into the current cell&apos;s editor" name="insertEntityToNotebook should insert the path into the current cell&apos;s editor" time="0.004">
+    </testcase>
+    <testcase classname="insertEntityToNotebook should log an error if there is no active notebook" name="insertEntityToNotebook should log an error if there is no active notebook" time="0">
+    </testcase>
+    <testcase classname="insertEntityToNotebook should log an error if there is no active cell" name="insertEntityToNotebook should log an error if there is no active cell" time="0.001">
+    </testcase>
+    <testcase classname="insertEntityToNotebook should log an error if there is no editor in the current cell" name="insertEntityToNotebook should log an error if there is no editor in the current cell" time="0">
+    </testcase>
+    <testcase classname="insertEntityToNotebook should log an error if replaceSelection method is not available on the editor" name="insertEntityToNotebook should log an error if replaceSelection method is not available on the editor" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="CatalogTree" errors="0" failures="0" skipped="0" timestamp="2024-11-19T06:36:23" time="0.874" tests="4">
-    <testcase classname="CatalogTree renders catalogs" name="CatalogTree renders catalogs" time="0.021">
+  <testsuite name="useListCatalogs" errors="0" failures="0" skipped="0" timestamp="2024-11-21T03:48:06" time="0.656" tests="1">
+    <testcase classname="useListCatalogs fetches and returns catalogs" name="useListCatalogs fetches and returns catalogs" time="0.075">
+    </testcase>
+  </testsuite>
+  <testsuite name="useListTables" errors="0" failures="0" skipped="0" timestamp="2024-11-21T03:48:06" time="0.657" tests="1">
+    <testcase classname="useListTables fetches and returns tables" name="useListTables fetches and returns tables" time="0.076">
+    </testcase>
+  </testsuite>
+  <testsuite name="useListSchemas" errors="0" failures="0" skipped="0" timestamp="2024-11-21T03:48:06" time="0.657" tests="1">
+    <testcase classname="useListSchemas fetches and returns Schemas" name="useListSchemas fetches and returns Schemas" time="0.075">
+    </testcase>
+  </testsuite>
+  <testsuite name="CatalogTree" errors="0" failures="0" skipped="0" timestamp="2024-11-21T03:48:06" time="0.731" tests="4">
+    <testcase classname="CatalogTree renders catalogs" name="CatalogTree renders catalogs" time="0.018">
     </testcase>
     <testcase classname="CatalogTree expands and collapses catalogs" name="CatalogTree expands and collapses catalogs" time="0.01">
     </testcase>
-    <testcase classname="CatalogTree expands and collapses schemas" name="CatalogTree expands and collapses schemas" time="0.011">
+    <testcase classname="CatalogTree expands and collapses all" name="CatalogTree expands and collapses all" time="0.019">
     </testcase>
-    <testcase classname="CatalogTree logs out the user" name="CatalogTree logs out the user" time="0.029">
-    </testcase>
-  </testsuite>
-  <testsuite name="useListTables" errors="0" failures="1" skipped="0" timestamp="2024-11-19T06:36:23" time="1.758" tests="1">
-    <testcase classname="useListTables fetches and returns tables" name="useListTables fetches and returns tables" time="1.026">
-      <failure>Error: expect(received).toEqual(expected) // deep equality
-
-Expected: [{&quot;id&quot;: &quot;1&quot;, &quot;name&quot;: &quot;Table1&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;name&quot;: &quot;Table2&quot;}]
-Received: undefined
-
-Ignored nodes: comments, script, style
-&lt;html&gt;
-  &lt;head /&gt;
-  &lt;body&gt;
-    &lt;div /&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-    at toEqual (/Users/danieltom/git/xd/junity/src/__tests__/useListTables.test.tsx:22:63)
-    at runWithExpensiveErrorDiagnosticsDisabled (/Users/danieltom/git/xd/junity/node_modules/@testing-library/dom/dist/config.js:47:12)
-    at checkCallback (/Users/danieltom/git/xd/junity/node_modules/@testing-library/dom/dist/wait-for.js:124:77)
-    at checkRealTimersCallback (/Users/danieltom/git/xd/junity/node_modules/@testing-library/dom/dist/wait-for.js:118:16)
-    at Timeout.task [as _onTimeout] (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/browser/Window.js:520:19)
-    at listOnTimeout (node:internal/timers:573:17)
-    at processTimers (node:internal/timers:514:7)</failure>
+    <testcase classname="CatalogTree logs out the user" name="CatalogTree logs out the user" time="0.013">
     </testcase>
   </testsuite>
-  <testsuite name="Junity extension" errors="0" failures="0" skipped="0" timestamp="2024-11-19T06:36:23" time="3.552" tests="3">
-    <testcase classname="Junity extension Activates without crashing" name="Junity extension Activates without crashing" time="0.013">
+  <testsuite name="Junity extension" errors="0" failures="0" skipped="0" timestamp="2024-11-21T03:48:06" time="3.453" tests="3">
+    <testcase classname="Junity extension Activates without crashing" name="Junity extension Activates without crashing" time="0.012">
     </testcase>
     <testcase classname="Junity extension Should use default settings if no env vars are set" name="Junity extension Should use default settings if no env vars are set" time="0.002">
     </testcase>
-    <testcase classname="Junity extension Should update settings if env vars are set" name="Junity extension Should update settings if env vars are set" time="0.001">
+    <testcase classname="Junity extension Should update settings if env vars are set" name="Junity extension Should update settings if env vars are set" time="0">
     </testcase>
   </testsuite>
 </testsuites>

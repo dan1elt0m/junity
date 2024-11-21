@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import { useListCatalogs } from '../hooks/catalog';
 import { SchemaInterface, useListSchemas } from '../hooks/schema';
 import { getColumnIconClass } from '../utils/columnIcons';
-import { insertPathToNotebook } from '../utils/notebook';
+import { insertEntityToNotebook } from '../notebook/insertEntity';
 import { TableInterface, useListTables } from '../hooks/table';
 import { ColumnInterface } from '../hooks/column';
 import { NotebookTrackerContext } from '../context/notebookTracker';
@@ -98,7 +98,7 @@ export const CatalogTree: React.FC<unknown> = () => {
           <span
             className="jp-icon-insert"
             onClick={() => {
-              insertPathToNotebook(column.name, notebookTracker!);
+              insertEntityToNotebook(column.name, notebookTracker!);
             }}
           ></span>
         </li>
@@ -127,7 +127,7 @@ export const CatalogTree: React.FC<unknown> = () => {
               className="jp-icon-insert"
               onClick={e => {
                 e.stopPropagation(); // Prevent triggering the toggleNode
-                insertPathToNotebook(
+                insertEntityToNotebook(
                   `${catalogName}.${schemaName}.${table.name}`,
                   notebookTracker!
                 );

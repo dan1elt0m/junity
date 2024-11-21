@@ -4,23 +4,14 @@ import {
   JupyterFrontEndPlugin
 } from '@jupyterlab/application';
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
-
 import { INotebookTracker } from '@jupyterlab/notebook';
-
 import '../style/index.css'; // Import the CSS file
-import { ICommandPalette } from '@jupyterlab/apputils';
-
-import { ILauncher } from '@jupyterlab/launcher';
 import { CatalogTreeWidget } from './widgets/catalogTreeWidget';
 import { loadSettingEnv } from './utils/settings';
-import { DocsWidget } from './widgets/docs';
 
 /**
  * The command IDs used by the server extension plugin.
  */
-const CommandIDs = {
-  get: 'server:get-file'
-};
 
 const PLUGIN_ID = 'junity:settings';
 
@@ -30,14 +21,12 @@ const PLUGIN_ID = 'junity:settings';
 const junity: JupyterFrontEndPlugin<void> = {
   id: PLUGIN_ID,
   autoStart: true,
-  requires: [ILabShell, INotebookTracker, ISettingRegistry, ICommandPalette],
+  requires: [ILabShell, INotebookTracker, ISettingRegistry],
   activate: async (
     app: JupyterFrontEnd,
     shell: ILabShell,
     notebookTracker: INotebookTracker,
     settings: ISettingRegistry,
-    palette: ICommandPalette,
-    launcher: ILauncher | null
   ) => {
     /**
      * Load the settings for this extension
@@ -86,28 +75,6 @@ const junity: JupyterFrontEndPlugin<void> = {
     catalogTreeWidget.title.iconClass = 'jp-icon-extension jp-SideBar-tabIcon';
     shell.add(catalogTreeWidget, 'left');
 
-    const { commands } = app;
-    const command = CommandIDs.get;
-    const category = 'Extension Documentation';
-
-    commands.addCommand(command, {
-      label: 'Junity Documentation',
-      caption: 'Junity Documentation',
-      execute: () => {
-        const widget = new DocsWidget();
-        shell.add(widget, 'main');
-      }
-    });
-
-    palette.addItem({ command, category: category });
-
-    if (launcher) {
-      // Add launcher
-      launcher.add({
-        command: command,
-        category: category
-      });
-    }
     console.log('JupyterLab extension junity is activated!');
   }
 };

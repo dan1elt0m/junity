@@ -1,8 +1,6 @@
 import { ILabShell, JupyterFrontEnd } from '@jupyterlab/application';
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
-import { ICommandPalette } from '@jupyterlab/apputils';
 import { INotebookTracker } from '@jupyterlab/notebook';
-import { ILauncher } from '@jupyterlab/launcher';
 import junity from '../index';
 import { JupyterServer } from '@jupyterlab/testing';
 import { requestAPI } from '../server/serverApi';
@@ -46,8 +44,6 @@ describe('Junity extension', () => {
   let app: JupyterFrontEnd;
   let shell: ILabShell;
   let notebookTracker: INotebookTracker;
-  let palette: ICommandPalette;
-  let launcher: ILauncher | null;
   let server: JupyterServer;
 
   const envHostUrl = 'http://example.com';
@@ -134,11 +130,6 @@ describe('Junity extension', () => {
 
     notebookTracker = {} as INotebookTracker;
 
-    palette = {
-      addItem: jest.fn()
-    } as unknown as ICommandPalette;
-    launcher = null;
-
     // Mock the requestAPI response
     (requestAPI as jest.Mock).mockResolvedValue({
       data: {
@@ -159,8 +150,6 @@ describe('Junity extension', () => {
       shell,
       notebookTracker,
       mockSettings,
-      palette,
-      launcher
     );
     expect(mockSettings.load).toHaveBeenCalledWith('junity:settings');
   });
@@ -171,8 +160,6 @@ describe('Junity extension', () => {
       shell,
       notebookTracker,
       mockSettings,
-      palette,
-      launcher
     );
     expect(mockSettings.set).toHaveBeenCalledTimes(0);
   });

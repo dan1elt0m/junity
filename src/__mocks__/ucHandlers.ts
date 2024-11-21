@@ -24,7 +24,7 @@ export const ucHandlers = [
   // Handler for schemas
   http.get(`http://localhost:8080${UC_API_PREFIX}/schemas`, info => {
     const url = new URL(info.request.url);
-    const catalog = url.searchParams.get('catalog');
+    const catalog = url.searchParams.get('catalog_name');
     if (catalog === 'Catalog1') {
       return new HttpResponse(
         JSON.stringify({
@@ -92,8 +92,22 @@ export const ucHandlers = [
     );
   }),
 
-  // Handler for OPTIONS requests
+  // Handler for OPTIONS tables requests
   http.options(`http://localhost:8080${UC_API_PREFIX}/tables`, () => {
+    return new HttpResponse(null, {
+      status: 204,
+      headers: {
+        'Access-Control-Allow-Origin': 'http://localhost',
+        'Access-Control-Allow-Methods':
+          'GET, POST, PUT, DELETE, OPTIONS, PATCH',
+        'Access-Control-Allow-Headers':
+          'Content-Type, Authorization, x-interceptors-internal-request-id'
+      }
+    });
+  }),
+
+  // Handler for OPTIONS schemas requests
+  http.options(`http://localhost:8080${UC_API_PREFIX}/schemas`, () => {
     return new HttpResponse(null, {
       status: 204,
       headers: {
