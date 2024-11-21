@@ -8154,7 +8154,6 @@ __metadata:
     webpack: ^5.96.1
     webpack-cli: ^5.1.4
     winston: ^3.15.0
-    xhr2: ^0.2.1
     yjs: ^13.5.0
   languageName: unknown
   linkType: soft
@@ -11887,13 +11886,6 @@ __metadata:
     utf-8-validate:
       optional: true
   checksum: 91d4d35bc99ff6df483bdf029b9ea4bfd7af1f16fc91231a96777a63d263e1eabf486e13a2353970efc534f9faa43bdbf9ee76525af22f4752cbc5ebda333975
-  languageName: node
-  linkType: hard
-
-"xhr2@npm:^0.2.1":
-  version: 0.2.1
-  resolution: "xhr2@npm:0.2.1"
-  checksum: b983d33dd68ba6ed7db196e8163cc5668f8c2c9d04e50aab6e452d0f124d89ab39b8a2576c7d2aeeef667b96946a5c7aa401bba1f70948e05fb9a188245d2743
   languageName: node
   linkType: hard
 
