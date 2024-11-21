@@ -2,6 +2,22 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.3.1
+
+([Full Changelog](https://github.com/dan1elt0m/junity/compare/v0.3.0...b99ec71c5107cee0435457bdab5963ca507f0111))
+
+### Enhancements made
+
+- Require clientId when auth is enabled [#13](https://github.com/dan1elt0m/junity/pull/13) ([@dan1elt0m](https://github.com/dan1elt0m))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/dan1elt0m/junity/graphs/contributors?from=2024-11-21&to=2024-11-21&type=c))
+
+[@dan1elt0m](https://github.com/search?q=repo%3Adan1elt0m%2Fjunity+involves%3Adan1elt0m+updated%3A2024-11-21..2024-11-21&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.3.0
 
 ([Full Changelog](https://github.com/dan1elt0m/junity/compare/v0.2.4...60850e476903a60bfe97af5a196faecacc46a12b))
@@ -20,8 +36,6 @@
 ([GitHub contributors page for this release](https://github.com/dan1elt0m/junity/graphs/contributors?from=2024-11-16&to=2024-11-21&type=c))
 
 [@dan1elt0m](https://github.com/search?q=repo%3Adan1elt0m%2Fjunity+involves%3Adan1elt0m+updated%3A2024-11-16..2024-11-21&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.2.4
 
