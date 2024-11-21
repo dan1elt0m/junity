@@ -1,31 +1,30 @@
 import { ILabShell, JupyterFrontEnd } from '@jupyterlab/application';
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
-import { ICommandPalette } from '@jupyterlab/apputils';
 import { INotebookTracker } from '@jupyterlab/notebook';
-import { ILauncher } from '@jupyterlab/launcher';
-import extension, { loadSettingEnv } from '../index';
+import junity from '../index';
 import { JupyterServer } from '@jupyterlab/testing';
-import { requestAPI } from '../handler';
+import { requestAPI } from '../server/serverApi';
+import { loadSettingEnv } from '../utils/settings';
 // Add this at the top of your test file or in a setup file
 
 // Mock the requestAPI function
-jest.mock('../handler', () => ({
+jest.mock('../server/serverApi', () => ({
   requestAPI: jest.fn()
 }));
 
 // Mock the fetchCatalogs function, so no actual API calls are made to UC cat
-jest.mock('../api', () => ({
-  fetchCatalogs: jest.fn().mockResolvedValue([])
+jest.mock('../hooks/catalog', () => ({
+  useListCatalogs: jest.fn().mockResolvedValue([])
 }));
 
 const mockSettings = {
   load: jest.fn().mockResolvedValue({
     composite: {
-      unityCatalogHostUrl: 'http://example.com/setting',
-      unityCatalogToken: 'example-token-setting'
+      hostUrl: 'http://example.com/setting',
+      token: 'example-token-setting'
     },
     get: jest.fn((key: string) => {
-      if (key === 'unityCatalogHostUrl') {
+      if (key === 'hostUrl') {
         return { composite: 'http://example.com/setting' };
       }
       if (key === 'unityCatalogToken') {
@@ -45,8 +44,6 @@ describe('Junity extension', () => {
   let app: JupyterFrontEnd;
   let shell: ILabShell;
   let notebookTracker: INotebookTracker;
-  let palette: ICommandPalette;
-  let launcher: ILauncher | null;
   let server: JupyterServer;
 
   const envHostUrl = 'http://example.com';
@@ -133,11 +130,6 @@ describe('Junity extension', () => {
 
     notebookTracker = {} as INotebookTracker;
 
-    palette = {
-      addItem: jest.fn()
-    } as unknown as ICommandPalette;
-    launcher = null;
-
     // Mock the requestAPI response
     (requestAPI as jest.Mock).mockResolvedValue({
       data: {
@@ -153,42 +145,20 @@ describe('Junity extension', () => {
   });
 
   test('Activates without crashing', async () => {
-    await extension.activate(
-      app,
-      shell,
-      notebookTracker,
-      mockSettings,
-      palette,
-      launcher
-    );
+    await junity.activate(app, shell, notebookTracker, mockSettings);
     expect(mockSettings.load).toHaveBeenCalledWith('junity:settings');
   });
 
   test('Should use default settings if no env vars are set', async () => {
-    await extension.activate(
-      app,
-      shell,
-      notebookTracker,
-      mockSettings,
-      palette,
-      launcher
-    );
+    await junity.activate(app, shell, notebookTracker, mockSettings);
     expect(mockSettings.set).toHaveBeenCalledTimes(0);
   });
 
   test('Should update settings if env vars are set', async () => {
     process.env.UC_HOST_URL = 'http://example.com';
-    process.env.UC_TOKEN = 'example-token';
     const setting = await mockSettings.load('junity:settings');
     await loadSettingEnv(setting);
-    expect(setting.set).toHaveBeenCalledTimes(2);
-    expect(setting.set).toHaveBeenCalledWith(
-      'unityCatalogHostUrl',
-      'http://example.com'
-    );
-    expect(setting.set).toHaveBeenCalledWith(
-      'unityCatalogToken',
-      'example-token'
-    );
+    expect(setting.set).toHaveBeenCalledTimes(1);
+    expect(setting.set).toHaveBeenCalledWith('hostUrl', 'http://example.com');
   });
 });

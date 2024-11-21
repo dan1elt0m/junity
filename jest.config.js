@@ -21,7 +21,7 @@ const baseConfig = jestJupyterLab(__dirname);
 module.exports = {
   ...baseConfig,
   automock: false,
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.ts?$',
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|tsx)?$',
   transformIgnorePatterns: [`./node_modules/(?!${esModules}).+`],
   transform: {
     '^.+\\.tsx?$': 'babel-jest',
@@ -31,5 +31,10 @@ module.exports = {
   roots: ['<rootDir>/src'],
   moduleNameMapper: {
     '\\.svg$': '<rootDir>/src/__mocks__/svgMock.js'
+  },
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  testEnvironmentOptions: {
+    customExportConditions: [''],
+    testUrl: 'http://localhost'
   }
 };

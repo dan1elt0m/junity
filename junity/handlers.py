@@ -7,18 +7,27 @@ import tornado
 from tornado.web import StaticFileHandler
 
 
-class RouteHandler(APIHandler):
+def str_to_bool(value: str) -> bool:
+    if value:
+        return value.lower() in ('true', '1', 't', 'y', 'yes')
+
+
+class SettingsHandler(APIHandler):
     # The following decorator should be present on all verb methods (head, get, post,
     # patch, put, delete, options) to ensure only authorized user can request the
     # Jupyter server
     @tornado.web.authenticated
     def get(self):
-        host_url = os.environ.get("UC_HOST_URL")
-        token = os.environ.get("UC_TOKEN")
+        host_url = os.environ.get("JY_HOST_URL")
+        access_token = os.environ.get("JY_ACCESS_TOKEN")
+        google_auth_enabled = str_to_bool(os.environ.get("JY_GOOGLE_AUTH_ENABLED"))
+        google_client_id = os.environ.get("JY_GOOGLE_CLIENT_ID")
         self.finish(json.dumps({
             "data": {
                 "hostUrl": host_url,
-                "token": token
+                "accessToken": access_token,
+                "googleAuthEnabled": google_auth_enabled,
+                "googleClientId": google_client_id,
             }
         }))
 
@@ -27,7 +36,7 @@ class RouteHandler(APIHandler):
         # input_data is a dictionary with a key "name"
         input_data = self.get_json_body()
         name = input_data.get("name")
-        host_url = os.environ.get("UC_HOST_URL")
+        host_url = os.environ.get("JY_HOST_URL")
         data = {"greetings": f"Hello {name}, enjoy JupyterLab!",
                 "Host URL": f"{host_url}"}
         self.finish(json.dumps(data))
@@ -38,8 +47,8 @@ def setup_handlers(web_app):
 
     base_url = web_app.settings["base_url"]
     # Prepend the base_url so that it works in a JupyterHub setting
-    route_pattern = url_path_join(base_url, "junity-server", "uc_settings")
-    handlers = [(route_pattern, RouteHandler)]
+    setting_pattern = url_path_join(base_url, "junity-server", "uc_settings")
+    handlers = [(setting_pattern, SettingsHandler)]
     web_app.add_handlers(host_pattern, handlers)
 
     # Prepend the base_url so that it works in a JupyterHub setting

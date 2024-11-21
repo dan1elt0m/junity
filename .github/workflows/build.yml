@@ -30,10 +30,6 @@ jobs:
         jlpm
         jlpm run lint:check
 
-    - name: Test the extension
-      run: |
-        set -eux
-        jlpm run test
 
     - name: Build the extension
       run: |
@@ -43,6 +39,16 @@ jobs:
         jupyter labextension list
         jupyter labextension list 2>&1 | grep -ie "junity.*OK"
         python -m jupyterlab.browser_check
+
+    - name: Test the extension jest
+      run: |
+        set -eux
+        jlpm run test
+
+    - name: Test the extension pytest
+      run: |
+        set -eux
+        pytest junity/tests --cov=junity --cov-report=xml --cov-report=term-missing
 
     - name: Package the extension
       run: |
