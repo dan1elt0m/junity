@@ -26,7 +26,7 @@ const junity: JupyterFrontEndPlugin<void> = {
     app: JupyterFrontEnd,
     shell: ILabShell,
     notebookTracker: INotebookTracker,
-    settings: ISettingRegistry,
+    settings: ISettingRegistry
   ) => {
     /**
      * Load the settings for this extension

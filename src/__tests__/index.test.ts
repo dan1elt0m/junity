@@ -145,22 +145,12 @@ describe('Junity extension', () => {
   });
 
   test('Activates without crashing', async () => {
-    await junity.activate(
-      app,
-      shell,
-      notebookTracker,
-      mockSettings,
-    );
+    await junity.activate(app, shell, notebookTracker, mockSettings);
     expect(mockSettings.load).toHaveBeenCalledWith('junity:settings');
   });
 
   test('Should use default settings if no env vars are set', async () => {
-    await junity.activate(
-      app,
-      shell,
-      notebookTracker,
-      mockSettings,
-    );
+    await junity.activate(app, shell, notebookTracker, mockSettings);
     expect(mockSettings.set).toHaveBeenCalledTimes(0);
   });
 

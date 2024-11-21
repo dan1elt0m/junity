@@ -1,6 +1,5 @@
 import { INotebookTracker } from '@jupyterlab/notebook';
 
-
 // Inserts entity from the catalog explorer to the current cell's editor
 export const insertEntityToNotebook = (
   entity: string,

@@ -32,7 +32,7 @@ export async function loadSettingEnv(
     console.log('Updating host URL settings: ', catalogHostUrl);
     setting.set('unityCatalogHostUrl', catalogHostUrl);
   }
-  if (googleAuthEnabled) {
+  if (googleAuthEnabled != null) {
     console.log('Found JY_GOOGLE_AUTH_ENABLED environment variable');
     console.log('Updating google auth settings');
     console.log('googleAuthEnabled: ', googleAuthEnabled);

@@ -19,7 +19,7 @@ describe('insertEntityToNotebook', () => {
     } as unknown as jest.Mocked<INotebookTracker>;
   });
 
-  it('should insert the path into the current cell\'s editor', () => {
+  it("should insert the path into the current cell's editor", () => {
     const entity = 'catalog1.schema1.table1';
     insertEntityToNotebook(entity, mockNotebookTracker);
 
@@ -28,7 +28,9 @@ describe('insertEntityToNotebook', () => {
 
   it('should log an error if there is no active notebook', () => {
     console.error = jest.fn();
-    mockNotebookTracker.currentWidget = null;
+    if (mockNotebookTracker.currentWidget) {
+      (mockNotebookTracker.currentWidget as any) = null;
+    }
 
     insertEntityToNotebook('catalog1.schema1.table1', mockNotebookTracker);
 
@@ -37,28 +39,40 @@ describe('insertEntityToNotebook', () => {
 
   it('should log an error if there is no active cell', () => {
     console.error = jest.fn();
-    mockNotebookTracker.currentWidget.content.activeCell = null;
 
-    insertEntityToNotebook('catalog1.schema1.table1', mockNotebookTracker);
+    if (mockNotebookTracker.currentWidget) {
+      (mockNotebookTracker.currentWidget.content.activeCell as any) = null;
 
+      insertEntityToNotebook('catalog1.schema1.table1', mockNotebookTracker);
+    }
     expect(console.error).toHaveBeenCalledWith('No active cell found');
   });
 
   it('should log an error if there is no editor in the current cell', () => {
     console.error = jest.fn();
-    mockNotebookTracker.currentWidget.content.activeCell.editor = null;
 
-    insertEntityToNotebook('catalog1.schema1.table1', mockNotebookTracker);
+    if (
+      mockNotebookTracker.currentWidget &&
+      mockNotebookTracker.currentWidget.content.activeCell
+    ) {
+      (mockNotebookTracker.currentWidget.content.activeCell.editor as any) =
+        null;
+      insertEntityToNotebook('catalog1.schema1.table1', mockNotebookTracker);
+    }
 
-    expect(console.error).toHaveBeenCalledWith('No editor found in the current cell');
+    expect(console.error).toHaveBeenCalledWith(
+      'No editor found in the current cell'
+    );
   });
 
   it('should log an error if replaceSelection method is not available on the editor', () => {
     console.error = jest.fn();
-    mockEditor.replaceSelection = undefined;
+    (mockEditor.replaceSelection as any) = undefined;
 
     insertEntityToNotebook('catalog1.schema1.table1', mockNotebookTracker);
 
-    expect(console.error).toHaveBeenCalledWith('replaceSelection method is not available on the editor');
+    expect(console.error).toHaveBeenCalledWith(
+      'replaceSelection method is not available on the editor'
+    );
   });
 });

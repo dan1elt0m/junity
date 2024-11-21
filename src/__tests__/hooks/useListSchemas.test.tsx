@@ -10,7 +10,7 @@ describe('useListSchemas', () => {
   it('fetches and returns Schemas', async () => {
     const apiClient = getClient('http://localhost:8080', 'not-set');
     const { result } = renderHook(
-      () => useListSchemas({ catalog: 'Catalog1'}),
+      () => useListSchemas({ catalog: 'Catalog1' }),
       {
         wrapper: ({ children }) => (
           <QueryClientProvider client={queryClient}>

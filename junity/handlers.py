@@ -9,8 +9,6 @@ from tornado.web import StaticFileHandler
 def str_to_bool(value: str) -> bool:
     return value.lower() in ('true', '1', 't', 'y', 'yes')
 
-
-
 class SettingsHandler(APIHandler):
     # The following decorator should be present on all verb methods (head, get, post,
     # patch, put, delete, options) to ensure only authorized user can request the
@@ -18,7 +16,7 @@ class SettingsHandler(APIHandler):
     @tornado.web.authenticated
     def get(self):
         host_url = (os.environ.get("JY_HOST_URL"))
-        google_auth_enabled = str_to_bool(os.environ.get("JY_GOOGLE_AUTH_ENABLED", "false"))
+        google_auth_enabled = str_to_bool(os.environ.get("JY_GOOGLE_AUTH_ENABLED"))
         google_client_id = os.environ.get("JY_GOOGLE_CLIENT_ID")
         self.finish(json.dumps({
             "data": {

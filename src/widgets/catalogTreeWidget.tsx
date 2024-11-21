@@ -51,7 +51,7 @@ function useLoginWithToken() {
   });
 }
 
-const CatalogTreeWidgetComponent: React.FC<{
+export const CatalogTreeWidgetComponent: React.FC<{
   googleAuthEnabled: boolean;
   googleClientId: string;
   setAuthenticated: (authenticated: boolean) => void;
@@ -106,7 +106,7 @@ const CatalogTreeWidgetComponent: React.FC<{
   };
 
   const handleGoogleSignInError = (error: void) => {
-    console.error('Failed to log in to Unity Catalog:', error);
+    console.log('Failed to log in to Unity Catalog:', error);
   };
 
   const authContext = useContext(AuthContext);
@@ -118,6 +118,11 @@ const CatalogTreeWidgetComponent: React.FC<{
           <GoogleLogin
             onSuccess={handleGoogleSignIn}
             onError={handleGoogleSignInError}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            containerProps={{ allow: 'identity-credentials-get' }}
+            use_fedcm_for_prompt
+            useOneTap={true}
           />
         </GoogleOAuthProvider>
       ) : (

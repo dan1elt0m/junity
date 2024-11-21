@@ -9,6 +9,7 @@ import { TableInterface, useListTables } from '../hooks/table';
 import { ColumnInterface } from '../hooks/column';
 import { NotebookTrackerContext } from '../context/notebookTracker';
 import AuthContext from '../context/auth';
+import { googleLogout } from '@react-oauth/google';
 
 // Renders the catalog tree
 export const CatalogTree: React.FC<unknown> = () => {
@@ -57,6 +58,7 @@ export const CatalogTree: React.FC<unknown> = () => {
   const handleLogout = () => {
     Cookies.remove('authenticated');
     Cookies.remove('access_token');
+    googleLogout();
     window.location.reload();
   };
   const toggleExpandAllNodes = async () => {
