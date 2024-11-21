@@ -19,6 +19,7 @@ import { ClientContext } from '../context/client';
 import { useContext } from 'react';
 import { NotebookTrackerContext } from '../context/notebookTracker';
 import AuthContext from '../context/auth';
+import '../../style/auth.css';
 
 const queryClient = new QueryClient();
 
@@ -120,29 +121,36 @@ export const CatalogTreeWidgetComponent: React.FC<{
   const authContext = useContext(AuthContext);
 
   return (
-    <div>
+    <>
       {googleAuthEnabled && !googleClientId ? (
-        <div>
-          Error: Google authentication is enabled, but no client ID is set.
+        <div className="container">
+          <div className="error-message">
+            Error: Google authentication is enabled, but no client ID is set.
+          </div>
         </div>
       ) : googleAuthEnabled &&
         !authContext.authenticated &&
         !authContext.accessToken ? (
-        <GoogleOAuthProvider clientId={googleClientId}>
-          <GoogleLogin
-            onSuccess={handleGoogleSignIn}
-            onError={handleGoogleSignInError}
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            containerProps={{ allow: 'identity-credentials-get' }}
-            use_fedcm_for_prompt
-            useOneTap={true}
-          />
-        </GoogleOAuthProvider>
+        <div className="container">
+          <div className="login-container">
+            <GoogleOAuthProvider clientId={googleClientId}>
+              <GoogleLogin
+                onSuccess={handleGoogleSignIn}
+                onError={handleGoogleSignInError}
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                containerProps={{ allow: 'identity-credentials-get' }}
+                use_fedcm_for_prompt
+                useOneTap={true}
+                className="login-button"
+              />
+            </GoogleOAuthProvider>
+          </div>
+        </div>
       ) : (
         <CatalogTree />
       )}
-    </div>
+    </>
   );
 };
 
