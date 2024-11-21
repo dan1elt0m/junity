@@ -6,8 +6,11 @@ from jupyter_server.utils import url_path_join
 import tornado
 from tornado.web import StaticFileHandler
 
+
 def str_to_bool(value: str) -> bool:
-    return value.lower() in ('true', '1', 't', 'y', 'yes')
+    if value:
+        return value.lower() in ('true', '1', 't', 'y', 'yes')
+
 
 class SettingsHandler(APIHandler):
     # The following decorator should be present on all verb methods (head, get, post,
