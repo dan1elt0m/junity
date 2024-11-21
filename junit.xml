@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="37" failures="0" errors="0" time="7.168">
-  <testsuite name="insertEntityToNotebook" errors="0" failures="0" skipped="0" timestamp="2024-11-21T05:52:23" time="0.38" tests="5">
-    <testcase classname="insertEntityToNotebook should insert the path into the current cell&apos;s editor" name="insertEntityToNotebook should insert the path into the current cell&apos;s editor" time="0.004">
-    </testcase>
-    <testcase classname="insertEntityToNotebook should log an error if there is no active notebook" name="insertEntityToNotebook should log an error if there is no active notebook" time="0">
-    </testcase>
-    <testcase classname="insertEntityToNotebook should log an error if there is no active cell" name="insertEntityToNotebook should log an error if there is no active cell" time="0">
-    </testcase>
-    <testcase classname="insertEntityToNotebook should log an error if there is no editor in the current cell" name="insertEntityToNotebook should log an error if there is no editor in the current cell" time="0.001">
-    </testcase>
-    <testcase classname="insertEntityToNotebook should log an error if replaceSelection method is not available on the editor" name="insertEntityToNotebook should log an error if replaceSelection method is not available on the editor" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="getColumnIconClass" errors="0" failures="0" skipped="0" timestamp="2024-11-21T05:52:23" time="0.378" tests="7">
+<testsuites name="jest tests" tests="37" failures="0" errors="0" time="7.181">
+  <testsuite name="getColumnIconClass" errors="0" failures="0" skipped="0" timestamp="2024-11-21T07:07:05" time="0.399" tests="7">
     <testcase classname="getColumnIconClass should return jp-icon-boolean for BOOLEAN and BINARY" name="getColumnIconClass should return jp-icon-boolean for BOOLEAN and BINARY" time="0.004">
     </testcase>
     <testcase classname="getColumnIconClass should return jp-icon-other for NULL, USER_DEFINED_TYPE, and TABLE_TYPE" name="getColumnIconClass should return jp-icon-other for NULL, USER_DEFINED_TYPE, and TABLE_TYPE" time="0">
@@ -28,18 +16,22 @@
     <testcase classname="getColumnIconClass should return jp-icon-default for unknown types" name="getColumnIconClass should return jp-icon-default for unknown types" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="loadSettingEnv" errors="0" failures="0" skipped="0" timestamp="2024-11-21T05:52:23" time="0.515" tests="3">
-    <testcase classname="loadSettingEnv should load settings and update them correctly" name="loadSettingEnv should load settings and update them correctly" time="0.013">
+  <testsuite name="insertEntityToNotebook" errors="0" failures="0" skipped="0" timestamp="2024-11-21T07:07:05" time="0.4" tests="5">
+    <testcase classname="insertEntityToNotebook should insert the path into the current cell&apos;s editor" name="insertEntityToNotebook should insert the path into the current cell&apos;s editor" time="0.005">
     </testcase>
-    <testcase classname="loadSettingEnv should handle missing settings data" name="loadSettingEnv should handle missing settings data" time="0.001">
+    <testcase classname="insertEntityToNotebook should log an error if there is no active notebook" name="insertEntityToNotebook should log an error if there is no active notebook" time="0">
     </testcase>
-    <testcase classname="loadSettingEnv should handle partial settings data" name="loadSettingEnv should handle partial settings data" time="0.001">
+    <testcase classname="insertEntityToNotebook should log an error if there is no active cell" name="insertEntityToNotebook should log an error if there is no active cell" time="0.001">
+    </testcase>
+    <testcase classname="insertEntityToNotebook should log an error if there is no editor in the current cell" name="insertEntityToNotebook should log an error if there is no editor in the current cell" time="0">
+    </testcase>
+    <testcase classname="insertEntityToNotebook should log an error if replaceSelection method is not available on the editor" name="insertEntityToNotebook should log an error if replaceSelection method is not available on the editor" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="requestAPI" errors="0" failures="0" skipped="0" timestamp="2024-11-21T05:52:23" time="0.16" tests="5">
-    <testcase classname="requestAPI should make a successful request and return JSON data" name="requestAPI should make a successful request and return JSON data" time="0.001">
+  <testsuite name="requestAPI" errors="0" failures="0" skipped="0" timestamp="2024-11-21T07:07:05" time="0.203" tests="5">
+    <testcase classname="requestAPI should make a successful request and return JSON data" name="requestAPI should make a successful request and return JSON data" time="0.002">
     </testcase>
-    <testcase classname="requestAPI should handle non-JSON response" name="requestAPI should handle non-JSON response" time="0.01">
+    <testcase classname="requestAPI should handle non-JSON response" name="requestAPI should handle non-JSON response" time="0.009">
     </testcase>
     <testcase classname="requestAPI should handle empty response body" name="requestAPI should handle empty response body" time="0">
     </testcase>
@@ -48,48 +40,56 @@
     <testcase classname="requestAPI should throw a NetworkError for network issues" name="requestAPI should throw a NetworkError for network issues" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="useListCatalogs" errors="0" failures="0" skipped="0" timestamp="2024-11-21T05:52:23" time="0.713" tests="1">
-    <testcase classname="useListCatalogs fetches and returns catalogs" name="useListCatalogs fetches and returns catalogs" time="0.074">
+  <testsuite name="loadSettingEnv" errors="0" failures="0" skipped="0" timestamp="2024-11-21T07:07:05" time="0.723" tests="3">
+    <testcase classname="loadSettingEnv should load settings and update them correctly" name="loadSettingEnv should load settings and update them correctly" time="0.005">
+    </testcase>
+    <testcase classname="loadSettingEnv should handle missing settings data" name="loadSettingEnv should handle missing settings data" time="0.001">
+    </testcase>
+    <testcase classname="loadSettingEnv should handle partial settings data" name="loadSettingEnv should handle partial settings data" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="useListTables" errors="0" failures="0" skipped="0" timestamp="2024-11-21T05:52:23" time="0.718" tests="1">
-    <testcase classname="useListTables fetches and returns tables" name="useListTables fetches and returns tables" time="0.075">
+  <testsuite name="useListCatalogs" errors="0" failures="0" skipped="0" timestamp="2024-11-21T07:07:05" time="0.782" tests="1">
+    <testcase classname="useListCatalogs fetches and returns catalogs" name="useListCatalogs fetches and returns catalogs" time="0.079">
     </testcase>
   </testsuite>
-  <testsuite name="useListSchemas" errors="0" failures="0" skipped="0" timestamp="2024-11-21T05:52:23" time="0.721" tests="1">
-    <testcase classname="useListSchemas fetches and returns Schemas" name="useListSchemas fetches and returns Schemas" time="0.076">
+  <testsuite name="useListTables" errors="0" failures="0" skipped="0" timestamp="2024-11-21T07:07:05" time="0.789" tests="1">
+    <testcase classname="useListTables fetches and returns tables" name="useListTables fetches and returns tables" time="0.079">
     </testcase>
   </testsuite>
-  <testsuite name="CatalogTree" errors="0" failures="0" skipped="0" timestamp="2024-11-21T05:52:23" time="0.838" tests="10">
-    <testcase classname="CatalogTree renders catalogs" name="CatalogTree renders catalogs" time="0.02">
+  <testsuite name="useListSchemas" errors="0" failures="0" skipped="0" timestamp="2024-11-21T07:07:05" time="0.789" tests="1">
+    <testcase classname="useListSchemas fetches and returns Schemas" name="useListSchemas fetches and returns Schemas" time="0.081">
     </testcase>
-    <testcase classname="CatalogTree expands and collapses catalogs" name="CatalogTree expands and collapses catalogs" time="0.009">
+  </testsuite>
+  <testsuite name="CatalogTree" errors="0" failures="0" skipped="0" timestamp="2024-11-21T07:07:05" time="0.916" tests="10">
+    <testcase classname="CatalogTree renders catalogs" name="CatalogTree renders catalogs" time="0.018">
     </testcase>
-    <testcase classname="CatalogTree expands and collapses all" name="CatalogTree expands and collapses all" time="0.021">
+    <testcase classname="CatalogTree expands and collapses catalogs" name="CatalogTree expands and collapses catalogs" time="0.015">
     </testcase>
-    <testcase classname="CatalogTree logs out the user" name="CatalogTree logs out the user" time="0.013">
+    <testcase classname="CatalogTree expands and collapses all" name="CatalogTree expands and collapses all" time="0.028">
     </testcase>
-    <testcase classname="CatalogTree should handle logout correctly" name="CatalogTree should handle logout correctly" time="0.007">
+    <testcase classname="CatalogTree logs out the user" name="CatalogTree logs out the user" time="0.012">
+    </testcase>
+    <testcase classname="CatalogTree should handle logout correctly" name="CatalogTree should handle logout correctly" time="0.006">
     </testcase>
     <testcase classname="CatalogTree should toggle expand all nodes" name="CatalogTree should toggle expand all nodes" time="0.006">
     </testcase>
-    <testcase classname="CatalogTree should toggle node expansion" name="CatalogTree should toggle node expansion" time="0.005">
+    <testcase classname="CatalogTree should toggle node expansion" name="CatalogTree should toggle node expansion" time="0.004">
     </testcase>
     <testcase classname="CatalogTree should render columns correctly" name="CatalogTree should render columns correctly" time="0.006">
     </testcase>
-    <testcase classname="CatalogTree should render tables correctly" name="CatalogTree should render tables correctly" time="0.005">
+    <testcase classname="CatalogTree should render tables correctly" name="CatalogTree should render tables correctly" time="0.007">
     </testcase>
     <testcase classname="CatalogTree should render schemas correctly" name="CatalogTree should render schemas correctly" time="0.003">
     </testcase>
   </testsuite>
-  <testsuite name="CatalogTreeWidgetComponent" errors="0" failures="0" skipped="0" timestamp="2024-11-21T05:52:23" time="1.664" tests="1">
-    <testcase classname="CatalogTreeWidgetComponent should render CatalogTree when authenticated" name="CatalogTreeWidgetComponent should render CatalogTree when authenticated" time="0.046">
+  <testsuite name="CatalogTreeWidgetComponent" errors="0" failures="0" skipped="0" timestamp="2024-11-21T07:07:05" time="1.829" tests="1">
+    <testcase classname="CatalogTreeWidgetComponent should render CatalogTree when authenticated" name="CatalogTreeWidgetComponent should render CatalogTree when authenticated" time="0.045">
     </testcase>
   </testsuite>
-  <testsuite name="Junity extension" errors="0" failures="0" skipped="0" timestamp="2024-11-21T05:52:23" time="5.86" tests="3">
-    <testcase classname="Junity extension Activates without crashing" name="Junity extension Activates without crashing" time="0.013">
+  <testsuite name="Junity extension" errors="0" failures="0" skipped="0" timestamp="2024-11-21T07:07:05" time="5.796" tests="3">
+    <testcase classname="Junity extension Activates without crashing" name="Junity extension Activates without crashing" time="0.014">
     </testcase>
-    <testcase classname="Junity extension Should use default settings if no env vars are set" name="Junity extension Should use default settings if no env vars are set" time="0.002">
+    <testcase classname="Junity extension Should use default settings if no env vars are set" name="Junity extension Should use default settings if no env vars are set" time="0.001">
     </testcase>
     <testcase classname="Junity extension Should update settings if env vars are set" name="Junity extension Should update settings if env vars are set" time="0">
     </testcase>

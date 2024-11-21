@@ -35,6 +35,7 @@ const junity: JupyterFrontEndPlugin<void> = {
      */
     console.log('Activating JupyterLab extension junity');
     let catalogHostUrl: string = '';
+    let accessToken: string = '';
     let googleAuthEnabled = false;
     let googleClientId: string = '';
 
@@ -42,8 +43,11 @@ const junity: JupyterFrontEndPlugin<void> = {
     async function loadSettingPlugin(
       setting: ISettingRegistry.ISettings
     ): Promise<void> {
-      catalogHostUrl = setting.get('unityCatalogHostUrl').composite as string;
+      catalogHostUrl = setting.get('hostUrl').composite as string;
       catalogTreeWidget.updateHostUrl(catalogHostUrl);
+
+      accessToken = setting.get('accessToken').composite as string;
+      catalogTreeWidget.updateToken(accessToken);
 
       googleAuthEnabled = setting.get('googleAuthEnabled').composite as boolean;
       catalogTreeWidget.updateAuthenticationEnabled(googleAuthEnabled);
@@ -68,6 +72,7 @@ const junity: JupyterFrontEndPlugin<void> = {
     const catalogTreeWidget = new CatalogTreeWidget(
       notebookTracker,
       catalogHostUrl,
+      accessToken,
       googleAuthEnabled,
       googleClientId
     );

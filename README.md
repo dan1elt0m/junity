@@ -2,7 +2,8 @@
 
 [![Github Actions Status](https://github.com/dan1elt0m/junity/workflows/Build/badge.svg)](https://github.com/dan1elt0m/junity/actions/workflows/build.yml)
 
-A JupyterLab extension for Unity Catalog
+A JupyterLab extension for Unity Catalog. This extension allows you to browse and search for Unity Catalogs directly
+from JupyterLab. In addition, it supports authentication with Google and token-based access to the Unity Catalog server.
 
 ![Junity Demo](docs/demo.gif)
 
@@ -28,29 +29,31 @@ pip uninstall junity
 
 ## Configuration
 
-The default `unityCatalogHostUrl` is set to `http://localhost:8080/api/2.1/unity-catalog`.
-the default `token` is set to `"not-used"`.
+For configuration, you can use the JupyterLab settings editor or set Environmental variables.
 
-To adjust the `unityCatalogHostUrl` or `token`, manually follow these steps:
+Possible editor / env settings are:
 
-1. Open JupyterLab.
-2. Navigate to the settings menu.
-3. Find the `Junity` setting.
-4. Update the URL to your desired endpoint.
-5. Update the token if needed
+- `hostUrl / JY_HOST_URL`: The URL of the Unity Catalog server. Default is `http://localhost:8080`.
+- `accessToken / JY_ACCESS_TOKEN`: The token to authenticate with the Unity Catalog server. Default is `None`.
+- `googleAuthEnabled / JY_GOOGLE_AUTH_ENABLED`: Enable or disable authentication. Default is `False`.
+- `googleClientId / JY_GOOGLE_CLIENT_ID`: The Google client ID for authentication. Default is `None`.
 
-You can also set the `UC_HOST_URL` and `UC_TOKEN` environment variables to configure the extension.
+Settings can be configured partially in editor and partially in env variables. The env variables overwrite
+editor settings. Env vars are only processed on startup, but editor settings can be changed at runtime.
 
-If you can't see your catalogs being loaded in the Unity Catalog sidebar, make sure that the URL is correct and that the Unity Catalog server is running.
-If this is the case, then check Known Issues section below or check for errors in jupyter using a webinspector
+## Debugging
 
-## Known Issues
+You can watch the Jupyter lab console output for logs/errors.
+Possible errors:
 
-This is more of a general problem with browsers trying to reach localhost services:
+- `Failed to fetch`: The server is not reachable. Check the `hostUrl` setting.
+- `Authentication failed`: The authentication failed. Check the `accessToken` or `googleAuth` settings. Try logging in again.
+- `Invalid token`: The token is invalid. Tokens are valid for 1 hour. You can get a new token by logging in again.
+- `Cross Origin Request Blocked`: The UC server does not allow traffic from the JupyterLab server.
+  Add the JupyterLab server to the CORS settings in the UC server.
 
-- If both Jupyter Labs and Unity Catalog are running on localhost, you may run into CORS issues.
-  To resolve this, you can add CORS settings to the Unity Catalog server or set up a reverse proxy (For instance Nginx, or Apache).
-  Checkout the docker example to see how to set up a reverse proxy with Nginx.
+````bash
+
 
 ## Docker Example
 
@@ -59,7 +62,7 @@ To run the example, execute:
 
 ```bash
 docker compose up --build -d
-```
+````
 
 This will start JupyterLab on `http://localhost:8888` and Unity Catalog on `http://localhost:8080/api/2.1/unity-catalog`.
 You can access the example notebook by opening this URL in your browser: `http://localhost:8888/lab?token=junity/tree/example.ipynb`
@@ -123,6 +126,13 @@ To execute them, execute:
 ```sh
 jlpm
 jlpm test
+```
+
+## Linting and prettier
+
+```sh
+jlpm lint
+jlpm prettier
 ```
 
 #### Integration tests

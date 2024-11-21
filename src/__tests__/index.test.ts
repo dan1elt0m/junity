@@ -20,11 +20,11 @@ jest.mock('../hooks/catalog', () => ({
 const mockSettings = {
   load: jest.fn().mockResolvedValue({
     composite: {
-      unityCatalogHostUrl: 'http://example.com/setting',
-      unityCatalogToken: 'example-token-setting'
+      hostUrl: 'http://example.com/setting',
+      token: 'example-token-setting'
     },
     get: jest.fn((key: string) => {
-      if (key === 'unityCatalogHostUrl') {
+      if (key === 'hostUrl') {
         return { composite: 'http://example.com/setting' };
       }
       if (key === 'unityCatalogToken') {
@@ -159,9 +159,6 @@ describe('Junity extension', () => {
     const setting = await mockSettings.load('junity:settings');
     await loadSettingEnv(setting);
     expect(setting.set).toHaveBeenCalledTimes(1);
-    expect(setting.set).toHaveBeenCalledWith(
-      'unityCatalogHostUrl',
-      'http://example.com'
-    );
+    expect(setting.set).toHaveBeenCalledWith('hostUrl', 'http://example.com');
   });
 });

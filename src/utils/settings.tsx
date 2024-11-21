@@ -4,6 +4,7 @@ import { requestAPI } from '../server/serverApi';
 interface SettingsData {
   data: {
     hostUrl: string;
+    accessToken: string;
     googleAuthEnabled: boolean;
     googleClientId: string;
   };
@@ -23,6 +24,7 @@ export async function loadSettingEnv(
   const {
     data: {
       hostUrl: catalogHostUrl,
+      accessToken: accessToken,
       googleAuthEnabled: googleAuthEnabled,
       googleClientId: googleClientId
     }
@@ -30,7 +32,12 @@ export async function loadSettingEnv(
   if (catalogHostUrl) {
     console.log('Found JY_HOST_URL environment variable');
     console.log('Updating host URL settings: ', catalogHostUrl);
-    setting.set('unityCatalogHostUrl', catalogHostUrl);
+    setting.set('hostUrl', catalogHostUrl);
+  }
+  if (accessToken) {
+    console.log('Found JY_ACCESS_TOKEN environment variable');
+    console.log('Updating access token settings');
+    setting.set('accessToken', accessToken);
   }
   if (googleAuthEnabled != null) {
     console.log('Found JY_GOOGLE_AUTH_ENABLED environment variable');
@@ -39,7 +46,7 @@ export async function loadSettingEnv(
     setting.set('googleAuthEnabled', googleAuthEnabled);
   }
   if (googleClientId) {
-    console.log('Found UC_GOOGLE_CLIENT_ID environment variable');
+    console.log('Found JY_GOOGLE_CLIENT_ID environment variable');
     console.log('Updating google client id settings');
     setting.set('googleClientId', googleClientId);
   }

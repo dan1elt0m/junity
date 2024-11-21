@@ -62,4 +62,31 @@ describe('CatalogTreeWidgetComponent', () => {
 
     expect(screen.getByText('Catalogs')).toBeInTheDocument();
   });
+
+  it('should render CatalogTree when not authenticated, but token is set', () => {
+    render(
+      <AuthContext.Provider
+        value={{
+          accessToken: 'test-token',
+          authenticated: false,
+          currentUser: ''
+        }}
+      >
+        <NotebookTrackerContext.Provider value={mockNotebookTracker}>
+          <ClientContext.Provider value={apiClient}>
+            <QueryClientProvider client={queryClient}>
+              <CatalogTreeWidgetComponent
+                googleAuthEnabled={true}
+                googleClientId="test-client-id"
+                setAuthenticated={mockSetAuthenticated}
+                updateToken={mockUpdateToken}
+              />
+            </QueryClientProvider>
+          </ClientContext.Provider>
+        </NotebookTrackerContext.Provider>
+      </AuthContext.Provider>
+    );
+
+    expect(screen.getByText('Catalogs')).toBeInTheDocument();
+  });
 });

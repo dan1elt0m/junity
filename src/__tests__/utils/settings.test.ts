@@ -27,7 +27,7 @@ describe('loadSettingEnv', () => {
 
     expect(requestAPI).toHaveBeenCalledWith('uc_settings');
     expect(mockSetting.set).toHaveBeenCalledWith(
-      'unityCatalogHostUrl',
+      'hostUrl',
       'http://example.com'
     );
     expect(mockSetting.set).toHaveBeenCalledWith('googleAuthEnabled', true);
@@ -59,7 +59,7 @@ describe('loadSettingEnv', () => {
 
     expect(requestAPI).toHaveBeenCalledWith('uc_settings');
     expect(mockSetting.set).toHaveBeenCalledWith(
-      'unityCatalogHostUrl',
+      'hostUrl',
       'http://example.com'
     );
     expect(mockSetting.set).toHaveBeenCalledWith('googleAuthEnabled', false);

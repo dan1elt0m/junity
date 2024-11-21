@@ -15,12 +15,14 @@ class SettingsHandler(APIHandler):
     # Jupyter server
     @tornado.web.authenticated
     def get(self):
-        host_url = (os.environ.get("JY_HOST_URL"))
+        host_url = os.environ.get("JY_HOST_URL")
+        access_token = os.environ.get("JY_ACCESS_TOKEN")
         google_auth_enabled = str_to_bool(os.environ.get("JY_GOOGLE_AUTH_ENABLED"))
         google_client_id = os.environ.get("JY_GOOGLE_CLIENT_ID")
         self.finish(json.dumps({
             "data": {
                 "hostUrl": host_url,
+                "accessToken": access_token,
                 "googleAuthEnabled": google_auth_enabled,
                 "googleClientId": google_client_id,
             }

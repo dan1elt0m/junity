@@ -113,7 +113,9 @@ export const CatalogTreeWidgetComponent: React.FC<{
 
   return (
     <div>
-      {googleAuthEnabled && !authContext.authenticated ? (
+      {googleAuthEnabled &&
+      !authContext.authenticated &&
+      !authContext.accessToken ? (
         <GoogleOAuthProvider clientId={googleClientId}>
           <GoogleLogin
             onSuccess={handleGoogleSignIn}
@@ -143,6 +145,7 @@ export class CatalogTreeWidget extends ReactWidget {
   constructor(
     notebookTracker: INotebookTracker,
     hostUrl: string,
+    token: string,
     googleAuthEnabled: boolean,
     googleClientId: string
   ) {
@@ -150,7 +153,7 @@ export class CatalogTreeWidget extends ReactWidget {
     this.notebookTracker = notebookTracker;
     this.hostUrl = hostUrl;
     this.authenticated = false;
-    this.token = Cookies.get('access_token') || '';
+    this.token = Cookies.get('access_token') || token;
     this.googleAuthEnabled = googleAuthEnabled;
     this.googleClientId = googleClientId;
     this.id = 'catalog-tree-widget';
@@ -182,7 +185,6 @@ export class CatalogTreeWidget extends ReactWidget {
     this.authenticated = authenticated;
     this.update();
   }
-
   render() {
     return (
       <AuthContext.Provider
