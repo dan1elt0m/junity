@@ -2,6 +2,23 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.3.2
+
+([Full Changelog](https://github.com/dan1elt0m/junity/compare/v0.3.1...3c272394916b70035dfb0f307f15419e6decd36f))
+
+### Enhancements made
+
+- Add styling login page [#15](https://github.com/dan1elt0m/junity/pull/15) ([@dan1elt0m](https://github.com/dan1elt0m))
+- Remove xhr2 dep [#14](https://github.com/dan1elt0m/junity/pull/14) ([@dan1elt0m](https://github.com/dan1elt0m))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/dan1elt0m/junity/graphs/contributors?from=2024-11-21&to=2024-11-22&type=c))
+
+[@dan1elt0m](https://github.com/search?q=repo%3Adan1elt0m%2Fjunity+involves%3Adan1elt0m+updated%3A2024-11-21..2024-11-22&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.3.1
 
 ([Full Changelog](https://github.com/dan1elt0m/junity/compare/v0.3.0...b99ec71c5107cee0435457bdab5963ca507f0111))
@@ -15,8 +32,6 @@
 ([GitHub contributors page for this release](https://github.com/dan1elt0m/junity/graphs/contributors?from=2024-11-21&to=2024-11-21&type=c))
 
 [@dan1elt0m](https://github.com/search?q=repo%3Adan1elt0m%2Fjunity+involves%3Adan1elt0m+updated%3A2024-11-21..2024-11-21&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.3.0
 
