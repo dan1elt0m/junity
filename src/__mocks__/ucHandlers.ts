@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw';
-import { UC_API_PREFIX } from '../utils/constants';
+import { UC_API_PREFIX, UC_AUTH_API_PREFIX } from '../utils/constants';
 
 export const ucHandlers = [
   // Handler for catalogs
@@ -118,5 +118,38 @@ export const ucHandlers = [
           'Content-Type, Authorization, x-interceptors-internal-request-id'
       }
     });
-  })
+  }),
+
+  // Handler for user
+  http.get(`http://localhost:8080${UC_AUTH_API_PREFIX}/scim2/Users/self`, ()  => {
+      return new HttpResponse(
+        JSON.stringify({
+          id: '1',
+          userName: 'testuser',
+          displayName: 'Test User',
+          emails: [{ value: 'testuser@example.com' }],
+          photos: [{ value: 'http://example.com/photo.jpg' }]
+        }),
+        {
+          status: 200,
+          headers: {
+            'Access-Control-Allow-Origin': 'http://localhost'
+          }
+        }
+      );
+  }),
+
+  // Handler for OPTIONS user requests
+  http.options(`http://localhost:8080${UC_AUTH_API_PREFIX}/scim2/Users/self`, () => {
+    return new HttpResponse(null, {
+      status: 204,
+      headers: {
+        'Access-Control-Allow-Origin': 'http://localhost',
+        'Access-Control-Allow-Methods':
+          'GET, POST, PUT, DELETE, OPTIONS, PATCH',
+        'Access-Control-Allow-Headers':
+          'Content-Type, Authorization, x-interceptors-internal-request-id'
+      }
+    });
+  }),
 ];

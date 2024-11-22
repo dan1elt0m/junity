@@ -59,6 +59,15 @@ export const CatalogTreeWidgetComponent: React.FC<{
   updateToken: (token: string) => void;
 }> = ({ googleAuthEnabled, googleClientId, setAuthenticated, updateToken }) => {
   const loginWithToken = useLoginWithToken();
+  const [view, setView] = useState<'catalog' | 'user'>('catalog');
+
+  const handleUserButtonClick = () => {
+    setView('user');
+  };
+
+  const handleBackButtonClick = () => {
+    setView('catalog');
+  };
 
   React.useEffect(() => {
     const authCookie = Cookies.get('authenticated');
