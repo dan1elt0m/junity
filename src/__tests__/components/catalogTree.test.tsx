@@ -7,7 +7,6 @@ import AuthContext from '../../context/auth';
 import { useListCatalogs } from '../../hooks/catalog';
 import { useListSchemas } from '../../hooks/schema';
 import { useListTables } from '../../hooks/table';
-import Cookies from 'js-cookie';
 
 // Mock the hooks
 jest.mock('../../hooks/catalog');
@@ -95,38 +94,6 @@ describe('CatalogTree', () => {
     fireEvent.click(screen.getByRole('button', { name: /expand-all/i }));
     expect(screen.getByText('Catalog1')).toBeInTheDocument();
     expect(screen.getByText('Catalog2')).toBeInTheDocument();
-  });
-
-  it('logs out the user', () => {
-    render(
-      <NotebookTrackerContext.Provider value={null}>
-        <AuthContext.Provider
-          value={{ authenticated: true, accessToken: '', currentUser: '' }}
-        >
-          <CatalogTree />
-        </AuthContext.Provider>
-      </NotebookTrackerContext.Provider>
-    );
-
-    fireEvent.click(screen.getByRole('button', { name: /logout/i }));
-    expect(document.cookie).not.toContain('authenticated');
-    expect(document.cookie).not.toContain('access_token');
-  });
-  it('should handle logout correctly', () => {
-    render(
-      <NotebookTrackerContext.Provider value={null}>
-        <AuthContext.Provider
-          value={{ authenticated: true, accessToken: '', currentUser: '' }}
-        >
-          <CatalogTree />
-        </AuthContext.Provider>
-      </NotebookTrackerContext.Provider>
-    );
-
-    fireEvent.click(screen.getByRole('button', { name: /logout/i }));
-    expect(Cookies.get('authenticated')).toBeUndefined();
-    expect(Cookies.get('access_token')).toBeUndefined();
-    expect(window.location.reload).toHaveBeenCalled();
   });
 
   it('should toggle expand all nodes', () => {

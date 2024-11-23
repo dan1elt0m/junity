@@ -1,4 +1,3 @@
-/* style/data.css */
 .jp-icon-string {
   width: 16px;
   height: 16px;
@@ -6,7 +5,7 @@
   margin-right: 5px;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('../assets/datatypes/icon-string-black.svg');
+  background-image: url('../assets/icons/datatypes/icon-string-black.svg');
   vertical-align: middle; /* Align icon vertically in the middle */
 }
 
@@ -17,7 +16,7 @@
   margin-right: 5px;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('../assets/datatypes/icon-numeric-black.svg');
+  background-image: url('../assets/icons/datatypes/icon-numeric-black.svg');
   vertical-align: middle; /* Align icon vertically in the middle */
 }
 
@@ -28,7 +27,7 @@
   margin-right: 5px;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('../assets/datatypes/icon-temporal-black.svg');
+  background-image: url('../assets/icons/datatypes/icon-temporal-black.svg');
   vertical-align: middle; /* Align icon vertically in the middle */
 }
 
@@ -39,7 +38,7 @@
   margin-right: 5px;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('../assets/datatypes/icon-complex-black.svg');
+  background-image: url('../assets/icons/datatypes/icon-complex-black.svg');
   vertical-align: middle; /* Align icon vertically in the middle */
 }
 
@@ -50,7 +49,7 @@
   margin-right: 5px;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('../assets/datatypes/icon-boolean-black.svg');
+  background-image: url('../assets/icons/datatypes/icon-boolean-black.svg');
   vertical-align: middle; /* Align icon vertically in the middle */
 }
 
@@ -61,7 +60,7 @@
   margin-right: 5px;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('../assets/datatypes/icon-other-black.svg');
+  background-image: url('../assets/icons/datatypes/icon-other-black.svg');
   vertical-align: middle; /* Align icon vertically in the middle */
 }
 
@@ -72,6 +71,6 @@
   margin-right: 5px;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('../assets/datatypes/icon-default-black.svg');
+  background-image: url('../assets/icons/datatypes/icon-default-black.svg');
   vertical-align: middle; /* Align icon vertically in the middle */
 }

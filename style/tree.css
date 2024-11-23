@@ -1,3 +1,44 @@
+.catalog-tree-container {
+  position: relative; /* Ensure the container is the reference for absolute positioning */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 1px solid #ccc;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.expand-all-button {
+  position: absolute; /* Position the button absolutely within the container */
+  top: 10px; /* Adjust the top position as needed */
+  right: 10px; /* Adjust the right position as needed */
+  background-color: transparent;
+  flex-direction: column;
+  border: none;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition-duration: 0.4s;
+  background-image: url('../assets/icons/tree/icon-expand-black.svg');
+}
+
+.expand-all-button-rotate {
+  transform: rotate(-90deg);
+}
+
+.catalog-header {
+  display: block; /* Ensure the header is a block element */
+  margin-bottom: 3px; /* Add space below the header */
+}
+
+.catalog-list {
+  display: block; /* Ensure the catalog list is a block element */
+}
+
 ul {
   list-style-type: none; /* Remove default bullet points */
   margin: 0;
@@ -15,10 +56,11 @@ li {
   display: block; /* Change to block to stack elements vertically */
   align-items: flex-start; /* Align items to the start */
   padding-bottom: 1px; /* Add a small space at the bottom */
+  padding-top: 2px; /* Add more space between tables */
 }
 
-.tree-node + .tree-node {
-  padding-top: 2px; /* Add more space between tables */
+.catalog-name {
+  display: block;
 }
 
 .grey-font {
@@ -34,26 +76,8 @@ li {
 }
 
 .column-name {
+  display: block;
   padding-left: 0; /* Indent column names */
-}
-
-.expand-all-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  width: 15px;
-  height: 15px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  transition-duration: 0.4s;
-  background-image: url('../assets/tree/icon-expand-black.svg');
-}
-
-.expand-all-button-rotate {
-  transform: rotate(-90deg);
 }
 
 .jp-icon-expand {
@@ -62,7 +86,7 @@ li {
   display: inline-block;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('../assets/tree/icon-expand-black.svg');
+  background-image: url('../assets/icons/tree/icon-expand-black.svg');
   transition: transform 0.5s ease; /* Smooth rotation */
 }
 
@@ -76,7 +100,7 @@ li {
   display: inline-block;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('../assets/tree/icon-catalog-black.svg');
+  background-image: url('../assets/icons/tree/icon-catalog-black.svg');
   margin-left: 1px; /* Adjust this value to shift the icon to the right */
   margin-bottom: 3px; /* Add space below catalog names */
   vertical-align: middle; /* Align icon vertically in the middle */
@@ -88,7 +112,7 @@ li {
   display: inline-block;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('../assets/tree/icon-schema-black.svg');
+  background-image: url('../assets/icons/tree/icon-schema-black.svg');
   margin-left: 2px; /* Adjust this value to shift the icon to the right */
   margin-bottom: 3px; /* Add space below schema names */
   vertical-align: middle; /* Align icon vertically in the middle */
@@ -100,7 +124,7 @@ li {
   display: inline-block;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('../assets/tree/icon-table-black.svg');
+  background-image: url('../assets/icons/tree/icon-table-black.svg');
   margin-left: 2px; /* Adjust this value to shift the icon to the right */
   margin-right: 2px;
   vertical-align: middle; /* Align icon vertically in the middle */
@@ -112,7 +136,7 @@ li {
   display: inline-block;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('../assets/tree/icon-insert-black.svg');
+  background-image: url('../assets/icons/tree/icon-insert-black.svg');
   opacity: 0; /* Make the icon invisible */
   transition: opacity 0.3s ease; /* Smooth transition */
   cursor: pointer;
@@ -125,16 +149,10 @@ li {
   opacity: 1; /* Make the icon visible on hover */
 }
 
-.logout-button {
-  background-image: url('../assets/tree/icon-logout-black.svg');
-  position: absolute;
-  top: 10px;
-  right: 30px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  width: 15px;
-  height: 15px;
-  background-size: contain;
-  background-repeat: no-repeat;
+/* stylelint-disable-next-line no-descending-specificity */
+.tree-node div:hover .jp-icon-insert,
+.catalog-name:hover,
+.schema-name:hover,
+.column-name:hover .jp-icon-insert {
+  opacity: 1; /* Make the insert button visible on hover */
 }

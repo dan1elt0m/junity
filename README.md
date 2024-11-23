@@ -1,4 +1,4 @@
-# junity
+![Junity Logo](style/logo/junity.png)
 
 [![Github Actions Status](https://github.com/dan1elt0m/junity/workflows/Build/badge.svg)](https://github.com/dan1elt0m/junity/actions/workflows/build.yml)
 
@@ -26,6 +26,8 @@ To remove the extension, execute:
 ```bash
 pip uninstall junity
 ```
+
+Or use the [JupyterLab extension manager](https://jupyterlab.readthedocs.io/en/stable/user/extensions.html#).
 
 ## Configuration
 
