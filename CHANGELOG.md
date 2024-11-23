@@ -2,6 +2,22 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.4.0
+
+([Full Changelog](https://github.com/dan1elt0m/junity/compare/v0.3.2...7fb44af688883da3606a3da6eb5eab4ce1e5a898))
+
+### Enhancements made
+
+- Redesign junity [#17](https://github.com/dan1elt0m/junity/pull/17) ([@dan1elt0m](https://github.com/dan1elt0m))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/dan1elt0m/junity/graphs/contributors?from=2024-11-22&to=2024-11-23&type=c))
+
+[@dan1elt0m](https://github.com/search?q=repo%3Adan1elt0m%2Fjunity+involves%3Adan1elt0m+updated%3A2024-11-22..2024-11-23&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.3.2
 
 ([Full Changelog](https://github.com/dan1elt0m/junity/compare/v0.3.1...3c272394916b70035dfb0f307f15419e6decd36f))
@@ -16,8 +32,6 @@
 ([GitHub contributors page for this release](https://github.com/dan1elt0m/junity/graphs/contributors?from=2024-11-21&to=2024-11-22&type=c))
 
 [@dan1elt0m](https://github.com/search?q=repo%3Adan1elt0m%2Fjunity+involves%3Adan1elt0m+updated%3A2024-11-21..2024-11-22&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.3.1
 
