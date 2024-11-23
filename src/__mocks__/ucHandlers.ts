@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw';
-import { UC_API_PREFIX } from '../utils/constants';
+import { UC_API_PREFIX, UC_AUTH_API_PREFIX } from '../utils/constants';
 
 export const ucHandlers = [
   // Handler for catalogs
@@ -108,6 +108,34 @@ export const ucHandlers = [
 
   // Handler for OPTIONS schemas requests
   http.options(`http://localhost:8080${UC_API_PREFIX}/schemas`, () => {
+    return new HttpResponse(null, {
+      status: 204,
+      headers: {
+        'Access-Control-Allow-Origin': 'http://localhost',
+        'Access-Control-Allow-Methods':
+          'GET, POST, PUT, DELETE, OPTIONS, PATCH',
+        'Access-Control-Allow-Headers':
+          'Content-Type, Authorization, x-interceptors-internal-request-id'
+      }
+    });
+  }),
+
+  // Handler for token exchange
+  http.post(`http://localhost:8080${UC_AUTH_API_PREFIX}/auth/tokens`, () => {
+    return new HttpResponse(
+      JSON.stringify({
+        access_token: 'test-access-token'
+      }),
+      {
+        status: 200,
+        headers: {
+          'Access-Control-Allow-Origin': 'http://localhost'
+        }
+      }
+    );
+  }),
+
+  http.options(`http://localhost:8080${UC_AUTH_API_PREFIX}/auth/tokens`, () => {
     return new HttpResponse(null, {
       status: 204,
       headers: {

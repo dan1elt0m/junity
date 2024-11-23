@@ -6,8 +6,9 @@ import {
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
 import { INotebookTracker } from '@jupyterlab/notebook';
 import '../style/index.css'; // Import the CSS file
-import { CatalogTreeWidget } from './widgets/catalogTreeWidget';
 import { loadSettingEnv } from './utils/settings';
+import { junityIcon } from './style/icons';
+import { JunityWidget } from './widgets/junityWidget';
 
 /**
  * The command IDs used by the server extension plugin.
@@ -44,16 +45,16 @@ const junity: JupyterFrontEndPlugin<void> = {
       setting: ISettingRegistry.ISettings
     ): Promise<void> {
       catalogHostUrl = setting.get('hostUrl').composite as string;
-      catalogTreeWidget.updateHostUrl(catalogHostUrl);
+      junityWidget.setHostUrl(catalogHostUrl);
 
       accessToken = setting.get('accessToken').composite as string;
-      catalogTreeWidget.updateToken(accessToken);
+      junityWidget.setToken(accessToken);
 
       googleAuthEnabled = setting.get('googleAuthEnabled').composite as boolean;
-      catalogTreeWidget.updateAuthenticationEnabled(googleAuthEnabled);
+      junityWidget.setAuthenticationEnabled(googleAuthEnabled);
 
       googleClientId = setting.get('googleClientId').composite as string;
-      catalogTreeWidget.updateGoogleClientId(googleClientId);
+      junityWidget.updateGoogleClientId(googleClientId);
     }
 
     // Wait for the application to be restored and
@@ -69,16 +70,17 @@ const junity: JupyterFrontEndPlugin<void> = {
       }
     );
 
-    const catalogTreeWidget = new CatalogTreeWidget(
+    const junityWidget = new JunityWidget(
       notebookTracker,
       catalogHostUrl,
       accessToken,
       googleAuthEnabled,
       googleClientId
     );
-    catalogTreeWidget.title.label = 'Catalog';
-    catalogTreeWidget.title.iconClass = 'jp-icon-extension jp-SideBar-tabIcon';
-    shell.add(catalogTreeWidget, 'left');
+    junityWidget.title.icon = junityIcon;
+    junityWidget.title.caption = 'Junity';
+
+    shell.add(junityWidget, 'left');
 
     console.log('JupyterLab extension junity is activated!');
   }

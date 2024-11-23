@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import '../../style/index.css';
-import Cookies from 'js-cookie';
 import { useListCatalogs } from '../hooks/catalog';
 import { SchemaInterface, useListSchemas } from '../hooks/schema';
 import { getColumnIconClass } from '../utils/columnIcons';
@@ -8,13 +7,10 @@ import { insertEntityToNotebook } from '../notebook/insertEntity';
 import { TableInterface, useListTables } from '../hooks/table';
 import { ColumnInterface } from '../hooks/column';
 import { NotebookTrackerContext } from '../context/notebookTracker';
-import AuthContext from '../context/auth';
-import { googleLogout } from '@react-oauth/google';
 
 // Renders the catalog tree
 export const CatalogTree: React.FC<unknown> = () => {
   const notebookTracker = useContext(NotebookTrackerContext);
-  const authContext = useContext(AuthContext);
   const [catalogToExpand, setCatalogToExpand] = useState<string>();
   const [schemaToExpand, setSchemaToExpand] = useState<string>();
   const [schemas, setSchemas] = useState<{ [key: string]: SchemaInterface[] }>(
@@ -55,12 +51,6 @@ export const CatalogTree: React.FC<unknown> = () => {
     }
   }, [schemaToExpand, listTablesRequest.data?.tables]);
 
-  const handleLogout = () => {
-    Cookies.remove('authenticated');
-    Cookies.remove('access_token');
-    googleLogout();
-    window.location.reload();
-  };
   const toggleExpandAllNodes = async () => {
     // TODO: if nodes have not yet been expanded, fetch the data first
     if (allExpanded) {
@@ -147,7 +137,7 @@ export const CatalogTree: React.FC<unknown> = () => {
   const renderSchemas = (schemas: SchemaInterface[], catalogName: string) => (
     <ul>
       {schemas.map(schema => (
-        <li key={schema.name}>
+        <li key={schema.name} className="schema-name">
           <div
             onClick={() => {
               toggleNode(`${catalogName}/${schema.name}`);
@@ -177,7 +167,7 @@ export const CatalogTree: React.FC<unknown> = () => {
   const renderCatalogs = () => (
     <ul>
       {listCatalogsRequest.data?.catalogs.map(catalog => (
-        <li key={catalog.name}>
+        <li key={catalog.name} className="catalog-name">
           <div
             onClick={() => {
               toggleNode(catalog.name);
@@ -198,25 +188,17 @@ export const CatalogTree: React.FC<unknown> = () => {
   );
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div className="catalog-tree-container">
       <button
         className={`expand-all-button ${allExpanded ? 'expand-all-button-rotate' : ''}`}
         onClick={toggleExpandAllNodes}
         aria-label="expand-all"
         title={allExpanded ? 'Collapse all' : 'Expand all'}
       ></button>
-      {authContext.authenticated && (
-        <button
-          className="logout-button"
-          onClick={handleLogout}
-          aria-label="logout"
-          title="Logout"
-        ></button>
-      )}
-      <div>
+      <div className="catalog-header">
         <span className="grey-font small-font margin-left">Catalogs</span>
       </div>
-      {renderCatalogs()}
+      <div className="catalog-list">{renderCatalogs()}</div>
     </div>
   );
 };
