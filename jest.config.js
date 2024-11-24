@@ -30,7 +30,8 @@ module.exports = {
   },
   roots: ['<rootDir>/src'],
   moduleNameMapper: {
-    '\\.svg$': '<rootDir>/src/__mocks__/svgMock.js'
+    '\\.svg$': '<rootDir>/src/__mocks__/svgMock.js',
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy'
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   testEnvironmentOptions: {

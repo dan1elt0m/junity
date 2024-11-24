@@ -1,18 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { UC_API_PREFIX } from '../utils/constants';
+import { UC_API_PREFIX } from '../config/constants';
 import { ClientContext } from '../context/client';
 import { useContext } from 'react';
-
-export interface CatalogInterface {
-  id: string;
-  name: string;
-  comment: string;
-  created_at: number;
-  updated_at: number | null;
-  owner: string | null;
-  created_by: string | null;
-  updated_by: string | null;
-}
+import { CatalogInterface } from '../types/interfaces';
 
 interface ListCatalogsResponse {
   catalogs: CatalogInterface[];

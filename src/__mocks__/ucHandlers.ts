@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw';
-import { UC_API_PREFIX, UC_AUTH_API_PREFIX } from '../utils/constants';
+import { UC_API_PREFIX, UC_AUTH_API_PREFIX } from '../config/constants';
 
 export const ucHandlers = [
   // Handler for catalogs
