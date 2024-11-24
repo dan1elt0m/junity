@@ -44,11 +44,14 @@ Settings can be configured partially in editor and partially in env variables. T
 editor settings. Env vars are only processed on startup, but editor settings can be changed at runtime.
 
 ## Example
+
 To run the example, navigate to the `/docker` directory and execute the following command:
-```bash 
-docker compose up --build -d 
+
+```bash
+docker compose up --build -d
 ```
-After starting the Docker containers, you can access the Jupyter notebooks at http://localhost:8888/lab?token=junity. 
+
+After starting the Docker containers, you can access the Jupyter notebooks at http://localhost:8888/lab?token=junity.
 The example notebook demonstrates how to use Junity, and DuckDB with Unity Catalog for data management and querying.
 
 You can reach the Unity Catalog at http://localhost:8080/api/2.1/unity-catalog.
