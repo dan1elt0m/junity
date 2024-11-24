@@ -2,6 +2,22 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.5.0
+
+([Full Changelog](https://github.com/dan1elt0m/junity/compare/v0.4.0...8e0cda2eb55d8a5cf926f4bd8f2f05caebcd393f))
+
+### Enhancements made
+
+- Add catalog explorer [#21](https://github.com/dan1elt0m/junity/pull/21) ([@dan1elt0m](https://github.com/dan1elt0m))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/dan1elt0m/junity/graphs/contributors?from=2024-11-23&to=2024-11-24&type=c))
+
+[@dan1elt0m](https://github.com/search?q=repo%3Adan1elt0m%2Fjunity+involves%3Adan1elt0m+updated%3A2024-11-23..2024-11-24&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.4.0
 
 ([Full Changelog](https://github.com/dan1elt0m/junity/compare/v0.3.2...7fb44af688883da3606a3da6eb5eab4ce1e5a898))
@@ -15,8 +31,6 @@
 ([GitHub contributors page for this release](https://github.com/dan1elt0m/junity/graphs/contributors?from=2024-11-22&to=2024-11-23&type=c))
 
 [@dan1elt0m](https://github.com/search?q=repo%3Adan1elt0m%2Fjunity+involves%3Adan1elt0m+updated%3A2024-11-22..2024-11-23&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.3.2
 

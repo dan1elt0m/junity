@@ -1,6 +1,6 @@
 {
     "name": "junity",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "description": "A JupyterLab extension for Unity Catalog",
     "keywords": [
         "jupyter",
