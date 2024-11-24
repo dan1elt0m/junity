@@ -1,11 +1,10 @@
 services:
   uc:
-    image: godatadriven/unity-catalog:0.2.0
+    image: godatadriven/unity-catalog:latest
     ports:
       - 8080:8080
     volumes:
       - uc-data:/app/unitycatalog/etc/data
-    command: /bin/sh -c "chmod -R 775 /app/unitycatalog/etc/data"
 
   jupyter:
     user: root
