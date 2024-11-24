@@ -19,7 +19,6 @@ export const catalogIcon: LabIcon = new LabIcon({
   svgstr: catalogSvgStr
 });
 
-
 export const logoutIcon: LabIcon = new LabIcon({
   name: 'mainpanel:logout',
   svgstr: logoutSvgStr
