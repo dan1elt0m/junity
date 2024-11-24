@@ -7875,9 +7875,9 @@ __metadata:
   version: 4.4.2
   resolution: "jest-css-modules-transform@npm:4.4.2"
   dependencies:
-    camelcase: "npm:6.3.0"
-    postcss: "npm:^7.0.30 || ^8.0.0"
-    postcss-nested: "npm:^4.2.1 || ^5.0.0"
+    camelcase: 6.3.0
+    postcss: ^7.0.30 || ^8.0.0
+    postcss-nested: ^4.2.1 || ^5.0.0
   checksum: e61a9efc1952541a713f48939ba43f91267c3b286b1e1dd8e06ee817fbaefc040cd4b6271cce629182dd0d901e1ecc89dcb8edcaa6be9d3560aeb76fdb8c56b6
   languageName: node
   linkType: hard
@@ -9850,7 +9850,7 @@ __metadata:
   version: 5.0.6
   resolution: "postcss-nested@npm:5.0.6"
   dependencies:
-    postcss-selector-parser: "npm:^6.0.6"
+    postcss-selector-parser: ^6.0.6
   peerDependencies:
     postcss: ^8.2.14
   checksum: dbcbfd11e514f485ac0d2b649b32bcbd855665a88a76f697f8be6c5017aa0260954ecccd2475bbd5865a5d248eae9a4e6e10d2d51927621d05430381aa37e43b

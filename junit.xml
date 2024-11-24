@@ -1,105 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="63" failures="0" errors="0" time="8.188">
-  <testsuite name="ListColumns" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:11" time="1.94" tests="1">
-    <testcase classname="ListColumns renders a list of columns" name="ListColumns renders a list of columns" time="0.035">
+<testsuites name="jest tests" tests="63" failures="0" errors="0" time="6.404">
+  <testsuite name="ListSchema" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:49" time="1.877" tests="1">
+    <testcase classname="ListSchema renders a list of schemas" name="ListSchema renders a list of schemas" time="0.046">
     </testcase>
   </testsuite>
-  <testsuite name="ListSchema" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:11" time="1.949" tests="1">
-    <testcase classname="ListSchema renders a list of schemas" name="ListSchema renders a list of schemas" time="0.044">
+  <testsuite name="TableDetails" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:49" time="1.89" tests="1">
+    <testcase classname="TableDetails renders table details correctly" name="TableDetails renders table details correctly" time="0.056">
     </testcase>
   </testsuite>
-  <testsuite name="TableDetails" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:11" time="1.962" tests="1">
-    <testcase classname="TableDetails renders table details correctly" name="TableDetails renders table details correctly" time="0.054">
+  <testsuite name="ListTables" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:49" time="1.902" tests="3">
+    <testcase classname="ListTables renders a list of tables" name="ListTables renders a list of tables" time="0.044">
     </testcase>
-  </testsuite>
-  <testsuite name="ListTables" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:11" time="1.97" tests="3">
-    <testcase classname="ListTables renders a list of tables" name="ListTables renders a list of tables" time="0.038">
-    </testcase>
-    <testcase classname="ListTables calls onTableClick when a table row is clicked" name="ListTables calls onTableClick when a table row is clicked" time="0.007">
+    <testcase classname="ListTables calls onTableClick when a table row is clicked" name="ListTables calls onTableClick when a table row is clicked" time="0.006">
     </testcase>
     <testcase classname="ListTables changes row background color on mouse enter and leave" name="ListTables changes row background color on mouse enter and leave" time="0.022">
     </testcase>
   </testsuite>
-  <testsuite name="SchemaDetails" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:11" time="1.982" tests="1">
-    <testcase classname="SchemaDetails renders schema details correctly" name="SchemaDetails renders schema details correctly" time="0.075">
+  <testsuite name="SchemaDetails" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:49" time="1.906" tests="1">
+    <testcase classname="SchemaDetails renders schema details correctly" name="SchemaDetails renders schema details correctly" time="0.071">
     </testcase>
   </testsuite>
-  <testsuite name="CatalogDetails" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:11" time="2.005" tests="2">
+  <testsuite name="CatalogDetails" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:49" time="1.944" tests="2">
     <testcase classname="CatalogDetails renders catalog details correctly" name="CatalogDetails renders catalog details correctly" time="0.093">
     </testcase>
-    <testcase classname="CatalogDetails renders schemas correctly" name="CatalogDetails renders schemas correctly" time="0.012">
+    <testcase classname="CatalogDetails renders schemas correctly" name="CatalogDetails renders schemas correctly" time="0.018">
     </testcase>
   </testsuite>
-  <testsuite name="ExplorerDetails" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:11" time="2.059" tests="3">
-    <testcase classname="ExplorerDetails renders loading state initially" name="ExplorerDetails renders loading state initially" time="0.012">
+  <testsuite name="ExplorerDetails" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:49" time="1.993" tests="3">
+    <testcase classname="ExplorerDetails renders loading state initially" name="ExplorerDetails renders loading state initially" time="0.015">
     </testcase>
-    <testcase classname="ExplorerDetails renders error state" name="ExplorerDetails renders error state" time="0.003">
+    <testcase classname="ExplorerDetails renders error state" name="ExplorerDetails renders error state" time="0.004">
     </testcase>
-    <testcase classname="ExplorerDetails renders catalogs" name="ExplorerDetails renders catalogs" time="0.033">
-    </testcase>
-  </testsuite>
-  <testsuite name="useListCatalogs" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:13" time="0.298" tests="1">
-    <testcase classname="useListCatalogs fetches and returns catalogs" name="useListCatalogs fetches and returns catalogs" time="0.06">
+    <testcase classname="ExplorerDetails renders catalogs" name="ExplorerDetails renders catalogs" time="0.038">
     </testcase>
   </testsuite>
-  <testsuite name="useListSchemas" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:13" time="0.282" tests="1">
-    <testcase classname="useListSchemas fetches and returns Schemas" name="useListSchemas fetches and returns Schemas" time="0.066">
+  <testsuite name="useListTables" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:51" time="0.23" tests="1">
+    <testcase classname="useListTables fetches and returns tables" name="useListTables fetches and returns tables" time="0.067">
     </testcase>
   </testsuite>
-  <testsuite name="useLoginWithToken" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:13" time="0.335" tests="1">
-    <testcase classname="useLoginWithToken should successfully exchange token" name="useLoginWithToken should successfully exchange token" time="0.062">
+  <testsuite name="useLoginWithToken" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:51" time="0.285" tests="1">
+    <testcase classname="useLoginWithToken should successfully exchange token" name="useLoginWithToken should successfully exchange token" time="0.063">
     </testcase>
   </testsuite>
-  <testsuite name="useListTables" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:13" time="0.326" tests="1">
-    <testcase classname="useListTables fetches and returns tables" name="useListTables fetches and returns tables" time="0.068">
+  <testsuite name="CatalogTree" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:51" time="0.388" tests="8">
+    <testcase classname="CatalogTree renders catalogs" name="CatalogTree renders catalogs" time="0.027">
+    </testcase>
+    <testcase classname="CatalogTree expands and collapses catalogs" name="CatalogTree expands and collapses catalogs" time="0.014">
+    </testcase>
+    <testcase classname="CatalogTree expands and collapses all" name="CatalogTree expands and collapses all" time="0.021">
+    </testcase>
+    <testcase classname="CatalogTree should toggle expand all nodes" name="CatalogTree should toggle expand all nodes" time="0.011">
+    </testcase>
+    <testcase classname="CatalogTree should toggle node expansion" name="CatalogTree should toggle node expansion" time="0.006">
+    </testcase>
+    <testcase classname="CatalogTree should render columns correctly" name="CatalogTree should render columns correctly" time="0.008">
+    </testcase>
+    <testcase classname="CatalogTree should render tables correctly" name="CatalogTree should render tables correctly" time="0.007">
+    </testcase>
+    <testcase classname="CatalogTree should render schemas correctly" name="CatalogTree should render schemas correctly" time="0.006">
     </testcase>
   </testsuite>
-  <testsuite name="ExplorerPanel" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:13" time="0.314" tests="4">
-    <testcase classname="ExplorerPanel renders message when no entity is selected" name="ExplorerPanel renders message when no entity is selected" time="0.005">
+  <testsuite name="ExplorerPanel" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:51" time="0.274" tests="4">
+    <testcase classname="ExplorerPanel renders message when no entity is selected" name="ExplorerPanel renders message when no entity is selected" time="0.003">
     </testcase>
     <testcase classname="ExplorerPanel renders catalog details correctly" name="ExplorerPanel renders catalog details correctly" time="0.001">
     </testcase>
-    <testcase classname="ExplorerPanel renders schema details correctly" name="ExplorerPanel renders schema details correctly" time="0.001">
+    <testcase classname="ExplorerPanel renders schema details correctly" name="ExplorerPanel renders schema details correctly" time="0.002">
     </testcase>
-    <testcase classname="ExplorerPanel renders table details correctly" name="ExplorerPanel renders table details correctly" time="0.002">
-    </testcase>
-  </testsuite>
-  <testsuite name="CatalogTree" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:13" time="0.453" tests="8">
-    <testcase classname="CatalogTree renders catalogs" name="CatalogTree renders catalogs" time="0.029">
-    </testcase>
-    <testcase classname="CatalogTree expands and collapses catalogs" name="CatalogTree expands and collapses catalogs" time="0.012">
-    </testcase>
-    <testcase classname="CatalogTree expands and collapses all" name="CatalogTree expands and collapses all" time="0.024">
-    </testcase>
-    <testcase classname="CatalogTree should toggle expand all nodes" name="CatalogTree should toggle expand all nodes" time="0.008">
-    </testcase>
-    <testcase classname="CatalogTree should toggle node expansion" name="CatalogTree should toggle node expansion" time="0.009">
-    </testcase>
-    <testcase classname="CatalogTree should render columns correctly" name="CatalogTree should render columns correctly" time="0.009">
-    </testcase>
-    <testcase classname="CatalogTree should render tables correctly" name="CatalogTree should render tables correctly" time="0.01">
-    </testcase>
-    <testcase classname="CatalogTree should render schemas correctly" name="CatalogTree should render schemas correctly" time="0.004">
+    <testcase classname="ExplorerPanel renders table details correctly" name="ExplorerPanel renders table details correctly" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="getColumnIconClass" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:13" time="0.112" tests="7">
-    <testcase classname="getColumnIconClass should return jp-icon-boolean for BOOLEAN and BINARY" name="getColumnIconClass should return jp-icon-boolean for BOOLEAN and BINARY" time="0.001">
-    </testcase>
-    <testcase classname="getColumnIconClass should return jp-icon-other for NULL, USER_DEFINED_TYPE, and TABLE_TYPE" name="getColumnIconClass should return jp-icon-other for NULL, USER_DEFINED_TYPE, and TABLE_TYPE" time="0">
-    </testcase>
-    <testcase classname="getColumnIconClass should return jp-icon-numeric for BYTE, SHORT, INT, LONG, FLOAT, DOUBLE, and DECIMAL" name="getColumnIconClass should return jp-icon-numeric for BYTE, SHORT, INT, LONG, FLOAT, DOUBLE, and DECIMAL" time="0">
-    </testcase>
-    <testcase classname="getColumnIconClass should return jp-icon-temporal for DATE, TIMESTAMP, TIMESTAMP_NTZ, and INTERVAL" name="getColumnIconClass should return jp-icon-temporal for DATE, TIMESTAMP, TIMESTAMP_NTZ, and INTERVAL" time="0.001">
-    </testcase>
-    <testcase classname="getColumnIconClass should return jp-icon-string for STRING and CHAR" name="getColumnIconClass should return jp-icon-string for STRING and CHAR" time="0">
-    </testcase>
-    <testcase classname="getColumnIconClass should return jp-icon-complex for ARRAY, STRUCT, and MAP" name="getColumnIconClass should return jp-icon-complex for ARRAY, STRUCT, and MAP" time="0">
-    </testcase>
-    <testcase classname="getColumnIconClass should return jp-icon-default for unknown types" name="getColumnIconClass should return jp-icon-default for unknown types" time="0">
+  <testsuite name="ListColumns" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:51" time="0.635" tests="1">
+    <testcase classname="ListColumns renders a list of columns" name="ListColumns renders a list of columns" time="0.007">
     </testcase>
   </testsuite>
-  <testsuite name="insertEntityToNotebook" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:13" time="0.115" tests="5">
-    <testcase classname="insertEntityToNotebook should insert the path into the current cell&apos;s editor" name="insertEntityToNotebook should insert the path into the current cell&apos;s editor" time="0.001">
+  <testsuite name="ListCatalogs" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:51" time="0.623" tests="3">
+    <testcase classname="ListCatalogs renders a list of catalogs" name="ListCatalogs renders a list of catalogs" time="0.007">
+    </testcase>
+    <testcase classname="ListCatalogs calls onCatalogClick when a catalog row is clicked" name="ListCatalogs calls onCatalogClick when a catalog row is clicked" time="0.003">
+    </testcase>
+    <testcase classname="ListCatalogs changes row background color on mouse enter and leave" name="ListCatalogs changes row background color on mouse enter and leave" time="0.013">
+    </testcase>
+  </testsuite>
+  <testsuite name="useListCatalogs" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:51" time="0.296" tests="1">
+    <testcase classname="useListCatalogs fetches and returns catalogs" name="useListCatalogs fetches and returns catalogs" time="0.057">
+    </testcase>
+  </testsuite>
+  <testsuite name="insertEntityToNotebook" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:52" time="0.102" tests="5">
+    <testcase classname="insertEntityToNotebook should insert the path into the current cell&apos;s editor" name="insertEntityToNotebook should insert the path into the current cell&apos;s editor" time="0">
     </testcase>
     <testcase classname="insertEntityToNotebook should log an error if there is no active notebook" name="insertEntityToNotebook should log an error if there is no active notebook" time="0">
     </testcase>
@@ -110,62 +98,74 @@
     <testcase classname="insertEntityToNotebook should log an error if replaceSelection method is not available on the editor" name="insertEntityToNotebook should log an error if replaceSelection method is not available on the editor" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="requestAPI" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:13" time="0.16" tests="5">
+  <testsuite name="getColumnIconClass" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:52" time="0.088" tests="7">
+    <testcase classname="getColumnIconClass should return jp-icon-boolean for BOOLEAN and BINARY" name="getColumnIconClass should return jp-icon-boolean for BOOLEAN and BINARY" time="0.001">
+    </testcase>
+    <testcase classname="getColumnIconClass should return jp-icon-other for NULL, USER_DEFINED_TYPE, and TABLE_TYPE" name="getColumnIconClass should return jp-icon-other for NULL, USER_DEFINED_TYPE, and TABLE_TYPE" time="0">
+    </testcase>
+    <testcase classname="getColumnIconClass should return jp-icon-numeric for BYTE, SHORT, INT, LONG, FLOAT, DOUBLE, and DECIMAL" name="getColumnIconClass should return jp-icon-numeric for BYTE, SHORT, INT, LONG, FLOAT, DOUBLE, and DECIMAL" time="0.001">
+    </testcase>
+    <testcase classname="getColumnIconClass should return jp-icon-temporal for DATE, TIMESTAMP, TIMESTAMP_NTZ, and INTERVAL" name="getColumnIconClass should return jp-icon-temporal for DATE, TIMESTAMP, TIMESTAMP_NTZ, and INTERVAL" time="0">
+    </testcase>
+    <testcase classname="getColumnIconClass should return jp-icon-string for STRING and CHAR" name="getColumnIconClass should return jp-icon-string for STRING and CHAR" time="0">
+    </testcase>
+    <testcase classname="getColumnIconClass should return jp-icon-complex for ARRAY, STRUCT, and MAP" name="getColumnIconClass should return jp-icon-complex for ARRAY, STRUCT, and MAP" time="0">
+    </testcase>
+    <testcase classname="getColumnIconClass should return jp-icon-default for unknown types" name="getColumnIconClass should return jp-icon-default for unknown types" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="useListSchemas" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:51" time="0.332" tests="1">
+    <testcase classname="useListSchemas fetches and returns Schemas" name="useListSchemas fetches and returns Schemas" time="0.06">
+    </testcase>
+  </testsuite>
+  <testsuite name="requestAPI" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:52" time="0.153" tests="5">
     <testcase classname="requestAPI should make a successful request and return JSON data" name="requestAPI should make a successful request and return JSON data" time="0.001">
     </testcase>
     <testcase classname="requestAPI should handle non-JSON response" name="requestAPI should handle non-JSON response" time="0.007">
     </testcase>
-    <testcase classname="requestAPI should handle empty response body" name="requestAPI should handle empty response body" time="0.004">
+    <testcase classname="requestAPI should handle empty response body" name="requestAPI should handle empty response body" time="0.001">
     </testcase>
     <testcase classname="requestAPI should throw a ResponseError for unsuccessful response" name="requestAPI should throw a ResponseError for unsuccessful response" time="0.002">
     </testcase>
     <testcase classname="requestAPI should throw a NetworkError for network issues" name="requestAPI should throw a NetworkError for network issues" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="loadSettingEnv" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:13" time="0.245" tests="3">
-    <testcase classname="loadSettingEnv should load settings and update them correctly" name="loadSettingEnv should load settings and update them correctly" time="0.01">
+  <testsuite name="loadSettingEnv" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:52" time="0.23" tests="3">
+    <testcase classname="loadSettingEnv should load settings and update them correctly" name="loadSettingEnv should load settings and update them correctly" time="0.009">
     </testcase>
     <testcase classname="loadSettingEnv should handle missing settings data" name="loadSettingEnv should handle missing settings data" time="0">
     </testcase>
-    <testcase classname="loadSettingEnv should handle partial settings data" name="loadSettingEnv should handle partial settings data" time="0.001">
+    <testcase classname="loadSettingEnv should handle partial settings data" name="loadSettingEnv should handle partial settings data" time="0.002">
     </testcase>
   </testsuite>
-  <testsuite name="ListCatalogs" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:13" time="0.657" tests="3">
-    <testcase classname="ListCatalogs renders a list of catalogs" name="ListCatalogs renders a list of catalogs" time="0.02">
+  <testsuite name="Main Component" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:51" time="1.31" tests="5">
+    <testcase classname="Main Component should render the logo" name="Main Component should render the logo" time="0.02">
     </testcase>
-    <testcase classname="ListCatalogs calls onCatalogClick when a catalog row is clicked" name="ListCatalogs calls onCatalogClick when a catalog row is clicked" time="0.006">
+    <testcase classname="Main Component should render children content" name="Main Component should render children content" time="0.002">
     </testcase>
-    <testcase classname="ListCatalogs changes row background color on mouse enter and leave" name="ListCatalogs changes row background color on mouse enter and leave" time="0.021">
+    <testcase classname="Main Component should render logout button when authenticated" name="Main Component should render logout button when authenticated" time="0.012">
+    </testcase>
+    <testcase classname="Main Component should not render logout button when not authenticated" name="Main Component should not render logout button when not authenticated" time="0.001">
+    </testcase>
+    <testcase classname="Main Component should call onLogout when logout button is clicked" name="Main Component should call onLogout when logout button is clicked" time="0.007">
     </testcase>
   </testsuite>
-  <testsuite name="CatalogExplorer" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:11" time="3.427" tests="3">
+  <testsuite name="CatalogExplorer" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:49" time="3.223" tests="3">
     <testcase classname="CatalogExplorer should create and open a widget for a catalog" name="CatalogExplorer should create and open a widget for a catalog" time="0.048">
     </testcase>
-    <testcase classname="CatalogExplorer should create and open a widget for a schema" name="CatalogExplorer should create and open a widget for a schema" time="0.008">
+    <testcase classname="CatalogExplorer should create and open a widget for a schema" name="CatalogExplorer should create and open a widget for a schema" time="0.009">
     </testcase>
     <testcase classname="CatalogExplorer should create and open a widget for a table" name="CatalogExplorer should create and open a widget for a table" time="0.007">
     </testcase>
   </testsuite>
-  <testsuite name="Menu Component" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:11" time="3.484" tests="1">
-    <testcase classname="Menu Component should render the selection buttons" name="Menu Component should render the selection buttons" time="0.054">
+  <testsuite name="Menu Component" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:49" time="3.224" tests="1">
+    <testcase classname="Menu Component should render the selection buttons" name="Menu Component should render the selection buttons" time="0.06">
     </testcase>
   </testsuite>
-  <testsuite name="Main Component" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:13" time="1.203" tests="5">
-    <testcase classname="Main Component should render the logo" name="Main Component should render the logo" time="0.01">
+  <testsuite name="Junity extension" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:49" time="5.128" tests="3">
+    <testcase classname="Junity extension Activates without crashing" name="Junity extension Activates without crashing" time="0.013">
     </testcase>
-    <testcase classname="Main Component should render children content" name="Main Component should render children content" time="0.001">
-    </testcase>
-    <testcase classname="Main Component should render logout button when authenticated" name="Main Component should render logout button when authenticated" time="0.011">
-    </testcase>
-    <testcase classname="Main Component should not render logout button when not authenticated" name="Main Component should not render logout button when not authenticated" time="0.002">
-    </testcase>
-    <testcase classname="Main Component should call onLogout when logout button is clicked" name="Main Component should call onLogout when logout button is clicked" time="0.006">
-    </testcase>
-  </testsuite>
-  <testsuite name="Junity extension" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:22:13" time="4.376" tests="3">
-    <testcase classname="Junity extension Activates without crashing" name="Junity extension Activates without crashing" time="0.009">
-    </testcase>
-    <testcase classname="Junity extension Should use default settings if no env vars are set" name="Junity extension Should use default settings if no env vars are set" time="0.003">
+    <testcase classname="Junity extension Should use default settings if no env vars are set" name="Junity extension Should use default settings if no env vars are set" time="0.001">
     </testcase>
     <testcase classname="Junity extension Should update settings if env vars are set" name="Junity extension Should update settings if env vars are set" time="0.001">
     </testcase>
