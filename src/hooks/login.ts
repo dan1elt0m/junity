@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { ClientContext } from '../context/client';
 import { useMutation } from '@tanstack/react-query';
-import { UC_AUTH_API_PREFIX } from '../utils/constants';
+import { UC_AUTH_API_PREFIX } from '../config/constants';
 
 interface LoginResponse {
   access_token: string;

@@ -3,12 +3,12 @@ import { ISettingRegistry } from '@jupyterlab/settingregistry';
 import { INotebookTracker } from '@jupyterlab/notebook';
 import junity from '../index';
 import { JupyterServer } from '@jupyterlab/testing';
-import { requestAPI } from '../server/serverApi';
-import { loadSettingEnv } from '../utils/settings';
+import { requestAPI } from '../components/functions/JupyterServerApi';
+import { loadSettingEnv } from '../config/settings';
 // Add this at the top of your test file or in a setup file
 
 // Mock the requestAPI function
-jest.mock('../server/serverApi', () => ({
+jest.mock('../components/functions/JupyterServerApi', () => ({
   requestAPI: jest.fn()
 }));
 

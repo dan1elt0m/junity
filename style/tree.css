@@ -50,7 +50,7 @@ li {
   padding: 3px 0; /* Reduce padding between layers */
 }
 
-.tree-node {
+.table-name {
   position: relative;
   padding-right: 30px;
   display: block; /* Change to block to stack elements vertically */
@@ -118,6 +118,19 @@ li {
   vertical-align: middle; /* Align icon vertically in the middle */
 }
 
+.jp-icon-schema-explorer {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../assets/icons/tree/icon-schema-black.svg');
+  margin-left: 2px; /* Adjust this value to shift the icon to the right */
+  margin-right: 4px;
+  margin-bottom: 3px; /* Add space below schema names */
+  vertical-align: middle; /* Align icon vertically in the middle */
+}
+
 .jp-icon-table {
   width: 16px;
   height: 16px;
@@ -150,9 +163,31 @@ li {
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
-.tree-node div:hover .jp-icon-insert,
-.catalog-name:hover,
-.schema-name:hover,
-.column-name:hover .jp-icon-insert {
+
+.column-name > div:hover > .jp-icon-insert,
+.table-name > div:hover > .jp-icon-insert,
+.schema-name > div:hover > .jp-icon-insert,
+.catalog-name > div:hover > .jp-icon-insert {
   opacity: 1; /* Make the insert button visible on hover */
+}
+
+.jp-icon-explore {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../assets/icons/tree/icon-magnify-black.svg');
+  opacity: 0; /* Make the icon invisible */
+  transition: opacity 0.3s ease; /* Smooth transition */
+  cursor: pointer;
+  position: absolute; /* Position the icon absolutely */
+  right: 30px; /* Adjust this value to stick the icon to the right corner */
+  vertical-align: middle; /* Align icon vertically in the middle */
+}
+
+.table-name > div:hover > .jp-icon-explore,
+.schema-name > div:hover > .jp-icon-explore,
+.catalog-name > div:hover > .jp-icon-explore {
+  opacity: 1; /* Make the explore button visible on hover */
 }

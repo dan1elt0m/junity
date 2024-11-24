@@ -6,9 +6,9 @@ import {
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
 import { INotebookTracker } from '@jupyterlab/notebook';
 import '../style/index.css'; // Import the CSS file
-import { loadSettingEnv } from './utils/settings';
+import { loadSettingEnv } from './config/settings';
 import { junityIcon } from './style/icons';
-import { JunityWidget } from './widgets/junityWidget';
+import { TreeWidget } from './components/widgets/TreeWidget';
 
 /**
  * The command IDs used by the server extension plugin.
@@ -70,7 +70,8 @@ const junity: JupyterFrontEndPlugin<void> = {
       }
     );
 
-    const junityWidget = new JunityWidget(
+    const junityWidget = new TreeWidget(
+      app,
       notebookTracker,
       catalogHostUrl,
       accessToken,

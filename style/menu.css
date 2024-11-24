@@ -5,13 +5,14 @@
 .selection-menu {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 25px; /* Adjust the width as needed */
   border-right: 1px solid #ccc;
 }
 
 .selection-menu button {
   width: 100%;
-  padding: 10px;
+  padding: 5px;
   text-align: left;
   border: none;
   background: none;
