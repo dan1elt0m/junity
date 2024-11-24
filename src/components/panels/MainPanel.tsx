@@ -4,8 +4,7 @@ import AuthContext from '../../context/auth';
 import '../../../style/menu.css';
 import junityLogoSvg from '../../../assets/junity-logo.svg';
 import { LabIcon } from '@jupyterlab/ui-components';
-import { faSignOut } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { logoutIcon } from '../../style/icons';
 
 const junityIcon = new LabIcon({
   name: 'junity:logo-large',
@@ -48,7 +47,7 @@ export const MainPanel: React.FC<MainContainerProps> = ({
             aria-label="logout"
             title="Logout"
           >
-            <FontAwesomeIcon icon={faSignOut} />
+            <logoutIcon.react width={16} height={16} />
           </button>
         )}
       </div>
