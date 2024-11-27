@@ -1,4 +1,4 @@
-import { useQuery, UseQueryOptions } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient, UseQueryOptions } from '@tanstack/react-query';
 import { UC_API_PREFIX } from '../config/constants';
 import { useContext } from 'react';
 import { ClientContext } from '../context/client';
@@ -30,5 +30,37 @@ export function useListTables({ catalog, schema, options }: ListTablesParams) {
         .then(response => response.data);
     },
     ...options
+  });
+}
+
+interface DeleteTableParams {
+  catalog: string;
+  schema: string;
+}
+
+export function useDeleteTable({ catalog, schema }: DeleteTableParams) {
+  const queryClient = useQueryClient();
+  const apiClient = useContext(ClientContext);
+
+  return useMutation<void, Error, Pick<TableInterface, 'catalog_name' | 'schema_name' | 'name'>>({
+    mutationFn: async ({
+                         catalog_name,
+                         schema_name,
+                         name,
+                       }): Promise<void> => {
+      return apiClient
+        .delete(`${UC_API_PREFIX}/tables/${catalog_name}.${schema_name}.${name}`)
+        .then((response) => response.data)
+        .catch((e) => {
+          throw new Error(
+            e.response?.data?.message || 'Failed to delete table',
+          );
+        });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['listTables', catalog, schema],
+      });
+    },
   });
 }

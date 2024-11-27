@@ -30,11 +30,11 @@ const ExplorerDetails: React.FC<ExplorerDetailsProps> = ({ onCatalogClick }) => 
 
   return (
     <Box sx={{ padding: 2 }}>
-      <Typography variant="h4" gutterBottom>
-        Welcome to the Catalog Explorer
-      </Typography>
       <Divider sx={{ marginBottom: 2 }} />
-      <Box sx={{ position: 'absolute', top: 16, right: 16 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2, marginBottom: 2 }}>
+        <Typography variant="h4" gutterBottom sx={{ flexGrow: 1 }}>
+          Welcome to the Catalog Explorer
+        </Typography>
         <Button variant="contained" color="primary" onClick={() => setShowCreateForm(true)}>
           Create Catalog
         </Button>

@@ -1,19 +1,48 @@
 import React from 'react';
-import { Box, Typography, Grid2 as Grid, Divider } from '@mui/material';
+import { Box, Typography, Grid2 as Grid, Divider, Button } from '@mui/material';
 import ListColumns from './ListColumns';
 import { TableInterface } from '../../types/interfaces';
+import { useDeleteTable, useListTables } from '../../hooks/table';
 
 interface TableDetailsProps {
   table: TableInterface;
 }
 
 const TableDetails: React.FC<TableDetailsProps> = ({ table }) => {
+  const deleteTableMutation = useDeleteTable({
+    catalog: table.catalog_name,
+    schema: table.schema_name,
+  });
+  const listTablesRequest = useListTables({
+    catalog: table.catalog_name,
+    schema: table.schema_name});
+
+  const handleDeleteTable = () => {
+    if (confirm(`Are you sure you want to delete table ${table.name}?`)) {
+      deleteTableMutation.mutate({
+        catalog_name: table.catalog_name,
+        schema_name: table.schema_name,
+        name: table.name
+      },
+        {
+          onSuccess: () => {
+            listTablesRequest.refetch();
+          }
+        },);
+    }
+  };
+
   return (
     <Box sx={{ padding: 2 }}>
-      <Typography variant="h4" gutterBottom>
-        <span className="jp-icon-table"></span>
-        {table.name}
-      </Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2, marginBottom: 2 }}>
+        <Typography variant="h4"  gutterBottom sx={{ flexGrow: 1 }}>
+          <span className="jp-icon-table"></span>
+          {table.name}
+        </Typography>
+        <Button variant="contained" color="error" onClick={handleDeleteTable} disabled={deleteTableMutation.status === 'pending'}>
+          Delete
+        </Button>
+      </Box>
       <Divider sx={{ marginBottom: 2 }} />
 
       <Box sx={{ marginBottom: 2 }}>
@@ -22,7 +51,7 @@ const TableDetails: React.FC<TableDetailsProps> = ({ table }) => {
         </Typography>
         <Grid container spacing={2}>
           <Grid size={6}>
-            <Typography variant="body1">
+            <Typography variant="body1" >
               <strong>Name:</strong> {table.name}
             </Typography>
           </Grid>
@@ -115,4 +144,4 @@ const TableDetails: React.FC<TableDetailsProps> = ({ table }) => {
   );
 };
 
-export default TableDetails;
+export default TableDetails;;

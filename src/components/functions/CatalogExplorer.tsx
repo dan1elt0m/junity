@@ -43,30 +43,28 @@ const ExplorerComponent = forwardRef((props, ref) => {
       apiClient
     });
     const widget = new MainAreaWidget({ content });
-    if (type === 'frontpage') {
-      widget.id = 'frontpage-widget';
-      widget.title.label = 'Catalog Explorer';
-    } else {
-      widget.id = `${type}-widget-${entity.name}`;
-      widget.title.label = `${type.charAt(0).toUpperCase() + type.slice(1)}: ${entity.name}`;
-    }
+    widget.id = 'explorer-widget';
+    widget.title.label = 'Catalog Explorer';
     widget.title.closable = true;
     return widget;
   };
 
-  const openWidget = (
+ const openWidget = (
     type: 'catalog' | 'schema' | 'table' | 'frontpage',
     entity: CatalogInterface | SchemaInterface | TableInterface
   ): void => {
     if (widget && !widget.isDisposed) {
-      widget.dispose();
+      widget.content.updateEntity(entity, type);
+      widget.update();
+      app.shell.activateById(widget.id);
+    } else {
+      const newWidget = createWidget(type, entity);
+      setWidget(newWidget);
+      if (!newWidget.isAttached) {
+        app.shell.add(newWidget, 'main');
+      }
+      app.shell.activateById(newWidget.id);
     }
-    const newWidget = createWidget(type, entity);
-    setWidget(newWidget);
-    if (!newWidget.isAttached) {
-      app.shell.add(newWidget, 'main');
-    }
-    app.shell.activateById(newWidget.id);
   };
 
   useImperativeHandle(ref, () => ({

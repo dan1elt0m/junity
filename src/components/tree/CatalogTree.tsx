@@ -108,6 +108,12 @@ export const CatalogTree: React.FC<{
     setExpandedNodes(newSet);
   };
 
+  const handleSchemaSelect = (schemaName: string, catalogName: string) => {
+    setSchemaToExpand(schemaName);
+    setCatalogToExpand(catalogName);
+    listCatalogsRequest.refetch();
+  };
+
   const renderColumns = (columns: ColumnInterface[]) => (
     <ul>
       {columns.map(column => (
@@ -175,7 +181,7 @@ export const CatalogTree: React.FC<{
           <div
             onClick={() => {
               toggleNode(`${catalogName}/${schema.name}`);
-              setSchemaToExpand(schema.name);
+              handleSchemaSelect(schema.name, catalogName);
             }}
           >
             <span

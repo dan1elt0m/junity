@@ -40,7 +40,11 @@ const handleDeleteSchema = () => {
   return (
     <Box sx={{ padding: 2 }}>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2, marginBottom: 2 }}>
-        <Button variant="contained" color="warning" onClick={handleDeleteSchema} disabled={deleteSchemaMutation.status === 'pending'}>
+        <Typography variant="h4"  gutterBottom sx={{ flexGrow: 1 }}>
+          <span className="jp-icon-schema-explorer"></span>
+          {schema.name}
+        </Typography>
+        <Button variant="contained" color="error" onClick={handleDeleteSchema} disabled={deleteSchemaMutation.status === 'pending'}>
           Delete
         </Button>
         <Button variant="contained" color="info" onClick={() => setShowUpdateForm(true)}>
@@ -56,10 +60,6 @@ const handleDeleteSchema = () => {
         </Typography>
       )}
 
-      <Typography variant="h4" gutterBottom>
-        <span className="jp-icon-schema-explorer"></span>
-        {schema.name}
-      </Typography>
       <Divider sx={{ marginBottom: 2 }} />
 
       <Box sx={{ marginBottom: 2 }}>

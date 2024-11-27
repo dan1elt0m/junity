@@ -20,10 +20,12 @@ const mockUseListTables = useListTables as jest.Mock;
 describe('CatalogTree', () => {
   beforeEach(() => {
     mockUseListCatalogs.mockReturnValue({
-      data: { catalogs: [{ name: 'Catalog1' }, { name: 'Catalog2' }] }
+      data: { catalogs: [{ name: 'Catalog1' }, { name: 'Catalog2' }] },
+      refetch: jest.fn()
     });
     mockUseListSchemas.mockReturnValue({
-      data: { schemas: [{ name: 'Schema1' }, { name: 'Schema2' }] }
+      data: { schemas: [{ name: 'Schema1' }, { name: 'Schema2' }] },
+      refetch: jest.fn()
     });
     mockUseListTables.mockReturnValue({
       data: {
@@ -33,7 +35,8 @@ describe('CatalogTree', () => {
             columns: [{ name: 'Column1', type_name: 'string' }]
           }
         ]
-      }
+      },
+      refetch: jest.fn()
     });
     // Mock window.location.reload
     Object.defineProperty(window, 'location', {

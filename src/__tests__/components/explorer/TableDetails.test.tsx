@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TableDetails from '../../../components/explorer/TableDetails';
 import { TableInterface } from '../../../types/interfaces';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const mockTable: TableInterface = {
   table_id: '1',
@@ -21,9 +22,15 @@ const mockTable: TableInterface = {
   updated_by: 'Test Updater'
 };
 
+const queryClient = new QueryClient();
+
 describe('TableDetails', () => {
   it('renders table details correctly', () => {
-    render(<TableDetails table={mockTable} />);
+    render(
+      <QueryClientProvider client={queryClient}>
+      <TableDetails table={mockTable} />
+        </QueryClientProvider>
+        );
     screen.getAllByText('Test Table').forEach(element => {
       expect(element).toBeInTheDocument();
     });

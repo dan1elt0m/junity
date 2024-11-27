@@ -43,9 +43,12 @@ const handleDeleteCatalog = () => {
   return (
     <Box sx={{ padding: 2 }}>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2, marginBottom: 2 }}>
+    <Typography variant="h4" gutterBottom sx={{ flexGrow: 1 }}>
+  <span className="jp-icon-catalog"></span> {catalog.name}
+        </Typography>
       <Button
         variant="contained"
-        color="warning"
+        color="error"
         onClick={handleDeleteCatalog}
         disabled={deleteCatalogMutation.status === 'pending'}
       >
@@ -74,9 +77,7 @@ const handleDeleteCatalog = () => {
         </Typography>
       )}
 
-      <Typography variant="h4" gutterBottom>
-        <span className="jp-icon-catalog"></span> {catalog.name}
-      </Typography>
+
       <Divider sx={{ marginBottom: 2 }} />
 
       <Box sx={{ marginBottom: 2 }}>
