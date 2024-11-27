@@ -12,7 +12,7 @@
 
 .expand-all-button {
   position: absolute; /* Position the button absolutely within the container */
-  top: 0px; /* Adjust the top position as needed */
+  top: 3px; /* Adjust the top position as needed */
   right: 10px; /* Adjust the right position as needed */
   background-color: transparent;
   flex-direction: column;
@@ -32,7 +32,7 @@
 
 .refresh-button {
   position: absolute; /* Position the button absolutely within the container */
-  top: 0; /* Adjust the top position as needed */
+  top: 3px; /* Adjust the top position as needed */
   right: 30px; /* Adjust the right position as needed */
   background-color: transparent;
   flex-direction: column;
