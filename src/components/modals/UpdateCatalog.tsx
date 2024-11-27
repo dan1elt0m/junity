@@ -27,7 +27,7 @@ const UpdateCatalogForm: React.FC<UpdateCatalogFormProps> = ({
           setError(null);
           onSuccess();
         },
-        onError: (err: any) => {
+        onError: err => {
           setError(
             err.message || 'An error occurred while updating the catalog.'
           );

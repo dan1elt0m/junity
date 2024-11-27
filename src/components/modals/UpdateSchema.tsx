@@ -32,7 +32,7 @@ const UpdateSchemaForm: React.FC<UpdateSchemaFormProps> = ({
           setError(null);
           onSuccess();
         },
-        onError: (err: any) => {
+        onError: err => {
           setError(
             err.message || 'An error occurred while updating the schema.'
           );

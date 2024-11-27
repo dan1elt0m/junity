@@ -7,8 +7,9 @@ A OSS Unity Catalog extension for Jupyter Lab. This extension allows you to brow
 ![Junity Demo](docs/demo.gif)
 
 ## Features
+
 - Browse and manage the Unity Catalog in JupyterLab
-- SidePanel Catalog Tree with option to insert names into code cells 
+- SidePanel Catalog Tree with option to insert names into code cells
 - Oauth with Google and token based authentication
 - Easy configuration with JupyterLab settings editor
 - Docker example with JupyterLab, Unity Catalog and DuckDB

@@ -30,7 +30,7 @@ const CreateSchemaForm: React.FC<CreateSchemaFormProps> = ({
             setError(null);
             onSuccess();
           },
-          onError: (err: any) => {
+          onError: err => {
             setError(
               err.message || 'An error occurred while creating the schema.'
             );
