@@ -5,6 +5,7 @@ import { useListCatalogs } from '../../hooks/catalog';
 import { useListSchemas } from '../../hooks/schema';
 import { insertEntityToNotebook } from '../functions/InsertEntity';
 import { getColumnIconClass } from '../../style/column-icons';
+
 import {
   CatalogInterface,
   ColumnInterface,
@@ -89,6 +90,12 @@ export const CatalogTree: React.FC<{
       setExpandedNodes(allNodeNames);
     }
     setAllExpanded(!allExpanded);
+  };
+
+  const handleRefresh = () => {
+    listCatalogsRequest.refetch();
+    listSchemasRequest.refetch();
+    listTablesRequest.refetch();
   };
 
   const toggleNode = (nodeName: string) => {
@@ -255,6 +262,13 @@ export const CatalogTree: React.FC<{
         aria-label="expand-all"
         title={allExpanded ? 'Collapse all' : 'Expand all'}
       ></button>
+      <button
+        className={'refresh-button'}
+        onClick={handleRefresh}
+        aria-label="refresh"
+        title="Refresh"
+      >
+      </button>
       <div className="catalog-header">
         <span className="grey-font small-font margin-left">Catalogs</span>
       </div>

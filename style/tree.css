@@ -12,7 +12,7 @@
 
 .expand-all-button {
   position: absolute; /* Position the button absolutely within the container */
-  top: 10px; /* Adjust the top position as needed */
+  top: 0px; /* Adjust the top position as needed */
   right: 10px; /* Adjust the right position as needed */
   background-color: transparent;
   flex-direction: column;
@@ -27,6 +27,26 @@
 }
 
 .expand-all-button-rotate {
+  transform: rotate(-90deg);
+}
+
+.refresh-button {
+  position: absolute; /* Position the button absolutely within the container */
+  top: 0; /* Adjust the top position as needed */
+  right: 30px; /* Adjust the right position as needed */
+  background-color: transparent;
+  flex-direction: column;
+  border: none;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition-duration: 0.4s;
+  background-image: url('../assets/icons/tree/icon-refresh-black.svg');
+}
+
+.refresh-button-rotate {
   transform: rotate(-90deg);
 }
 
