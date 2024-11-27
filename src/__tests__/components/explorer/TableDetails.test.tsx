@@ -28,9 +28,9 @@ describe('TableDetails', () => {
   it('renders table details correctly', () => {
     render(
       <QueryClientProvider client={queryClient}>
-      <TableDetails table={mockTable} />
-        </QueryClientProvider>
-        );
+        <TableDetails table={mockTable} />
+      </QueryClientProvider>
+    );
     screen.getAllByText('Test Table').forEach(element => {
       expect(element).toBeInTheDocument();
     });

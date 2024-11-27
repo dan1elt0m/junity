@@ -28,7 +28,9 @@ const queryClient = new QueryClient();
 class ExplorerWidget extends ReactWidget {
   private entity: CatalogInterface | SchemaInterface | TableInterface;
   private type: string;
-  private handleExploreClick: ( entity : CatalogInterface | SchemaInterface | TableInterface ) => void;
+  private handleExploreClick: (
+    entity: CatalogInterface | SchemaInterface | TableInterface
+  ) => void;
   private apiClient: AxiosInstance;
 
   constructor(props: ExplorerWidgetProps) {
@@ -36,18 +38,20 @@ class ExplorerWidget extends ReactWidget {
     this.addClass('explorer-widget');
     this.entity = props.entity;
     this.type = props.type;
-    this.handleExploreClick = props.handleExploreClick
-    this.apiClient = props.apiClient
+    this.handleExploreClick = props.handleExploreClick;
+    this.apiClient = props.apiClient;
   }
 
-  updateEntity(entity: CatalogInterface | SchemaInterface | TableInterface, type: 'catalog' | 'schema' | 'table' | 'frontpage') {
+  updateEntity(
+    entity: CatalogInterface | SchemaInterface | TableInterface,
+    type: 'catalog' | 'schema' | 'table' | 'frontpage'
+  ) {
     this.entity = entity;
     this.type = type;
     this.update();
   }
 
   protected render(): ReactElement {
-
     return (
       <QueryClientProvider client={queryClient}>
         <ClientContext.Provider value={this.apiClient}>
@@ -78,4 +82,3 @@ class ExplorerWidget extends ReactWidget {
 }
 
 export default ExplorerWidget;
-

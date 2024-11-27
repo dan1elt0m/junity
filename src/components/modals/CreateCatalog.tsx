@@ -7,7 +7,10 @@ interface CreateCatalogFormProps {
   onBack: () => void;
 }
 
-const CreateCatalogForm: React.FC<CreateCatalogFormProps> = ({ onSuccess, onBack }) => {
+const CreateCatalogForm: React.FC<CreateCatalogFormProps> = ({
+  onSuccess,
+  onBack
+}) => {
   const createCatalogMutation = useCreateCatalog();
   const [catalogName, setCatalogName] = useState('');
   const [catalogComment, setCatalogComment] = useState('');
@@ -26,8 +29,10 @@ const CreateCatalogForm: React.FC<CreateCatalogFormProps> = ({ onSuccess, onBack
             onSuccess();
           },
           onError: (err: any) => {
-            setError(err.message || 'An error occurred while creating the catalog.');
-          },
+            setError(
+              err.message || 'An error occurred while creating the catalog.'
+            );
+          }
         }
       );
     }
@@ -38,7 +43,7 @@ const CreateCatalogForm: React.FC<CreateCatalogFormProps> = ({ onSuccess, onBack
       <TextField
         label="Catalog Name"
         value={catalogName}
-        onChange={(e) => setCatalogName(e.target.value)}
+        onChange={e => setCatalogName(e.target.value)}
         fullWidth
         margin="normal"
         required
@@ -46,7 +51,7 @@ const CreateCatalogForm: React.FC<CreateCatalogFormProps> = ({ onSuccess, onBack
       <TextField
         label="Catalog Comment"
         value={catalogComment}
-        onChange={(e) => setCatalogComment(e.target.value)}
+        onChange={e => setCatalogComment(e.target.value)}
         fullWidth
         margin="normal"
       />
@@ -55,7 +60,9 @@ const CreateCatalogForm: React.FC<CreateCatalogFormProps> = ({ onSuccess, onBack
           {error}
         </Typography>
       )}
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 2 }}>
+      <Box
+        sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 2 }}
+      >
         <Button variant="contained" color="secondary" onClick={onBack}>
           Back
         </Button>

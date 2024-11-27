@@ -9,7 +9,11 @@ interface UpdateCatalogFormProps {
   onBack: () => void;
 }
 
-const UpdateCatalogForm: React.FC<UpdateCatalogFormProps> = ({ catalog, onSuccess, onBack }) => {
+const UpdateCatalogForm: React.FC<UpdateCatalogFormProps> = ({
+  catalog,
+  onSuccess,
+  onBack
+}) => {
   const updateCatalogMutation = useUpdateCatalog(catalog.name);
   const [catalogComment, setCatalogComment] = useState(catalog.comment || '');
   const [error, setError] = useState<string | null>(null);
@@ -24,8 +28,10 @@ const UpdateCatalogForm: React.FC<UpdateCatalogFormProps> = ({ catalog, onSucces
           onSuccess();
         },
         onError: (err: any) => {
-          setError(err.message || 'An error occurred while updating the catalog.');
-        },
+          setError(
+            err.message || 'An error occurred while updating the catalog.'
+          );
+        }
       }
     );
   };
@@ -35,7 +41,7 @@ const UpdateCatalogForm: React.FC<UpdateCatalogFormProps> = ({ catalog, onSucces
       <TextField
         label="Catalog Comment"
         value={catalogComment}
-        onChange={(e) => setCatalogComment(e.target.value)}
+        onChange={e => setCatalogComment(e.target.value)}
         fullWidth
         margin="normal"
       />
@@ -44,7 +50,9 @@ const UpdateCatalogForm: React.FC<UpdateCatalogFormProps> = ({ catalog, onSucces
           {error}
         </Typography>
       )}
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 2 }}>
+      <Box
+        sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 2 }}
+      >
         <Button variant="contained" color="secondary" onClick={onBack}>
           Cancel
         </Button>

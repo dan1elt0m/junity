@@ -10,8 +10,16 @@ interface UpdateSchemaFormProps {
   onBack: () => void;
 }
 
-const UpdateSchemaForm: React.FC<UpdateSchemaFormProps> = ({ catalog, schema, onSuccess, onBack }) => {
-  const updateSchemaMutation = useUpdateSchema({ catalog, schema: schema.name });
+const UpdateSchemaForm: React.FC<UpdateSchemaFormProps> = ({
+  catalog,
+  schema,
+  onSuccess,
+  onBack
+}) => {
+  const updateSchemaMutation = useUpdateSchema({
+    catalog,
+    schema: schema.name
+  });
   const [schemaComment, setSchemaComment] = useState(schema.comment || '');
   const [error, setError] = useState<string | null>(null);
 
@@ -25,8 +33,10 @@ const UpdateSchemaForm: React.FC<UpdateSchemaFormProps> = ({ catalog, schema, on
           onSuccess();
         },
         onError: (err: any) => {
-          setError(err.message || 'An error occurred while updating the schema.');
-        },
+          setError(
+            err.message || 'An error occurred while updating the schema.'
+          );
+        }
       }
     );
   };
@@ -36,7 +46,7 @@ const UpdateSchemaForm: React.FC<UpdateSchemaFormProps> = ({ catalog, schema, on
       <TextField
         label="Schema Comment"
         value={schemaComment}
-        onChange={(e) => setSchemaComment(e.target.value)}
+        onChange={e => setSchemaComment(e.target.value)}
         fullWidth
         margin="normal"
       />
@@ -45,7 +55,9 @@ const UpdateSchemaForm: React.FC<UpdateSchemaFormProps> = ({ catalog, schema, on
           {error}
         </Typography>
       )}
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 2 }}>
+      <Box
+        sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 2 }}
+      >
         <Button variant="contained" color="secondary" onClick={onBack}>
           Cancel
         </Button>

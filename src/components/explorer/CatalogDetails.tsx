@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Typography, Grid2 as Grid, Divider, Button, Modal, CircularProgress } from '@mui/material';
+import {
+  Box,
+  Typography,
+  Grid2 as Grid,
+  Divider,
+  Button,
+  Modal,
+  CircularProgress
+} from '@mui/material';
 import { useListSchemas } from '../../hooks/schema';
 import { useDeleteCatalog, useListCatalogs } from '../../hooks/catalog';
 import ListSchema from './ListSchema';
@@ -13,7 +21,10 @@ interface CatalogDetailsProps {
   onSchemaClick: (schema: SchemaInterface) => void;
 }
 
-const CatalogDetails: React.FC<CatalogDetailsProps> = ({ catalog, onSchemaClick }) => {
+const CatalogDetails: React.FC<CatalogDetailsProps> = ({
+  catalog,
+  onSchemaClick
+}) => {
   const [schemas, setSchemas] = useState<SchemaInterface[]>([]);
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   const listSchemasRequest = useListSchemas({ catalog: catalog.name });
@@ -27,45 +38,49 @@ const CatalogDetails: React.FC<CatalogDetailsProps> = ({ catalog, onSchemaClick 
     }
   }, [listSchemasRequest.data?.schemas]);
 
-const handleDeleteCatalog = () => {
-  if (confirm(`Are you sure you want to delete catalog ${catalog.name}?`)) {
-    deleteCatalogMutation.mutate(
-      { name: catalog.name },
-      {
-        onSuccess: () => {
-          listCatalogsRequest.refetch();
-        },
-      }
-    );
-  }
-};
+  const handleDeleteCatalog = () => {
+    if (confirm(`Are you sure you want to delete catalog ${catalog.name}?`)) {
+      deleteCatalogMutation.mutate(
+        { name: catalog.name },
+        {
+          onSuccess: () => {
+            listCatalogsRequest.refetch();
+          }
+        }
+      );
+    }
+  };
 
   return (
     <Box sx={{ padding: 2 }}>
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2, marginBottom: 2 }}>
-    <Typography variant="h4" gutterBottom sx={{ flexGrow: 1 }}>
-  <span className="jp-icon-catalog"></span> {catalog.name}
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          gap: 2,
+          marginBottom: 2
+        }}
+      >
+        <Typography variant="h4" gutterBottom sx={{ flexGrow: 1 }}>
+          <span className="jp-icon-catalog"></span> {catalog.name}
         </Typography>
-      <Button
-        variant="contained"
-        color="error"
-        onClick={handleDeleteCatalog}
-        disabled={deleteCatalogMutation.status === 'pending'}
-      >
-        Delete
-      </Button>
-      <Button
-        variant="contained"
-        color="info"
-        onClick={() => setShowUpdateForm(true)}
-      >
-        Update
-      </Button>
-
-  </Box>
-      {deleteCatalogMutation.status === 'pending' && (
-        <CircularProgress />
-      )}
+        <Button
+          variant="contained"
+          color="error"
+          onClick={handleDeleteCatalog}
+          disabled={deleteCatalogMutation.status === 'pending'}
+        >
+          Delete
+        </Button>
+        <Button
+          variant="contained"
+          color="info"
+          onClick={() => setShowUpdateForm(true)}
+        >
+          Update
+        </Button>
+      </Box>
+      {deleteCatalogMutation.status === 'pending' && <CircularProgress />}
       {deleteCatalogMutation.isError && (
         <Typography color="error">
           {deleteCatalogMutation.error?.message || 'Failed to delete catalog'}
@@ -76,7 +91,6 @@ const handleDeleteCatalog = () => {
           {deleteCatalogMutation.error?.message || 'Failed to delete catalog'}
         </Typography>
       )}
-
 
       <Divider sx={{ marginBottom: 2 }} />
 
@@ -144,20 +158,39 @@ const handleDeleteCatalog = () => {
 
       <Divider />
 
-  <Box sx={{ marginTop: 2 }}>
-    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}>
-      <Typography variant="h5" gutterBottom>
-        Schemas List
-      </Typography>
-      <Button variant="contained" color="primary" onClick={() => setShowCreateForm(true)}>
-        Create Schema
-      </Button>
-    </Box>
-    <ListSchema schemas={schemas} onSchemaClick={onSchemaClick} />
-  </Box>
+      <Box sx={{ marginTop: 2 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: 2
+          }}
+        >
+          <Typography variant="h5" gutterBottom>
+            Schemas List
+          </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setShowCreateForm(true)}
+          >
+            Create Schema
+          </Button>
+        </Box>
+        <ListSchema schemas={schemas} onSchemaClick={onSchemaClick} />
+      </Box>
 
       <Modal open={showUpdateForm} onClose={() => setShowUpdateForm(false)}>
-        <Box sx={{ padding: 2, backgroundColor: 'white', margin: 'auto', marginTop: '10%', width: '50%' }}>
+        <Box
+          sx={{
+            padding: 2,
+            backgroundColor: 'white',
+            margin: 'auto',
+            marginTop: '10%',
+            width: '50%'
+          }}
+        >
           <UpdateCatalogForm
             catalog={catalog}
             onSuccess={() => setShowUpdateForm(false)}
@@ -167,10 +200,18 @@ const handleDeleteCatalog = () => {
       </Modal>
 
       <Modal open={showCreateForm} onClose={() => setShowCreateForm(false)}>
-        <Box sx={{ padding: 2, backgroundColor: 'white', margin: 'auto', marginTop: '10%', width: '50%' }}>
+        <Box
+          sx={{
+            padding: 2,
+            backgroundColor: 'white',
+            margin: 'auto',
+            marginTop: '10%',
+            width: '50%'
+          }}
+        >
           <CreateSchemaForm
             catalog={catalog.name}
-           onSuccess={() => {
+            onSuccess={() => {
               setShowCreateForm(false);
               listSchemasRequest.refetch();
             }}
@@ -178,7 +219,6 @@ const handleDeleteCatalog = () => {
           />
         </Box>
       </Modal>
-
     </Box>
   );
 };

@@ -53,9 +53,9 @@ describe('CatalogDetails', () => {
   it('renders catalog details correctly', () => {
     render(
       <QueryClientProvider client={queryClient}>
-      <CatalogDetails catalog={mockCatalog} onSchemaClick={jest.fn()} />
+        <CatalogDetails catalog={mockCatalog} onSchemaClick={jest.fn()} />
       </QueryClientProvider>
-        );
+    );
 
     expect(
       screen.getByRole('heading', { name: /Test Catalog/i })
@@ -69,9 +69,10 @@ describe('CatalogDetails', () => {
 
   it('renders schemas correctly', () => {
     render(
-            <QueryClientProvider client={queryClient}>
-      <CatalogDetails catalog={mockCatalog} onSchemaClick={jest.fn()} />
-              </QueryClientProvider>);
+      <QueryClientProvider client={queryClient}>
+        <CatalogDetails catalog={mockCatalog} onSchemaClick={jest.fn()} />
+      </QueryClientProvider>
+    );
 
     expect(screen.getByText('Test Schema 1')).toBeInTheDocument();
     expect(screen.getByText('Test Schema 2')).toBeInTheDocument();

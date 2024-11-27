@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useListTables  } from '../../hooks/table';
-import { Box, Typography, Grid2 as Grid, Divider, Button, Modal, CircularProgress } from '@mui/material';
+import { useListTables } from '../../hooks/table';
+import {
+  Box,
+  Typography,
+  Grid2 as Grid,
+  Divider,
+  Button,
+  Modal,
+  CircularProgress
+} from '@mui/material';
 import ListTables from './ListTables';
 import UpdateSchemaForm from '../../components/modals/UpdateSchema';
 import { SchemaInterface, TableInterface } from '../../types/interfaces';
@@ -11,12 +19,20 @@ interface SchemaDetailsProps {
   onTableClick: (table: TableInterface) => void;
 }
 
-const SchemaDetails: React.FC<SchemaDetailsProps> = ({ schema, onTableClick }) => {
+const SchemaDetails: React.FC<SchemaDetailsProps> = ({
+  schema,
+  onTableClick
+}) => {
   const [tables, setTables] = useState<TableInterface[]>([]);
   const [showUpdateForm, setShowUpdateForm] = useState(false);
-  const listTablesRequest = useListTables({ catalog: schema.catalog_name, schema: schema.name });
+  const listTablesRequest = useListTables({
+    catalog: schema.catalog_name,
+    schema: schema.name
+  });
   const listSchemasRequest = useListSchemas({ catalog: schema.catalog_name });
-  const deleteSchemaMutation = useDeleteSchema({ catalog: schema.catalog_name });
+  const deleteSchemaMutation = useDeleteSchema({
+    catalog: schema.catalog_name
+  });
 
   useEffect(() => {
     if (listTablesRequest.data?.tables) {
@@ -24,36 +40,50 @@ const SchemaDetails: React.FC<SchemaDetailsProps> = ({ schema, onTableClick }) =
     }
   }, [listTablesRequest.data?.tables, schema.catalog_name]);
 
-const handleDeleteSchema = () => {
-  if (confirm(`Are you sure you want to delete schema ${schema.name}?`)) {
-    deleteSchemaMutation.mutate(
-      { catalog_name: schema.catalog_name, name: schema.name },
-      {
-        onSuccess: () => {
-          listSchemasRequest.refetch();
-        },
-      }
-    );
-  }
-};
+  const handleDeleteSchema = () => {
+    if (confirm(`Are you sure you want to delete schema ${schema.name}?`)) {
+      deleteSchemaMutation.mutate(
+        { catalog_name: schema.catalog_name, name: schema.name },
+        {
+          onSuccess: () => {
+            listSchemasRequest.refetch();
+          }
+        }
+      );
+    }
+  };
 
   return (
     <Box sx={{ padding: 2 }}>
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2, marginBottom: 2 }}>
-        <Typography variant="h4"  gutterBottom sx={{ flexGrow: 1 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          gap: 2,
+          marginBottom: 2
+        }}
+      >
+        <Typography variant="h4" gutterBottom sx={{ flexGrow: 1 }}>
           <span className="jp-icon-schema-explorer"></span>
           {schema.name}
         </Typography>
-        <Button variant="contained" color="error" onClick={handleDeleteSchema} disabled={deleteSchemaMutation.status === 'pending'}>
+        <Button
+          variant="contained"
+          color="error"
+          onClick={handleDeleteSchema}
+          disabled={deleteSchemaMutation.status === 'pending'}
+        >
           Delete
         </Button>
-        <Button variant="contained" color="info" onClick={() => setShowUpdateForm(true)}>
+        <Button
+          variant="contained"
+          color="info"
+          onClick={() => setShowUpdateForm(true)}
+        >
           Update
         </Button>
       </Box>
-      {deleteSchemaMutation.status === 'pending' && (
-        <CircularProgress />
-      )}
+      {deleteSchemaMutation.status === 'pending' && <CircularProgress />}
       {deleteSchemaMutation.isError && (
         <Typography color="error">
           {deleteSchemaMutation.error?.message || 'Failed to delete schema'}
@@ -138,9 +168,16 @@ const handleDeleteSchema = () => {
         <ListTables tables={tables} onTableClick={onTableClick} />
       </Box>
 
-
       <Modal open={showUpdateForm} onClose={() => setShowUpdateForm(false)}>
-        <Box sx={{ padding: 2, backgroundColor: 'white', margin: 'auto', marginTop: '10%', width: '50%' }}>
+        <Box
+          sx={{
+            padding: 2,
+            backgroundColor: 'white',
+            margin: 'auto',
+            marginTop: '10%',
+            width: '50%'
+          }}
+        >
           <UpdateSchemaForm
             catalog={schema.catalog_name}
             schema={schema}

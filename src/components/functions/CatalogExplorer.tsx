@@ -49,7 +49,7 @@ const ExplorerComponent = forwardRef((props, ref) => {
     return widget;
   };
 
- const openWidget = (
+  const openWidget = (
     type: 'catalog' | 'schema' | 'table' | 'frontpage',
     entity: CatalogInterface | SchemaInterface | TableInterface
   ): void => {

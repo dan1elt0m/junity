@@ -8,7 +8,11 @@ interface CreateSchemaFormProps {
   onBack: () => void;
 }
 
-const CreateSchemaForm: React.FC<CreateSchemaFormProps> = ({ catalog, onSuccess, onBack }) => {
+const CreateSchemaForm: React.FC<CreateSchemaFormProps> = ({
+  catalog,
+  onSuccess,
+  onBack
+}) => {
   const createSchemaMutation = useCreateSchema();
   const [schemaName, setSchemaName] = useState('');
   const [schemaComment, setSchemaComment] = useState('');
@@ -27,8 +31,10 @@ const CreateSchemaForm: React.FC<CreateSchemaFormProps> = ({ catalog, onSuccess,
             onSuccess();
           },
           onError: (err: any) => {
-            setError(err.message || 'An error occurred while creating the schema.');
-          },
+            setError(
+              err.message || 'An error occurred while creating the schema.'
+            );
+          }
         }
       );
     }
@@ -39,7 +45,7 @@ const CreateSchemaForm: React.FC<CreateSchemaFormProps> = ({ catalog, onSuccess,
       <TextField
         label="Schema Name"
         value={schemaName}
-        onChange={(e) => setSchemaName(e.target.value)}
+        onChange={e => setSchemaName(e.target.value)}
         fullWidth
         margin="normal"
         required
@@ -47,7 +53,7 @@ const CreateSchemaForm: React.FC<CreateSchemaFormProps> = ({ catalog, onSuccess,
       <TextField
         label="Schema Comment"
         value={schemaComment}
-        onChange={(e) => setSchemaComment(e.target.value)}
+        onChange={e => setSchemaComment(e.target.value)}
         fullWidth
         margin="normal"
       />
@@ -56,7 +62,9 @@ const CreateSchemaForm: React.FC<CreateSchemaFormProps> = ({ catalog, onSuccess,
           {error}
         </Typography>
       )}
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 2 }}>
+      <Box
+        sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 2 }}
+      >
         <Button variant="contained" color="secondary" onClick={onBack}>
           Back
         </Button>

@@ -45,7 +45,7 @@ export const CatalogTree: React.FC<{
     if (listCatalogsRequest.data?.catalogs) {
       console.log('Retrieving catalogs');
     }
-  }, [listCatalogsRequest.data])
+  }, [listCatalogsRequest.data]);
 
   useEffect(() => {
     if (listSchemasRequest.data?.schemas) {
@@ -273,8 +273,7 @@ export const CatalogTree: React.FC<{
         onClick={handleRefresh}
         aria-label="refresh"
         title="Refresh"
-      >
-      </button>
+      ></button>
       <div className="catalog-header">
         <span className="grey-font small-font margin-left">Catalogs</span>
       </div>
