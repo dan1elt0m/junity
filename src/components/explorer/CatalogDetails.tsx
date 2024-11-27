@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Typography, Grid2 as Grid, Divider } from '@mui/material';
+import { Box, Typography, Grid2 as Grid, Divider, Button } from '@mui/material';
 import { useListSchemas } from '../../hooks/schema';
+import { useDeleteCatalog } from '../../hooks/catalog';
 import ListSchema from './ListSchema';
 import { CatalogInterface, SchemaInterface } from '../../types/interfaces';
 import '../../../style/tree.css';
@@ -12,10 +13,11 @@ interface CatalogDetailsProps {
 
 const CatalogDetails: React.FC<CatalogDetailsProps> = ({
   catalog,
-  onSchemaClick
+  onSchemaClick,
 }) => {
   const [schemas, setSchemas] = useState<SchemaInterface[]>([]);
   const listSchemasRequest = useListSchemas({ catalog: catalog.name });
+  const deleteCatalogMutation = useDeleteCatalog();
 
   useEffect(() => {
     if (listSchemasRequest.data?.schemas) {
@@ -23,8 +25,30 @@ const CatalogDetails: React.FC<CatalogDetailsProps> = ({
     }
   }, [listSchemasRequest.data?.schemas]);
 
+  const handleDeleteCatalog = () => {
+    if (confirm(`Are you sure you want to delete catalog ${catalog.name}?`)) {
+      console.log('Deleting catalog: ', catalog.name);
+      deleteCatalogMutation.mutate({ name: catalog.name });
+    }
+  };
+
   return (
     <Box sx={{ padding: 2 }}>
+      <Button
+        variant="contained"
+        color="primary"
+        sx={{ position: 'absolute', top: 16, right: 16, backgroundColor: 'blue' }}
+        onClick={handleDeleteCatalog}
+        disabled={deleteCatalogMutation.status === 'pending'}
+      >
+        Delete
+      </Button>
+      {deleteCatalogMutation.isError && (
+        <Typography color="error">
+          {deleteCatalogMutation.error?.message || 'Failed to delete catalog'}
+        </Typography>
+      )}
+
       <Typography variant="h4" gutterBottom>
         <span className="jp-icon-catalog"></span> {catalog.name}
       </Typography>

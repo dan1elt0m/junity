@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { UC_API_PREFIX } from '../config/constants';
 import { ClientContext } from '../context/client';
 import { useContext } from 'react';
@@ -22,5 +22,74 @@ export function useListCatalogs() {
           throw new Error(`Failed to fetch catalogs. Error ${e}`);
         });
     }
+  });
+}
+
+export function useCreateCatalog() {
+  const queryClient = useQueryClient();
+  const apiClient = useContext(ClientContext);
+
+  return useMutation<CatalogInterface, Error, Pick<CatalogInterface, 'name' | 'comment'>>({
+    mutationFn: async (params) => {
+      return apiClient
+        .post(`/catalogs`, JSON.stringify(params))
+        .then((response) => response.data)
+        .catch((e) => {
+          throw new Error(
+            e.response?.data?.message || 'Failed to create catalog',
+          );
+        });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['listCatalogs'],
+      });
+    },
+  });
+}
+
+export function useUpdateCatalog(catalog: string) {
+  const queryClient = useQueryClient();
+  const apiClient = useContext(ClientContext);
+
+  return useMutation<CatalogInterface, Error, Pick<CatalogInterface, 'comment'>>({
+    mutationFn: async (params) => {
+      return apiClient
+        .patch(`/catalogs/${catalog}`, JSON.stringify(params))
+        .then((response) => response.data)
+        .catch((e) => {
+          throw new Error(
+            e.response?.data?.message || 'Failed to update catalog',
+          );
+        });
+    },
+    onSuccess: (catalog) => {
+      queryClient.invalidateQueries({
+        queryKey: ['getCatalog', catalog.name],
+      });
+    },
+  });
+}
+
+export function useDeleteCatalog() {
+  const queryClient = useQueryClient();
+  const apiClient = useContext(ClientContext);
+  return useMutation<void, Error, Pick<CatalogInterface, 'name'>>({
+    mutationFn: async (params) => {
+      return apiClient
+        .delete(`/catalogs/${params.name}`)
+        .then((response) => response.data)
+        .catch((e) => {
+          console.log('Failed to delete catalog: ', e)
+          throw new Error(
+            e.response?.data?.message || 'Failed to delete catalog',
+          );
+        });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['listCatalogs'],
+      });
+    },
   });
 }
