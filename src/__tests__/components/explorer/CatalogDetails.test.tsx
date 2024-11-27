@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import CatalogDetails from '../../../components/explorer/CatalogDetails';
 import { CatalogInterface, SchemaInterface } from '../../../types/interfaces';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const mockCatalog: CatalogInterface = {
   name: 'Test Catalog',
@@ -40,6 +41,8 @@ const mockSchemas: SchemaInterface[] = [
   }
 ];
 
+const queryClient = new QueryClient();
+
 jest.mock('../../../hooks/schema', () => ({
   useListSchemas: () => ({
     data: { schemas: mockSchemas }
@@ -48,7 +51,11 @@ jest.mock('../../../hooks/schema', () => ({
 
 describe('CatalogDetails', () => {
   it('renders catalog details correctly', () => {
-    render(<CatalogDetails catalog={mockCatalog} onSchemaClick={jest.fn()} />);
+    render(
+      <QueryClientProvider client={queryClient}>
+        <CatalogDetails catalog={mockCatalog} onSchemaClick={jest.fn()} />
+      </QueryClientProvider>
+    );
 
     expect(
       screen.getByRole('heading', { name: /Test Catalog/i })
@@ -61,7 +68,11 @@ describe('CatalogDetails', () => {
   });
 
   it('renders schemas correctly', () => {
-    render(<CatalogDetails catalog={mockCatalog} onSchemaClick={jest.fn()} />);
+    render(
+      <QueryClientProvider client={queryClient}>
+        <CatalogDetails catalog={mockCatalog} onSchemaClick={jest.fn()} />
+      </QueryClientProvider>
+    );
 
     expect(screen.getByText('Test Schema 1')).toBeInTheDocument();
     expect(screen.getByText('Test Schema 2')).toBeInTheDocument();

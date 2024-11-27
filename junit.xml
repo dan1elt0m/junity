@@ -1,93 +1,332 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="63" failures="0" errors="0" time="6.404">
-  <testsuite name="ListSchema" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:49" time="1.877" tests="1">
-    <testcase classname="ListSchema renders a list of schemas" name="ListSchema renders a list of schemas" time="0.046">
+<testsuites name="jest tests" tests="63" failures="5" errors="0" time="10.265">
+  <testsuite name="ListSchema" errors="0" failures="0" skipped="0" timestamp="2024-11-27T20:17:27" time="2.315" tests="1">
+    <testcase classname="ListSchema renders a list of schemas" name="ListSchema renders a list of schemas" time="0.08">
     </testcase>
   </testsuite>
-  <testsuite name="TableDetails" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:49" time="1.89" tests="1">
-    <testcase classname="TableDetails renders table details correctly" name="TableDetails renders table details correctly" time="0.056">
+  <testsuite name="ListTables" errors="0" failures="0" skipped="0" timestamp="2024-11-27T20:17:27" time="2.348" tests="3">
+    <testcase classname="ListTables renders a list of tables" name="ListTables renders a list of tables" time="0.081">
+    </testcase>
+    <testcase classname="ListTables calls onTableClick when a table row is clicked" name="ListTables calls onTableClick when a table row is clicked" time="0.007">
+    </testcase>
+    <testcase classname="ListTables changes row background color on mouse enter and leave" name="ListTables changes row background color on mouse enter and leave" time="0.024">
     </testcase>
   </testsuite>
-  <testsuite name="ListTables" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:49" time="1.902" tests="3">
-    <testcase classname="ListTables renders a list of tables" name="ListTables renders a list of tables" time="0.044">
-    </testcase>
-    <testcase classname="ListTables calls onTableClick when a table row is clicked" name="ListTables calls onTableClick when a table row is clicked" time="0.006">
-    </testcase>
-    <testcase classname="ListTables changes row background color on mouse enter and leave" name="ListTables changes row background color on mouse enter and leave" time="0.022">
+  <testsuite name="TableDetails" errors="0" failures="1" skipped="0" timestamp="2024-11-27T20:17:27" time="2.439" tests="1">
+    <testcase classname="TableDetails renders table details correctly" name="TableDetails renders table details correctly" time="0.051">
+      <failure>Error: No QueryClient set, use QueryClientProvider to set one
+    at useQueryClient (/Users/danieltom/git/xd/junity/node_modules/@tanstack/react-query/src/QueryClientProvider.tsx:18:11)
+    at useDeleteTable (/Users/danieltom/git/xd/junity/src/hooks/table.ts:42:37)
+    at TableDetails (/Users/danieltom/git/xd/junity/src/components/explorer/TableDetails.tsx:12:45)
+    at renderWithHooks (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+    at beginWork (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+    at beginWork$1 (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:27465:14)
+    at performUnitOfWork (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:26599:12)
+    at workLoopSync (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+    at renderRootSync (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+    at recoverFromConcurrentError (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:25889:20)
+    at performConcurrentWorkOnRoot (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:25789:22)
+    at flushActQueue (/Users/danieltom/git/xd/junity/node_modules/react/cjs/react.development.js:2667:24)
+    at act (/Users/danieltom/git/xd/junity/node_modules/react/cjs/react.development.js:2582:11)
+    at /Users/danieltom/git/xd/junity/node_modules/@testing-library/react/dist/act-compat.js:47:25
+    at renderRoot (/Users/danieltom/git/xd/junity/node_modules/@testing-library/react/dist/pure.js:180:26)
+    at render (/Users/danieltom/git/xd/junity/node_modules/@testing-library/react/dist/pure.js:271:10)
+    at Object.&lt;anonymous&gt; (/Users/danieltom/git/xd/junity/src/__tests__/components/explorer/TableDetails.test.tsx:26:11)
+    at Promise.then.completed (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danieltom/git/xd/junity/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danieltom/git/xd/junity/node_modules/jest-runner/build/runTest.js:444:34)
+    at Object.worker (/Users/danieltom/git/xd/junity/node_modules/jest-runner/build/testWorker.js:106:12)</failure>
     </testcase>
   </testsuite>
-  <testsuite name="SchemaDetails" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:49" time="1.906" tests="1">
-    <testcase classname="SchemaDetails renders schema details correctly" name="SchemaDetails renders schema details correctly" time="0.071">
-    </testcase>
-  </testsuite>
-  <testsuite name="CatalogDetails" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:49" time="1.944" tests="2">
-    <testcase classname="CatalogDetails renders catalog details correctly" name="CatalogDetails renders catalog details correctly" time="0.093">
-    </testcase>
-    <testcase classname="CatalogDetails renders schemas correctly" name="CatalogDetails renders schemas correctly" time="0.018">
-    </testcase>
-  </testsuite>
-  <testsuite name="ExplorerDetails" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:49" time="1.993" tests="3">
+  <testsuite name="ExplorerDetails" errors="0" failures="0" skipped="0" timestamp="2024-11-27T20:17:27" time="2.448" tests="3">
     <testcase classname="ExplorerDetails renders loading state initially" name="ExplorerDetails renders loading state initially" time="0.015">
     </testcase>
-    <testcase classname="ExplorerDetails renders error state" name="ExplorerDetails renders error state" time="0.004">
+    <testcase classname="ExplorerDetails renders error state" name="ExplorerDetails renders error state" time="0.002">
     </testcase>
-    <testcase classname="ExplorerDetails renders catalogs" name="ExplorerDetails renders catalogs" time="0.038">
-    </testcase>
-  </testsuite>
-  <testsuite name="useListTables" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:51" time="0.23" tests="1">
-    <testcase classname="useListTables fetches and returns tables" name="useListTables fetches and returns tables" time="0.067">
+    <testcase classname="ExplorerDetails renders catalogs" name="ExplorerDetails renders catalogs" time="0.055">
     </testcase>
   </testsuite>
-  <testsuite name="useLoginWithToken" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:51" time="0.285" tests="1">
-    <testcase classname="useLoginWithToken should successfully exchange token" name="useLoginWithToken should successfully exchange token" time="0.063">
+  <testsuite name="SchemaDetails" errors="0" failures="0" skipped="0" timestamp="2024-11-27T20:17:27" time="2.453" tests="1">
+    <testcase classname="SchemaDetails renders schema details correctly" name="SchemaDetails renders schema details correctly" time="0.103">
     </testcase>
   </testsuite>
-  <testsuite name="CatalogTree" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:51" time="0.388" tests="8">
-    <testcase classname="CatalogTree renders catalogs" name="CatalogTree renders catalogs" time="0.027">
+  <testsuite name="CatalogDetails" errors="0" failures="2" skipped="0" timestamp="2024-11-27T20:17:27" time="2.508" tests="2">
+    <testcase classname="CatalogDetails renders catalog details correctly" name="CatalogDetails renders catalog details correctly" time="0.047">
+      <failure>Error: No QueryClient set, use QueryClientProvider to set one
+    at useQueryClient (/Users/danieltom/git/xd/junity/node_modules/@tanstack/react-query/src/QueryClientProvider.tsx:18:11)
+    at useBaseQuery (/Users/danieltom/git/xd/junity/node_modules/@tanstack/react-query/src/useBaseQuery.ts:53:18)
+    at useQuery (/Users/danieltom/git/xd/junity/node_modules/@tanstack/react-query/src/useQuery.ts:46:10)
+    at useListCatalogs (/Users/danieltom/git/xd/junity/src/hooks/catalog.ts:15:18)
+    at CatalogDetails (/Users/danieltom/git/xd/junity/src/components/explorer/CatalogDetails.tsx:20:46)
+    at renderWithHooks (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+    at beginWork (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+    at beginWork$1 (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:27465:14)
+    at performUnitOfWork (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:26599:12)
+    at workLoopSync (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+    at renderRootSync (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+    at recoverFromConcurrentError (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:25889:20)
+    at performConcurrentWorkOnRoot (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:25789:22)
+    at flushActQueue (/Users/danieltom/git/xd/junity/node_modules/react/cjs/react.development.js:2667:24)
+    at act (/Users/danieltom/git/xd/junity/node_modules/react/cjs/react.development.js:2582:11)
+    at /Users/danieltom/git/xd/junity/node_modules/@testing-library/react/dist/act-compat.js:47:25
+    at renderRoot (/Users/danieltom/git/xd/junity/node_modules/@testing-library/react/dist/pure.js:180:26)
+    at render (/Users/danieltom/git/xd/junity/node_modules/@testing-library/react/dist/pure.js:271:10)
+    at Object.&lt;anonymous&gt; (/Users/danieltom/git/xd/junity/src/__tests__/components/explorer/CatalogDetails.test.tsx:51:11)
+    at Promise.then.completed (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danieltom/git/xd/junity/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danieltom/git/xd/junity/node_modules/jest-runner/build/runTest.js:444:34)
+    at Object.worker (/Users/danieltom/git/xd/junity/node_modules/jest-runner/build/testWorker.js:106:12)</failure>
+    </testcase>
+    <testcase classname="CatalogDetails renders schemas correctly" name="CatalogDetails renders schemas correctly" time="0.004">
+      <failure>Error: No QueryClient set, use QueryClientProvider to set one
+    at useQueryClient (/Users/danieltom/git/xd/junity/node_modules/@tanstack/react-query/src/QueryClientProvider.tsx:18:11)
+    at useBaseQuery (/Users/danieltom/git/xd/junity/node_modules/@tanstack/react-query/src/useBaseQuery.ts:53:18)
+    at useQuery (/Users/danieltom/git/xd/junity/node_modules/@tanstack/react-query/src/useQuery.ts:46:10)
+    at useListCatalogs (/Users/danieltom/git/xd/junity/src/hooks/catalog.ts:15:18)
+    at CatalogDetails (/Users/danieltom/git/xd/junity/src/components/explorer/CatalogDetails.tsx:20:46)
+    at renderWithHooks (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+    at beginWork (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+    at beginWork$1 (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:27465:14)
+    at performUnitOfWork (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:26599:12)
+    at workLoopSync (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+    at renderRootSync (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+    at recoverFromConcurrentError (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:25889:20)
+    at performConcurrentWorkOnRoot (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:25789:22)
+    at flushActQueue (/Users/danieltom/git/xd/junity/node_modules/react/cjs/react.development.js:2667:24)
+    at act (/Users/danieltom/git/xd/junity/node_modules/react/cjs/react.development.js:2582:11)
+    at /Users/danieltom/git/xd/junity/node_modules/@testing-library/react/dist/act-compat.js:47:25
+    at renderRoot (/Users/danieltom/git/xd/junity/node_modules/@testing-library/react/dist/pure.js:180:26)
+    at render (/Users/danieltom/git/xd/junity/node_modules/@testing-library/react/dist/pure.js:271:10)
+    at Object.&lt;anonymous&gt; (/Users/danieltom/git/xd/junity/src/__tests__/components/explorer/CatalogDetails.test.tsx:64:11)
+    at Promise.then.completed (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danieltom/git/xd/junity/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danieltom/git/xd/junity/node_modules/jest-runner/build/runTest.js:444:34)
+    at Object.worker (/Users/danieltom/git/xd/junity/node_modules/jest-runner/build/testWorker.js:106:12)</failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="useListSchemas" errors="0" failures="0" skipped="0" timestamp="2024-11-27T20:17:29" time="0.308" tests="1">
+    <testcase classname="useListSchemas fetches and returns Schemas" name="useListSchemas fetches and returns Schemas" time="0.06">
+    </testcase>
+  </testsuite>
+  <testsuite name="useListCatalogs" errors="0" failures="0" skipped="0" timestamp="2024-11-27T20:17:30" time="0.244" tests="1">
+    <testcase classname="useListCatalogs fetches and returns catalogs" name="useListCatalogs fetches and returns catalogs" time="0.068">
+    </testcase>
+  </testsuite>
+  <testsuite name="CatalogTree" errors="0" failures="2" skipped="0" timestamp="2024-11-27T20:17:29" time="0.525" tests="8">
+    <testcase classname="CatalogTree renders catalogs" name="CatalogTree renders catalogs" time="0.015">
     </testcase>
     <testcase classname="CatalogTree expands and collapses catalogs" name="CatalogTree expands and collapses catalogs" time="0.014">
     </testcase>
-    <testcase classname="CatalogTree expands and collapses all" name="CatalogTree expands and collapses all" time="0.021">
+    <testcase classname="CatalogTree expands and collapses all" name="CatalogTree expands and collapses all" time="0.023">
     </testcase>
-    <testcase classname="CatalogTree should toggle expand all nodes" name="CatalogTree should toggle expand all nodes" time="0.011">
+    <testcase classname="CatalogTree should toggle expand all nodes" name="CatalogTree should toggle expand all nodes" time="0.009">
     </testcase>
-    <testcase classname="CatalogTree should toggle node expansion" name="CatalogTree should toggle node expansion" time="0.006">
+    <testcase classname="CatalogTree should toggle node expansion" name="CatalogTree should toggle node expansion" time="0.009">
     </testcase>
-    <testcase classname="CatalogTree should render columns correctly" name="CatalogTree should render columns correctly" time="0.008">
+    <testcase classname="CatalogTree should render columns correctly" name="CatalogTree should render columns correctly" time="0.026">
+      <failure>TypeError: listCatalogsRequest.refetch is not a function
+    at refetch (/Users/danieltom/git/xd/junity/src/components/tree/CatalogTree.tsx:114:25)
+    at handleSchemaSelect (/Users/danieltom/git/xd/junity/src/components/tree/CatalogTree.tsx:184:15)
+    at HTMLUnknownElement.callCallback (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+    at invokeEventListeners (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at invokeGuardedCallbackAndCatchFirstError (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:4291:25)
+    at executeDispatch (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:9041:3)
+    at processDispatchQueueItemsInOrder (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:9073:7)
+    at processDispatchQueue (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:9086:5)
+    at dispatchEventsForPlugins (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:9097:3)
+    at /Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:9288:12
+    at batchedUpdates$1 (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:26179:12)
+    at batchedUpdates (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:3991:12)
+    at dispatchEventForPluginEventSystem (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:9287:3)
+    at dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:6465:5)
+    at dispatchEvent (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:6457:5)
+    at dispatchDiscreteEvent (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:6430:5)
+    at HTMLDivElement.callTheUserObjectsOperation (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+    at invokeEventListeners (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLDivElementImpl._dispatch (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLDivElementImpl.dispatchEvent (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLDivElement.dispatchEvent (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at /Users/danieltom/git/xd/junity/node_modules/@testing-library/dom/dist/events.js:19:20
+    at /Users/danieltom/git/xd/junity/node_modules/@testing-library/react/dist/pure.js:108:16
+    at /Users/danieltom/git/xd/junity/node_modules/@testing-library/react/dist/act-compat.js:48:24
+    at act (/Users/danieltom/git/xd/junity/node_modules/react/cjs/react.development.js:2512:16)
+    at /Users/danieltom/git/xd/junity/node_modules/@testing-library/react/dist/act-compat.js:47:25
+    at Object.eventWrapper (/Users/danieltom/git/xd/junity/node_modules/@testing-library/react/dist/pure.js:107:28)
+    at fireEvent (/Users/danieltom/git/xd/junity/node_modules/@testing-library/dom/dist/events.js:12:35)
+    at Function.fireEvent.&lt;computed&gt; [as click] (/Users/danieltom/git/xd/junity/node_modules/@testing-library/dom/dist/events.js:110:36)
+    at Function.fireEvent.&lt;computed&gt; [as click] (/Users/danieltom/git/xd/junity/node_modules/@testing-library/react/dist/fire-event.js:15:52)
+    at Object.click (/Users/danieltom/git/xd/junity/src/__tests__/components/functions/catalogTree.test.tsx:158:15)
+    at Promise.then.completed (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danieltom/git/xd/junity/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danieltom/git/xd/junity/node_modules/jest-runner/build/runTest.js:444:34)
+    at Object.worker (/Users/danieltom/git/xd/junity/node_modules/jest-runner/build/testWorker.js:106:12)</failure>
     </testcase>
-    <testcase classname="CatalogTree should render tables correctly" name="CatalogTree should render tables correctly" time="0.007">
+    <testcase classname="CatalogTree should render tables correctly" name="CatalogTree should render tables correctly" time="0.015">
+      <failure>TypeError: listCatalogsRequest.refetch is not a function
+    at refetch (/Users/danieltom/git/xd/junity/src/components/tree/CatalogTree.tsx:114:25)
+    at handleSchemaSelect (/Users/danieltom/git/xd/junity/src/components/tree/CatalogTree.tsx:184:15)
+    at HTMLUnknownElement.callCallback (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+    at invokeEventListeners (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at invokeGuardedCallbackAndCatchFirstError (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:4291:25)
+    at executeDispatch (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:9041:3)
+    at processDispatchQueueItemsInOrder (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:9073:7)
+    at processDispatchQueue (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:9086:5)
+    at dispatchEventsForPlugins (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:9097:3)
+    at /Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:9288:12
+    at batchedUpdates$1 (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:26179:12)
+    at batchedUpdates (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:3991:12)
+    at dispatchEventForPluginEventSystem (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:9287:3)
+    at dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:6465:5)
+    at dispatchEvent (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:6457:5)
+    at dispatchDiscreteEvent (/Users/danieltom/git/xd/junity/node_modules/react-dom/cjs/react-dom.development.js:6430:5)
+    at HTMLDivElement.callTheUserObjectsOperation (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+    at invokeEventListeners (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLDivElementImpl._dispatch (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLDivElementImpl.dispatchEvent (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLDivElement.dispatchEvent (/Users/danieltom/git/xd/junity/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at /Users/danieltom/git/xd/junity/node_modules/@testing-library/dom/dist/events.js:19:20
+    at /Users/danieltom/git/xd/junity/node_modules/@testing-library/react/dist/pure.js:108:16
+    at /Users/danieltom/git/xd/junity/node_modules/@testing-library/react/dist/act-compat.js:48:24
+    at act (/Users/danieltom/git/xd/junity/node_modules/react/cjs/react.development.js:2512:16)
+    at /Users/danieltom/git/xd/junity/node_modules/@testing-library/react/dist/act-compat.js:47:25
+    at Object.eventWrapper (/Users/danieltom/git/xd/junity/node_modules/@testing-library/react/dist/pure.js:107:28)
+    at fireEvent (/Users/danieltom/git/xd/junity/node_modules/@testing-library/dom/dist/events.js:12:35)
+    at Function.fireEvent.&lt;computed&gt; [as click] (/Users/danieltom/git/xd/junity/node_modules/@testing-library/dom/dist/events.js:110:36)
+    at Function.fireEvent.&lt;computed&gt; [as click] (/Users/danieltom/git/xd/junity/node_modules/@testing-library/react/dist/fire-event.js:15:52)
+    at Object.click (/Users/danieltom/git/xd/junity/src/__tests__/components/functions/catalogTree.test.tsx:177:15)
+    at Promise.then.completed (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danieltom/git/xd/junity/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danieltom/git/xd/junity/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danieltom/git/xd/junity/node_modules/jest-runner/build/runTest.js:444:34)
+    at Object.worker (/Users/danieltom/git/xd/junity/node_modules/jest-runner/build/testWorker.js:106:12)</failure>
     </testcase>
-    <testcase classname="CatalogTree should render schemas correctly" name="CatalogTree should render schemas correctly" time="0.006">
+    <testcase classname="CatalogTree should render schemas correctly" name="CatalogTree should render schemas correctly" time="0.004">
     </testcase>
   </testsuite>
-  <testsuite name="ExplorerPanel" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:51" time="0.274" tests="4">
-    <testcase classname="ExplorerPanel renders message when no entity is selected" name="ExplorerPanel renders message when no entity is selected" time="0.003">
-    </testcase>
-    <testcase classname="ExplorerPanel renders catalog details correctly" name="ExplorerPanel renders catalog details correctly" time="0.001">
-    </testcase>
-    <testcase classname="ExplorerPanel renders schema details correctly" name="ExplorerPanel renders schema details correctly" time="0.002">
-    </testcase>
-    <testcase classname="ExplorerPanel renders table details correctly" name="ExplorerPanel renders table details correctly" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="ListColumns" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:51" time="0.635" tests="1">
+  <testsuite name="ListColumns" errors="0" failures="0" skipped="0" timestamp="2024-11-27T20:17:29" time="0.72" tests="1">
     <testcase classname="ListColumns renders a list of columns" name="ListColumns renders a list of columns" time="0.007">
     </testcase>
   </testsuite>
-  <testsuite name="ListCatalogs" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:51" time="0.623" tests="3">
-    <testcase classname="ListCatalogs renders a list of catalogs" name="ListCatalogs renders a list of catalogs" time="0.007">
+  <testsuite name="ExplorerPanel" errors="0" failures="0" skipped="0" timestamp="2024-11-27T20:17:30" time="0.284" tests="4">
+    <testcase classname="ExplorerPanel renders message when no entity is selected" name="ExplorerPanel renders message when no entity is selected" time="0.004">
     </testcase>
-    <testcase classname="ListCatalogs calls onCatalogClick when a catalog row is clicked" name="ListCatalogs calls onCatalogClick when a catalog row is clicked" time="0.003">
+    <testcase classname="ExplorerPanel renders catalog details correctly" name="ExplorerPanel renders catalog details correctly" time="0.002">
     </testcase>
-    <testcase classname="ListCatalogs changes row background color on mouse enter and leave" name="ListCatalogs changes row background color on mouse enter and leave" time="0.013">
+    <testcase classname="ExplorerPanel renders schema details correctly" name="ExplorerPanel renders schema details correctly" time="0.001">
     </testcase>
-  </testsuite>
-  <testsuite name="useListCatalogs" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:51" time="0.296" tests="1">
-    <testcase classname="useListCatalogs fetches and returns catalogs" name="useListCatalogs fetches and returns catalogs" time="0.057">
+    <testcase classname="ExplorerPanel renders table details correctly" name="ExplorerPanel renders table details correctly" time="0.002">
     </testcase>
   </testsuite>
-  <testsuite name="insertEntityToNotebook" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:52" time="0.102" tests="5">
-    <testcase classname="insertEntityToNotebook should insert the path into the current cell&apos;s editor" name="insertEntityToNotebook should insert the path into the current cell&apos;s editor" time="0">
+  <testsuite name="useLoginWithToken" errors="0" failures="0" skipped="0" timestamp="2024-11-27T20:17:30" time="0.326" tests="1">
+    <testcase classname="useLoginWithToken should successfully exchange token" name="useLoginWithToken should successfully exchange token" time="0.056">
+    </testcase>
+  </testsuite>
+  <testsuite name="ListCatalogs" errors="0" failures="0" skipped="0" timestamp="2024-11-27T20:17:29" time="0.692" tests="3">
+    <testcase classname="ListCatalogs renders a list of catalogs" name="ListCatalogs renders a list of catalogs" time="0.031">
+    </testcase>
+    <testcase classname="ListCatalogs calls onCatalogClick when a catalog row is clicked" name="ListCatalogs calls onCatalogClick when a catalog row is clicked" time="0.01">
+    </testcase>
+    <testcase classname="ListCatalogs changes row background color on mouse enter and leave" name="ListCatalogs changes row background color on mouse enter and leave" time="0.018">
+    </testcase>
+  </testsuite>
+  <testsuite name="requestAPI" errors="0" failures="0" skipped="0" timestamp="2024-11-27T20:17:30" time="0.115" tests="5">
+    <testcase classname="requestAPI should make a successful request and return JSON data" name="requestAPI should make a successful request and return JSON data" time="0.002">
+    </testcase>
+    <testcase classname="requestAPI should handle non-JSON response" name="requestAPI should handle non-JSON response" time="0.002">
+    </testcase>
+    <testcase classname="requestAPI should handle empty response body" name="requestAPI should handle empty response body" time="0.001">
+    </testcase>
+    <testcase classname="requestAPI should throw a ResponseError for unsuccessful response" name="requestAPI should throw a ResponseError for unsuccessful response" time="0.002">
+    </testcase>
+    <testcase classname="requestAPI should throw a NetworkError for network issues" name="requestAPI should throw a NetworkError for network issues" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="getColumnIconClass" errors="0" failures="0" skipped="0" timestamp="2024-11-27T20:17:30" time="0.085" tests="7">
+    <testcase classname="getColumnIconClass should return jp-icon-boolean for BOOLEAN and BINARY" name="getColumnIconClass should return jp-icon-boolean for BOOLEAN and BINARY" time="0">
+    </testcase>
+    <testcase classname="getColumnIconClass should return jp-icon-other for NULL, USER_DEFINED_TYPE, and TABLE_TYPE" name="getColumnIconClass should return jp-icon-other for NULL, USER_DEFINED_TYPE, and TABLE_TYPE" time="0.001">
+    </testcase>
+    <testcase classname="getColumnIconClass should return jp-icon-numeric for BYTE, SHORT, INT, LONG, FLOAT, DOUBLE, and DECIMAL" name="getColumnIconClass should return jp-icon-numeric for BYTE, SHORT, INT, LONG, FLOAT, DOUBLE, and DECIMAL" time="0">
+    </testcase>
+    <testcase classname="getColumnIconClass should return jp-icon-temporal for DATE, TIMESTAMP, TIMESTAMP_NTZ, and INTERVAL" name="getColumnIconClass should return jp-icon-temporal for DATE, TIMESTAMP, TIMESTAMP_NTZ, and INTERVAL" time="0">
+    </testcase>
+    <testcase classname="getColumnIconClass should return jp-icon-string for STRING and CHAR" name="getColumnIconClass should return jp-icon-string for STRING and CHAR" time="0.001">
+    </testcase>
+    <testcase classname="getColumnIconClass should return jp-icon-complex for ARRAY, STRUCT, and MAP" name="getColumnIconClass should return jp-icon-complex for ARRAY, STRUCT, and MAP" time="0">
+    </testcase>
+    <testcase classname="getColumnIconClass should return jp-icon-default for unknown types" name="getColumnIconClass should return jp-icon-default for unknown types" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="insertEntityToNotebook" errors="0" failures="0" skipped="0" timestamp="2024-11-27T20:17:30" time="0.134" tests="5">
+    <testcase classname="insertEntityToNotebook should insert the path into the current cell&apos;s editor" name="insertEntityToNotebook should insert the path into the current cell&apos;s editor" time="0.002">
     </testcase>
     <testcase classname="insertEntityToNotebook should log an error if there is no active notebook" name="insertEntityToNotebook should log an error if there is no active notebook" time="0">
     </testcase>
@@ -98,59 +337,19 @@
     <testcase classname="insertEntityToNotebook should log an error if replaceSelection method is not available on the editor" name="insertEntityToNotebook should log an error if replaceSelection method is not available on the editor" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="getColumnIconClass" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:52" time="0.088" tests="7">
-    <testcase classname="getColumnIconClass should return jp-icon-boolean for BOOLEAN and BINARY" name="getColumnIconClass should return jp-icon-boolean for BOOLEAN and BINARY" time="0.001">
-    </testcase>
-    <testcase classname="getColumnIconClass should return jp-icon-other for NULL, USER_DEFINED_TYPE, and TABLE_TYPE" name="getColumnIconClass should return jp-icon-other for NULL, USER_DEFINED_TYPE, and TABLE_TYPE" time="0">
-    </testcase>
-    <testcase classname="getColumnIconClass should return jp-icon-numeric for BYTE, SHORT, INT, LONG, FLOAT, DOUBLE, and DECIMAL" name="getColumnIconClass should return jp-icon-numeric for BYTE, SHORT, INT, LONG, FLOAT, DOUBLE, and DECIMAL" time="0.001">
-    </testcase>
-    <testcase classname="getColumnIconClass should return jp-icon-temporal for DATE, TIMESTAMP, TIMESTAMP_NTZ, and INTERVAL" name="getColumnIconClass should return jp-icon-temporal for DATE, TIMESTAMP, TIMESTAMP_NTZ, and INTERVAL" time="0">
-    </testcase>
-    <testcase classname="getColumnIconClass should return jp-icon-string for STRING and CHAR" name="getColumnIconClass should return jp-icon-string for STRING and CHAR" time="0">
-    </testcase>
-    <testcase classname="getColumnIconClass should return jp-icon-complex for ARRAY, STRUCT, and MAP" name="getColumnIconClass should return jp-icon-complex for ARRAY, STRUCT, and MAP" time="0">
-    </testcase>
-    <testcase classname="getColumnIconClass should return jp-icon-default for unknown types" name="getColumnIconClass should return jp-icon-default for unknown types" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="useListSchemas" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:51" time="0.332" tests="1">
-    <testcase classname="useListSchemas fetches and returns Schemas" name="useListSchemas fetches and returns Schemas" time="0.06">
-    </testcase>
-  </testsuite>
-  <testsuite name="requestAPI" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:52" time="0.153" tests="5">
-    <testcase classname="requestAPI should make a successful request and return JSON data" name="requestAPI should make a successful request and return JSON data" time="0.001">
-    </testcase>
-    <testcase classname="requestAPI should handle non-JSON response" name="requestAPI should handle non-JSON response" time="0.007">
-    </testcase>
-    <testcase classname="requestAPI should handle empty response body" name="requestAPI should handle empty response body" time="0.001">
-    </testcase>
-    <testcase classname="requestAPI should throw a ResponseError for unsuccessful response" name="requestAPI should throw a ResponseError for unsuccessful response" time="0.002">
-    </testcase>
-    <testcase classname="requestAPI should throw a NetworkError for network issues" name="requestAPI should throw a NetworkError for network issues" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="loadSettingEnv" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:52" time="0.23" tests="3">
-    <testcase classname="loadSettingEnv should load settings and update them correctly" name="loadSettingEnv should load settings and update them correctly" time="0.009">
+  <testsuite name="loadSettingEnv" errors="0" failures="0" skipped="0" timestamp="2024-11-27T20:17:30" time="0.223" tests="3">
+    <testcase classname="loadSettingEnv should load settings and update them correctly" name="loadSettingEnv should load settings and update them correctly" time="0.01">
     </testcase>
     <testcase classname="loadSettingEnv should handle missing settings data" name="loadSettingEnv should handle missing settings data" time="0">
     </testcase>
     <testcase classname="loadSettingEnv should handle partial settings data" name="loadSettingEnv should handle partial settings data" time="0.002">
     </testcase>
   </testsuite>
-  <testsuite name="Main Component" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:51" time="1.31" tests="5">
-    <testcase classname="Main Component should render the logo" name="Main Component should render the logo" time="0.02">
-    </testcase>
-    <testcase classname="Main Component should render children content" name="Main Component should render children content" time="0.002">
-    </testcase>
-    <testcase classname="Main Component should render logout button when authenticated" name="Main Component should render logout button when authenticated" time="0.012">
-    </testcase>
-    <testcase classname="Main Component should not render logout button when not authenticated" name="Main Component should not render logout button when not authenticated" time="0.001">
-    </testcase>
-    <testcase classname="Main Component should call onLogout when logout button is clicked" name="Main Component should call onLogout when logout button is clicked" time="0.007">
+  <testsuite name="useListTables" errors="0" failures="0" skipped="0" timestamp="2024-11-27T20:17:30" time="0.292" tests="1">
+    <testcase classname="useListTables fetches and returns tables" name="useListTables fetches and returns tables" time="0.077">
     </testcase>
   </testsuite>
-  <testsuite name="CatalogExplorer" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:49" time="3.223" tests="3">
+  <testsuite name="CatalogExplorer" errors="0" failures="0" skipped="0" timestamp="2024-11-27T20:17:27" time="3.922" tests="3">
     <testcase classname="CatalogExplorer should create and open a widget for a catalog" name="CatalogExplorer should create and open a widget for a catalog" time="0.048">
     </testcase>
     <testcase classname="CatalogExplorer should create and open a widget for a schema" name="CatalogExplorer should create and open a widget for a schema" time="0.009">
@@ -158,12 +357,24 @@
     <testcase classname="CatalogExplorer should create and open a widget for a table" name="CatalogExplorer should create and open a widget for a table" time="0.007">
     </testcase>
   </testsuite>
-  <testsuite name="Menu Component" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:49" time="3.224" tests="1">
-    <testcase classname="Menu Component should render the selection buttons" name="Menu Component should render the selection buttons" time="0.06">
+  <testsuite name="Main Component" errors="0" failures="0" skipped="0" timestamp="2024-11-27T20:17:29" time="1.608" tests="5">
+    <testcase classname="Main Component should render the logo" name="Main Component should render the logo" time="0.025">
+    </testcase>
+    <testcase classname="Main Component should render children content" name="Main Component should render children content" time="0.004">
+    </testcase>
+    <testcase classname="Main Component should render logout button when authenticated" name="Main Component should render logout button when authenticated" time="0.012">
+    </testcase>
+    <testcase classname="Main Component should not render logout button when not authenticated" name="Main Component should not render logout button when not authenticated" time="0.005">
+    </testcase>
+    <testcase classname="Main Component should call onLogout when logout button is clicked" name="Main Component should call onLogout when logout button is clicked" time="0.009">
     </testcase>
   </testsuite>
-  <testsuite name="Junity extension" errors="0" failures="0" skipped="0" timestamp="2024-11-24T17:23:49" time="5.128" tests="3">
-    <testcase classname="Junity extension Activates without crashing" name="Junity extension Activates without crashing" time="0.013">
+  <testsuite name="Menu Component" errors="0" failures="0" skipped="0" timestamp="2024-11-27T20:17:27" time="3.926" tests="1">
+    <testcase classname="Menu Component should render the selection buttons" name="Menu Component should render the selection buttons" time="0.062">
+    </testcase>
+  </testsuite>
+  <testsuite name="Junity extension" errors="0" failures="0" skipped="0" timestamp="2024-11-27T20:17:27" time="8.493" tests="3">
+    <testcase classname="Junity extension Activates without crashing" name="Junity extension Activates without crashing" time="0.015">
     </testcase>
     <testcase classname="Junity extension Should use default settings if no env vars are set" name="Junity extension Should use default settings if no env vars are set" time="0.001">
     </testcase>

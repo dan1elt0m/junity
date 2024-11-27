@@ -3,8 +3,9 @@ import { useListTables } from '../../hooks/table';
 import { NotebookTrackerContext } from '../../context/notebook-tracker';
 import { useListCatalogs } from '../../hooks/catalog';
 import { useListSchemas } from '../../hooks/schema';
-import { insertEntityToNotebook } from './InsertEntity';
+import { insertEntityToNotebook } from '../functions/InsertEntity';
 import { getColumnIconClass } from '../../style/column-icons';
+
 import {
   CatalogInterface,
   ColumnInterface,
@@ -39,6 +40,12 @@ export const CatalogTree: React.FC<{
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(
     new Set(['Catalogs'])
   );
+
+  useEffect(() => {
+    if (listCatalogsRequest.data?.catalogs) {
+      console.log('Retrieving catalogs');
+    }
+  }, [listCatalogsRequest.data]);
 
   useEffect(() => {
     if (listSchemasRequest.data?.schemas) {
@@ -85,6 +92,12 @@ export const CatalogTree: React.FC<{
     setAllExpanded(!allExpanded);
   };
 
+  const handleRefresh = () => {
+    listCatalogsRequest.refetch();
+    listSchemasRequest.refetch();
+    listTablesRequest.refetch();
+  };
+
   const toggleNode = (nodeName: string) => {
     const newSet = new Set(expandedNodes);
     if (newSet.has(nodeName)) {
@@ -93,6 +106,12 @@ export const CatalogTree: React.FC<{
       newSet.add(nodeName);
     }
     setExpandedNodes(newSet);
+  };
+
+  const handleSchemaSelect = (schemaName: string, catalogName: string) => {
+    setSchemaToExpand(schemaName);
+    setCatalogToExpand(catalogName);
+    listCatalogsRequest.refetch();
   };
 
   const renderColumns = (columns: ColumnInterface[]) => (
@@ -162,7 +181,7 @@ export const CatalogTree: React.FC<{
           <div
             onClick={() => {
               toggleNode(`${catalogName}/${schema.name}`);
-              setSchemaToExpand(schema.name);
+              handleSchemaSelect(schema.name, catalogName);
             }}
           >
             <span
@@ -248,6 +267,12 @@ export const CatalogTree: React.FC<{
         onClick={toggleExpandAllNodes}
         aria-label="expand-all"
         title={allExpanded ? 'Collapse all' : 'Expand all'}
+      ></button>
+      <button
+        className={'refresh-button'}
+        onClick={handleRefresh}
+        aria-label="refresh"
+        title="Refresh"
       ></button>
       <div className="catalog-header">
         <span className="grey-font small-font margin-left">Catalogs</span>

@@ -6,7 +6,7 @@ import {
   TableInterface
 } from '../../types/interfaces';
 import ExplorerComponent from './CatalogExplorer';
-import CatalogTree from './CatalogTree';
+import CatalogTree from '../tree/CatalogTree';
 import { catalogIcon } from '../../style/icons';
 
 type Item = 'tree' | 'explorer' | 'none';

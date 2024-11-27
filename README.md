@@ -2,10 +2,17 @@
 
 [![Github Actions Status](https://github.com/dan1elt0m/junity/workflows/Build/badge.svg)](https://github.com/dan1elt0m/junity/actions/workflows/build.yml)
 
-A JupyterLab extension for Unity Catalog. This extension allows you to browse and search for Unity Catalogs directly
-from JupyterLab. In addition, it supports authentication with Google and token-based access to the Unity Catalog server.
+A OSS Unity Catalog extension for Jupyter Lab. This extension allows you to browse and manage the Unity Catalog.
 
 ![Junity Demo](docs/demo.gif)
+
+## Features
+
+- Browse and manage the Unity Catalog in JupyterLab
+- SidePanel Catalog Tree with option to insert names into code cells
+- Oauth with Google and token based authentication
+- Easy configuration with JupyterLab settings editor
+- Docker example with JupyterLab, Unity Catalog and DuckDB
 
 ## Requirements
 

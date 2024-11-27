@@ -26,36 +26,53 @@ interface ExplorerWidgetProps {
 const queryClient = new QueryClient();
 
 class ExplorerWidget extends ReactWidget {
-  constructor(private props: ExplorerWidgetProps) {
+  private entity: CatalogInterface | SchemaInterface | TableInterface;
+  private type: string;
+  private handleExploreClick: (
+    entity: CatalogInterface | SchemaInterface | TableInterface
+  ) => void;
+  private apiClient: AxiosInstance;
+
+  constructor(props: ExplorerWidgetProps) {
     super();
     this.addClass('explorer-widget');
-    this.props = props;
+    this.entity = props.entity;
+    this.type = props.type;
+    this.handleExploreClick = props.handleExploreClick;
+    this.apiClient = props.apiClient;
+  }
+
+  updateEntity(
+    entity: CatalogInterface | SchemaInterface | TableInterface,
+    type: 'catalog' | 'schema' | 'table' | 'frontpage'
+  ) {
+    this.entity = entity;
+    this.type = type;
+    this.update();
   }
 
   protected render(): ReactElement {
-    const { entity, type } = this.props;
-
     return (
       <QueryClientProvider client={queryClient}>
-        <ClientContext.Provider value={this.props.apiClient}>
+        <ClientContext.Provider value={this.apiClient}>
           <div className="widget-container">
-            {type === 'catalog' && (
+            {this.type === 'catalog' && (
               <CatalogDetails
-                catalog={entity as CatalogInterface}
-                onSchemaClick={this.props.handleExploreClick}
+                catalog={this.entity as CatalogInterface}
+                onSchemaClick={this.handleExploreClick}
               />
             )}
-            {type === 'schema' && (
+            {this.type === 'schema' && (
               <SchemaDetails
-                schema={entity as SchemaInterface}
-                onTableClick={this.props.handleExploreClick}
+                schema={this.entity as SchemaInterface}
+                onTableClick={this.handleExploreClick}
               />
             )}
-            {type === 'table' && (
-              <TableDetails table={entity as TableInterface} />
+            {this.type === 'table' && (
+              <TableDetails table={this.entity as TableInterface} />
             )}
-            {type === 'frontpage' && (
-              <ExplorerDetails onCatalogClick={this.props.handleExploreClick} />
+            {this.type === 'frontpage' && (
+              <ExplorerDetails onCatalogClick={this.handleExploreClick} />
             )}
           </div>
         </ClientContext.Provider>
