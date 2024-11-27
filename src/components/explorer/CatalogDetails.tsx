@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Typography, Grid2 as Grid, Divider, Button } from '@mui/material';
+import { Box, Typography, Grid2 as Grid, Divider, Button, Modal, CircularProgress } from '@mui/material';
 import { useListSchemas } from '../../hooks/schema';
-import { useDeleteCatalog } from '../../hooks/catalog';
+import { useDeleteCatalog, useListCatalogs } from '../../hooks/catalog';
 import ListSchema from './ListSchema';
+import UpdateCatalogForm from '../../components/modals/UpdateCatalog';
 import { CatalogInterface, SchemaInterface } from '../../types/interfaces';
 import '../../../style/tree.css';
+import CreateSchemaForm from '../../components/modals/CreateSchema';
 
 interface CatalogDetailsProps {
   catalog: CatalogInterface;
   onSchemaClick: (schema: SchemaInterface) => void;
 }
 
-const CatalogDetails: React.FC<CatalogDetailsProps> = ({
-  catalog,
-  onSchemaClick,
-}) => {
+const CatalogDetails: React.FC<CatalogDetailsProps> = ({ catalog, onSchemaClick }) => {
   const [schemas, setSchemas] = useState<SchemaInterface[]>([]);
+  const [showUpdateForm, setShowUpdateForm] = useState(false);
   const listSchemasRequest = useListSchemas({ catalog: catalog.name });
+  const listCatalogsRequest = useListCatalogs();
+  const [showCreateForm, setShowCreateForm] = useState(false);
   const deleteCatalogMutation = useDeleteCatalog();
 
   useEffect(() => {
@@ -25,24 +27,47 @@ const CatalogDetails: React.FC<CatalogDetailsProps> = ({
     }
   }, [listSchemasRequest.data?.schemas]);
 
-  const handleDeleteCatalog = () => {
-    if (confirm(`Are you sure you want to delete catalog ${catalog.name}?`)) {
-      console.log('Deleting catalog: ', catalog.name);
-      deleteCatalogMutation.mutate({ name: catalog.name });
-    }
-  };
+const handleDeleteCatalog = () => {
+  if (confirm(`Are you sure you want to delete catalog ${catalog.name}?`)) {
+    deleteCatalogMutation.mutate(
+      { name: catalog.name },
+      {
+        onSuccess: () => {
+          listCatalogsRequest.refetch();
+        },
+      }
+    );
+  }
+};
 
   return (
     <Box sx={{ padding: 2 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2, marginBottom: 2 }}>
       <Button
         variant="contained"
-        color="primary"
-        sx={{ position: 'absolute', top: 16, right: 16, backgroundColor: 'blue' }}
+        color="warning"
         onClick={handleDeleteCatalog}
         disabled={deleteCatalogMutation.status === 'pending'}
       >
         Delete
       </Button>
+      <Button
+        variant="contained"
+        color="info"
+        onClick={() => setShowUpdateForm(true)}
+      >
+        Update
+      </Button>
+
+  </Box>
+      {deleteCatalogMutation.status === 'pending' && (
+        <CircularProgress />
+      )}
+      {deleteCatalogMutation.isError && (
+        <Typography color="error">
+          {deleteCatalogMutation.error?.message || 'Failed to delete catalog'}
+        </Typography>
+      )}
       {deleteCatalogMutation.isError && (
         <Typography color="error">
           {deleteCatalogMutation.error?.message || 'Failed to delete catalog'}
@@ -118,12 +143,41 @@ const CatalogDetails: React.FC<CatalogDetailsProps> = ({
 
       <Divider />
 
-      <Box sx={{ marginTop: 2 }}>
-        <Typography variant="h5" gutterBottom>
-          Schemas
-        </Typography>
-        <ListSchema schemas={schemas} onSchemaClick={onSchemaClick} />
-      </Box>
+  <Box sx={{ marginTop: 2 }}>
+    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}>
+      <Typography variant="h5" gutterBottom>
+        Schemas List
+      </Typography>
+      <Button variant="contained" color="primary" onClick={() => setShowCreateForm(true)}>
+        Create Schema
+      </Button>
+    </Box>
+    <ListSchema schemas={schemas} onSchemaClick={onSchemaClick} />
+  </Box>
+
+      <Modal open={showUpdateForm} onClose={() => setShowUpdateForm(false)}>
+        <Box sx={{ padding: 2, backgroundColor: 'white', margin: 'auto', marginTop: '10%', width: '50%' }}>
+          <UpdateCatalogForm
+            catalog={catalog}
+            onSuccess={() => setShowUpdateForm(false)}
+            onBack={() => setShowUpdateForm(false)}
+          />
+        </Box>
+      </Modal>
+
+      <Modal open={showCreateForm} onClose={() => setShowCreateForm(false)}>
+        <Box sx={{ padding: 2, backgroundColor: 'white', margin: 'auto', marginTop: '10%', width: '50%' }}>
+          <CreateSchemaForm
+            catalog={catalog.name}
+           onSuccess={() => {
+              setShowCreateForm(false);
+              listSchemasRequest.refetch();
+            }}
+            onBack={() => setShowCreateForm(false)}
+          />
+        </Box>
+      </Modal>
+
     </Box>
   );
 };

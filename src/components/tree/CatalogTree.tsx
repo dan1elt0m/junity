@@ -3,7 +3,7 @@ import { useListTables } from '../../hooks/table';
 import { NotebookTrackerContext } from '../../context/notebook-tracker';
 import { useListCatalogs } from '../../hooks/catalog';
 import { useListSchemas } from '../../hooks/schema';
-import { insertEntityToNotebook } from './InsertEntity';
+import { insertEntityToNotebook } from '../functions/InsertEntity';
 import { getColumnIconClass } from '../../style/column-icons';
 import {
   CatalogInterface,
@@ -39,6 +39,12 @@ export const CatalogTree: React.FC<{
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(
     new Set(['Catalogs'])
   );
+
+  useEffect(() => {
+    if (listCatalogsRequest.data?.catalogs) {
+      console.log('Retrieving catalogs');
+    }
+  }, [listCatalogsRequest.data])
 
   useEffect(() => {
     if (listSchemasRequest.data?.schemas) {

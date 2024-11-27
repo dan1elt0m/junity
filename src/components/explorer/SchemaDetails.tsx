@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { useListTables } from '../../hooks/table';
-import { Box, Typography, Grid2 as Grid, Divider } from '@mui/material';
+import { useListTables  } from '../../hooks/table';
+import { Box, Typography, Grid2 as Grid, Divider, Button, Modal, CircularProgress } from '@mui/material';
 import ListTables from './ListTables';
+import UpdateSchemaForm from '../../components/modals/UpdateSchema';
 import { SchemaInterface, TableInterface } from '../../types/interfaces';
+import { useDeleteSchema, useListSchemas } from '../../hooks/schema';
 
 interface SchemaDetailsProps {
   schema: SchemaInterface;
   onTableClick: (table: TableInterface) => void;
 }
 
-const SchemaDetails: React.FC<SchemaDetailsProps> = ({
-  schema,
-  onTableClick
-}) => {
+const SchemaDetails: React.FC<SchemaDetailsProps> = ({ schema, onTableClick }) => {
   const [tables, setTables] = useState<TableInterface[]>([]);
-  const listTablesRequest = useListTables({
-    catalog: schema.catalog_name,
-    schema: schema.name
-  });
+  const [showUpdateForm, setShowUpdateForm] = useState(false);
+  const listTablesRequest = useListTables({ catalog: schema.catalog_name, schema: schema.name });
+  const listSchemasRequest = useListSchemas({ catalog: schema.catalog_name });
+  const deleteSchemaMutation = useDeleteSchema({ catalog: schema.catalog_name });
 
   useEffect(() => {
     if (listTablesRequest.data?.tables) {
@@ -25,8 +24,38 @@ const SchemaDetails: React.FC<SchemaDetailsProps> = ({
     }
   }, [listTablesRequest.data?.tables, schema.catalog_name]);
 
+const handleDeleteSchema = () => {
+  if (confirm(`Are you sure you want to delete schema ${schema.name}?`)) {
+    deleteSchemaMutation.mutate(
+      { catalog_name: schema.catalog_name, name: schema.name },
+      {
+        onSuccess: () => {
+          listSchemasRequest.refetch();
+        },
+      }
+    );
+  }
+};
+
   return (
     <Box sx={{ padding: 2 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2, marginBottom: 2 }}>
+        <Button variant="contained" color="warning" onClick={handleDeleteSchema} disabled={deleteSchemaMutation.status === 'pending'}>
+          Delete
+        </Button>
+        <Button variant="contained" color="info" onClick={() => setShowUpdateForm(true)}>
+          Update
+        </Button>
+      </Box>
+      {deleteSchemaMutation.status === 'pending' && (
+        <CircularProgress />
+      )}
+      {deleteSchemaMutation.isError && (
+        <Typography color="error">
+          {deleteSchemaMutation.error?.message || 'Failed to delete schema'}
+        </Typography>
+      )}
+
       <Typography variant="h4" gutterBottom>
         <span className="jp-icon-schema-explorer"></span>
         {schema.name}
@@ -108,6 +137,18 @@ const SchemaDetails: React.FC<SchemaDetailsProps> = ({
         </Typography>
         <ListTables tables={tables} onTableClick={onTableClick} />
       </Box>
+
+
+      <Modal open={showUpdateForm} onClose={() => setShowUpdateForm(false)}>
+        <Box sx={{ padding: 2, backgroundColor: 'white', margin: 'auto', marginTop: '10%', width: '50%' }}>
+          <UpdateSchemaForm
+            catalog={schema.catalog_name}
+            schema={schema}
+            onSuccess={() => setShowUpdateForm(false)}
+            onBack={() => setShowUpdateForm(false)}
+          />
+        </Box>
+      </Modal>
     </Box>
   );
 };

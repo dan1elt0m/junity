@@ -32,7 +32,7 @@ export function useCreateCatalog() {
   return useMutation<CatalogInterface, Error, Pick<CatalogInterface, 'name' | 'comment'>>({
     mutationFn: async (params) => {
       return apiClient
-        .post(`/catalogs`, JSON.stringify(params))
+        .post(`${UC_API_PREFIX}/catalogs`, JSON.stringify(params))
         .then((response) => response.data)
         .catch((e) => {
           throw new Error(
@@ -55,7 +55,7 @@ export function useUpdateCatalog(catalog: string) {
   return useMutation<CatalogInterface, Error, Pick<CatalogInterface, 'comment'>>({
     mutationFn: async (params) => {
       return apiClient
-        .patch(`/catalogs/${catalog}`, JSON.stringify(params))
+        .patch(`${UC_API_PREFIX}/catalogs/${catalog}`, JSON.stringify(params))
         .then((response) => response.data)
         .catch((e) => {
           throw new Error(
@@ -77,7 +77,7 @@ export function useDeleteCatalog() {
   return useMutation<void, Error, Pick<CatalogInterface, 'name'>>({
     mutationFn: async (params) => {
       return apiClient
-        .delete(`/catalogs/${params.name}`)
+        .delete(`${UC_API_PREFIX}/catalogs/${params.name}`)
         .then((response) => response.data)
         .catch((e) => {
           console.log('Failed to delete catalog: ', e)

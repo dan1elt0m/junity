@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { CatalogTree } from '../../../components/functions/CatalogTree';
+import { CatalogTree } from '../../../components/tree/CatalogTree';
 import { NotebookTrackerContext } from '../../../context/notebook-tracker';
 import AuthContext from '../../../context/auth';
 import { useListCatalogs } from '../../../hooks/catalog';
