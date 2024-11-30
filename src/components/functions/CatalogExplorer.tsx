@@ -1,4 +1,4 @@
-import { useContext, useState, forwardRef, useImperativeHandle } from 'react';
+import { useContext, forwardRef, useImperativeHandle } from 'react';
 import { MainAreaWidget } from '@jupyterlab/apputils';
 import AppContext from '../../context/app-context';
 import { ClientContext } from '../../context/client';
@@ -10,9 +10,6 @@ import {
 } from '../../types/interfaces';
 
 const ExplorerComponent = forwardRef((props, ref) => {
-  const [widget, setWidget] = useState<MainAreaWidget<ExplorerWidget> | null>(
-    null
-  );
   const { app } = useContext(AppContext);
   const apiClient = useContext(ClientContext);
 
@@ -35,7 +32,6 @@ const ExplorerComponent = forwardRef((props, ref) => {
     type: 'catalog' | 'schema' | 'table' | 'frontpage',
     entity: CatalogInterface | SchemaInterface | TableInterface
   ): MainAreaWidget<ExplorerWidget> => {
-    console.log('Creating widget for {}', type);
     const content = new ExplorerWidget({
       entity,
       type,
@@ -43,7 +39,7 @@ const ExplorerComponent = forwardRef((props, ref) => {
       apiClient
     });
     const widget = new MainAreaWidget({ content });
-    widget.id = 'explorer-widget';
+    widget.id = 'jy-explorer-widget';
     widget.title.label = 'Catalog Explorer';
     widget.title.closable = true;
     return widget;
@@ -53,13 +49,19 @@ const ExplorerComponent = forwardRef((props, ref) => {
     type: 'catalog' | 'schema' | 'table' | 'frontpage',
     entity: CatalogInterface | SchemaInterface | TableInterface
   ): void => {
-    if (widget && !widget.isDisposed) {
-      widget.content.updateEntity(entity, type);
-      widget.update();
-      app.shell.activateById(widget.id);
+    const widgets = [...app.shell.widgets('main')];
+    const existingWidget = widgets.find(w => w.id === 'jy-explorer-widget') as
+      | MainAreaWidget<ExplorerWidget>
+      | undefined;
+
+    if (existingWidget && !existingWidget.isDisposed) {
+      console.log('Updating widget ');
+      existingWidget.content.updateEntity(entity, type);
+      existingWidget.update();
+      app.shell.activateById(existingWidget.id);
     } else {
+      console.log(`Creating ${type} widget`);
       const newWidget = createWidget(type, entity);
-      setWidget(newWidget);
       if (!newWidget.isAttached) {
         app.shell.add(newWidget, 'main');
       }

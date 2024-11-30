@@ -19,7 +19,8 @@ const mockApp: AppContextProps = {
     commandLinker: {} as any,
     shell: {
       add: jest.fn(),
-      activateById: jest.fn()
+      activateById: jest.fn(),
+      widgets: jest.fn().mockReturnValue([]) // Ensure widgets returns an iterable object
     } as any
   } as any
 };
