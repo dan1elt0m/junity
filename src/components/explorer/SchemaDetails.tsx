@@ -45,8 +45,8 @@ const SchemaDetails: React.FC<SchemaDetailsProps> = ({
       deleteSchemaMutation.mutate(
         { catalog_name: schema.catalog_name, name: schema.name },
         {
-          onSuccess: () => {
-            listSchemasRequest.refetch();
+          onSuccess: async () => {
+            await listSchemasRequest.refetch(schema.catalog_name);
           }
         }
       );

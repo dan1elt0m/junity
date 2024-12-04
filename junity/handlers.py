@@ -1,7 +1,6 @@
 import os
 
 from jupyter_server.utils import url_path_join
-from tornado.web import StaticFileHandler
 
 from junity.preview_handler import PreviewHandler
 from junity.settings_handler import SettingsHandler

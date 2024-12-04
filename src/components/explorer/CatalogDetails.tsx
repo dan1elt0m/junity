@@ -211,9 +211,9 @@ const CatalogDetails: React.FC<CatalogDetailsProps> = ({
         >
           <CreateSchemaForm
             catalog={catalog.name}
-            onSuccess={() => {
+            onSuccess={async () => {
               setShowCreateForm(false);
-              listSchemasRequest.refetch();
+              await listSchemasRequest.refetch(catalog.name);
             }}
             onBack={() => setShowCreateForm(false)}
           />

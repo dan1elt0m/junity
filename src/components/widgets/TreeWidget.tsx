@@ -14,7 +14,13 @@ import { GoogleAuth } from '../login/GoogleAuth';
 import { MainPanel } from '../panels/MainPanel';
 import { JupyterFrontEnd } from '@jupyterlab/application';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      experimental_prefetchInRender: true
+    }
+  }
+});
 
 export class TreeWidget extends ReactWidget {
   private notebookTracker: INotebookTracker;

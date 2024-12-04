@@ -44,3 +44,9 @@ export interface TableInterface {
   created_by: string | null;
   updated_by: string | null;
 }
+
+export type Entity =
+  | CatalogInterface
+  | SchemaInterface
+  | TableInterface
+  | ColumnInterface;

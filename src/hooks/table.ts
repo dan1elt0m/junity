@@ -22,7 +22,9 @@ interface ListTablesParams {
 
 export function useListTables({ catalog, schema, options }: ListTablesParams) {
   const apiClient = useContext(ClientContext);
-  return useQuery<ListTablesResponse>({
+  const queryClient = useQueryClient();
+
+  const query = useQuery<ListTablesResponse>({
     queryKey: ['listTables', catalog, schema],
     queryFn: async () => {
       const searchParams = new URLSearchParams({
@@ -36,6 +38,26 @@ export function useListTables({ catalog, schema, options }: ListTablesParams) {
     },
     ...options
   });
+
+  return {
+    ...query,
+    invalidateQueries: (catalog: string, schema: string) => {
+      queryClient.invalidateQueries({
+        queryKey: ['listTables', catalog, schema]
+      });
+    },
+    refetch: async (catalog: string, schema: string) => {
+      console.log('Refetching tables for catalog:', catalog, 'schema:', schema);
+      const searchParams = new URLSearchParams({
+        catalog_name: catalog,
+        schema_name: schema
+      });
+      const response = await apiClient.get(
+        `${UC_API_PREFIX}/tables?${searchParams.toString()}`
+      );
+      return response.data;
+    }
+  };
 }
 
 interface DeleteTableParams {

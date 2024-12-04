@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import '../../../style/menu.css';
 import {
   CatalogInterface,
+  Entity,
   SchemaInterface,
   TableInterface
 } from '../../types/interfaces';
@@ -14,9 +15,7 @@ type Item = 'tree' | 'explorer' | 'none';
 export const SideBar: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<Item>('tree');
   const explorerRef = useRef<{
-    handleExploreClick: (
-      entity: CatalogInterface | SchemaInterface | TableInterface
-    ) => void;
+    handleExploreClick: (entity: Entity) => void;
     openWidget: (
       type: 'catalog' | 'schema' | 'table' | 'frontpage',
       entity?: CatalogInterface | SchemaInterface | TableInterface
@@ -31,13 +30,11 @@ export const SideBar: React.FC = () => {
     }
   };
 
-  const handleExplore = (
-    entity: CatalogInterface | SchemaInterface | TableInterface
-  ) => {
+  const handleExplore = (entity: Entity) => {
     explorerRef.current?.handleExploreClick(entity);
   };
 
-  const iconSize = 14;
+  const iconSize = 16;
 
   console.log('Selected sidebar item: ', selectedItem);
 

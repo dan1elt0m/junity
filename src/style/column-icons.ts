@@ -1,12 +1,24 @@
-export const getColumnIconClass = (dataType: string): string => {
+import NumbersIcon from '@mui/icons-material/Numbers';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import AbcIcon from '@mui/icons-material/Abc';
+import DataObjectIcon from '@mui/icons-material/DataObject';
+import NotListedLocationIcon from '@mui/icons-material/NotListedLocation';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import ToggleOffIcon from '@mui/icons-material/ToggleOff';
+import PersonIcon from '@mui/icons-material/Person';
+import TocIcon from '@mui/icons-material/Toc';
+
+export const getColumnIconClass = (dataType: string): React.ElementType => {
   switch (dataType) {
     case 'BOOLEAN':
     case 'BINARY':
-      return 'jp-icon-boolean';
+      return ToggleOffIcon;
     case 'NULL':
+      return CheckBoxOutlineBlankIcon;
     case 'USER_DEFINED_TYPE':
+      return PersonIcon;
     case 'TABLE_TYPE':
-      return 'jp-icon-other';
+      return TocIcon;
     case 'BYTE':
     case 'SHORT':
     case 'INT':
@@ -14,20 +26,20 @@ export const getColumnIconClass = (dataType: string): string => {
     case 'FLOAT':
     case 'DOUBLE':
     case 'DECIMAL':
-      return 'jp-icon-numeric';
+      return NumbersIcon;
     case 'DATE':
     case 'TIMESTAMP':
     case 'TIMESTAMP_NTZ':
     case 'INTERVAL':
-      return 'jp-icon-temporal';
+      return CalendarMonthIcon;
     case 'STRING':
     case 'CHAR':
-      return 'jp-icon-string';
+      return AbcIcon;
     case 'ARRAY':
     case 'STRUCT':
     case 'MAP':
-      return 'jp-icon-complex';
+      return DataObjectIcon;
     default:
-      return 'jp-icon-default';
+      return NotListedLocationIcon;
   }
 };

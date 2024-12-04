@@ -6,17 +6,10 @@ import os
 import tornado
 from jupyter_server.base.handlers import APIHandler
 
-def bootstrap(conn: duckdb.DuckDBPyConnection ,token:str, api_endpoint:str, aws_region:str):
-
-
-def attach_database(conn: duckdb.DuckDBPyConnection, catalog_name:str):
-
-
 class PreviewHandler(APIHandler):
     # The following decorator should be present on all verb methods (head, get, post,
     # patch, put, delete, options) to ensure only authorized user can request the
     # Jupyter server
-    @tornado.web.authenticated
     def get(self):
         table_name = self.get_argument("table_name")
         access_token = self.get_argument("access_token")

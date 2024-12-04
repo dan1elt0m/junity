@@ -21,16 +21,43 @@ interface ListSchemasParams {
 
 export function useListSchemas({ catalog, options }: ListSchemasParams) {
   const apiClient = useContext(ClientContext);
-  return useQuery<ListSchemasResponse>({
+  const queryClient = useQueryClient();
+
+  const query = useQuery<ListSchemasResponse>({
     queryKey: ['listSchemas', catalog],
     queryFn: async () => {
+      if (!catalog) {
+        throw new Error('Catalog name is required');
+      }
       const searchParams = new URLSearchParams({ catalog_name: catalog });
-      return apiClient
-        .get(`${UC_API_PREFIX}/schemas?${searchParams.toString()}`)
-        .then(response => response.data);
+      const response = await apiClient.get(
+        `${UC_API_PREFIX}/schemas?${searchParams.toString()}`
+      );
+      return response.data;
     },
     ...options
   });
+
+  return {
+    ...query,
+    invalidateQueries: (catalog: string) => {
+      queryClient.invalidateQueries({ queryKey: ['listSchemas', catalog] });
+    },
+    refetch: async (catalogName: string) => {
+      console.log('Refetching schemas for catalog:', catalogName);
+      const searchParams = new URLSearchParams({ catalog_name: catalogName });
+      const response = await apiClient.get(
+        `${UC_API_PREFIX}/schemas?${searchParams.toString()}`
+      );
+      queryClient.setQueryData(['listSchemas', catalogName], {
+        schemas: response.data.schemas
+      });
+      await queryClient.invalidateQueries({
+        queryKey: ['listSchemas', catalog]
+      });
+      return response.data;
+    }
+  };
 }
 
 export function useCreateSchema() {

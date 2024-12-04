@@ -23,6 +23,9 @@ export const GoogleAuth: React.FC<AuthContainerProps> = ({
 }) => {
   const loginWithToken = useLoginWithToken();
   const [loginError, setLoginError] = useState(false);
+  const isLocalhost =
+    window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1';
 
   useEffect(() => {
     const authCookie = Cookies.get('authenticated');
@@ -57,8 +60,9 @@ export const GoogleAuth: React.FC<AuthContainerProps> = ({
         Cookies.set('authenticated', 'true', { expires: expiresAt });
         Cookies.set('access_token', loginResponse.access_token, {
           expires: expiresAt,
-          secure: true,
-          sameSite: 'strict'
+          secure: !isLocalhost,
+          sameSite: 'Strict',
+          httpOnly: !isLocalhost
         });
         updateToken(loginResponse.access_token);
         setAuthenticated(true);
