@@ -2,6 +2,22 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.7.0
+
+([Full Changelog](https://github.com/dan1elt0m/junity/compare/v0.6.1...66d373c3a2d52f589d17ba35d5dc1a76d3254f67))
+
+### Enhancements made
+
+- Add preview table option: [#24](https://github.com/dan1elt0m/junity/pull/24) ([@dan1elt0m](https://github.com/dan1elt0m))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/dan1elt0m/junity/graphs/contributors?from=2024-11-30&to=2024-12-04&type=c))
+
+[@dan1elt0m](https://github.com/search?q=repo%3Adan1elt0m%2Fjunity+involves%3Adan1elt0m+updated%3A2024-11-30..2024-12-04&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.6.1
 
 ([Full Changelog](https://github.com/dan1elt0m/junity/compare/v0.6.0...91ac5d8c6a48a7d46007d2fd7a80165ad69b9b28))
@@ -15,8 +31,6 @@
 ([GitHub contributors page for this release](https://github.com/dan1elt0m/junity/graphs/contributors?from=2024-11-27&to=2024-11-30&type=c))
 
 [@dan1elt0m](https://github.com/search?q=repo%3Adan1elt0m%2Fjunity+involves%3Adan1elt0m+updated%3A2024-11-27..2024-11-30&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.6.0
 
