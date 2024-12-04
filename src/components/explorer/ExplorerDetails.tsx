@@ -36,12 +36,13 @@ const ExplorerDetails: React.FC<ExplorerDetailsProps> = ({
       <Box
         sx={{
           display: 'flex',
-          justifyContent: 'flex-end',
+          justifyContent: 'flex-start',
           gap: 2,
-          marginBottom: 2
+          marginBottom: 2,
+          width: '100%'
         }}
       >
-        <Typography variant="h4" gutterBottom sx={{ flexGrow: 1 }}>
+        <Typography variant="h5" gutterBottom sx={{ flexGrow: 1 }}>
           Welcome to the Catalog Explorer
         </Typography>
         <Button
@@ -68,7 +69,7 @@ const ExplorerDetails: React.FC<ExplorerDetailsProps> = ({
           />
         </Box>
       </Modal>
-      <Typography variant="h5" gutterBottom sx={{ marginTop: 2 }}>
+      <Typography variant="h6" gutterBottom sx={{ marginTop: 2 }}>
         Available Catalogs
       </Typography>
       <ListCatalogs catalogs={catalogs} onCatalogClick={onCatalogClick} />

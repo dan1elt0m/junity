@@ -58,7 +58,8 @@ const CatalogDetails: React.FC<CatalogDetailsProps> = ({
           display: 'flex',
           justifyContent: 'flex-end',
           gap: 2,
-          marginBottom: 2
+          marginBottom: 2,
+          width: '100%'
         }}
       >
         <Typography variant="h4" gutterBottom sx={{ flexGrow: 1 }}>
@@ -211,9 +212,9 @@ const CatalogDetails: React.FC<CatalogDetailsProps> = ({
         >
           <CreateSchemaForm
             catalog={catalog.name}
-            onSuccess={() => {
+            onSuccess={async () => {
               setShowCreateForm(false);
-              listSchemasRequest.refetch();
+              await listSchemasRequest.refetch(catalog.name);
             }}
             onBack={() => setShowCreateForm(false)}
           />

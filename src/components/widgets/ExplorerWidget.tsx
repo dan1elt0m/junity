@@ -23,7 +23,13 @@ interface ExplorerWidgetProps {
   apiClient: AxiosInstance;
 }
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      experimental_prefetchInRender: true
+    }
+  }
+});
 
 class ExplorerWidget extends ReactWidget {
   private entity: CatalogInterface | SchemaInterface | TableInterface;

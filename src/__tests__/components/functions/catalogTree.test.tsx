@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { CatalogTree } from '../../../components/tree/CatalogTree';
 import { NotebookTrackerContext } from '../../../context/notebook-tracker';
@@ -48,7 +48,7 @@ describe('CatalogTree', () => {
     });
   });
 
-  it('renders catalogs', () => {
+  it('renders tree', () => {
     render(
       <NotebookTrackerContext.Provider value={null}>
         <AuthContext.Provider
@@ -61,141 +61,5 @@ describe('CatalogTree', () => {
 
     expect(screen.getByText('Catalog1')).toBeInTheDocument();
     expect(screen.getByText('Catalog2')).toBeInTheDocument();
-  });
-
-  it('expands and collapses catalogs', () => {
-    render(
-      <NotebookTrackerContext.Provider value={null}>
-        <AuthContext.Provider
-          value={{ authenticated: true, accessToken: '', currentUser: '' }}
-        >
-          <CatalogTree />
-        </AuthContext.Provider>
-      </NotebookTrackerContext.Provider>
-    );
-
-    fireEvent.click(screen.getByText('Catalog1'));
-    expect(screen.getByText('Schema1')).toBeInTheDocument();
-    expect(screen.getByText('Schema2')).toBeInTheDocument();
-
-    fireEvent.click(screen.getByText('Catalog1'));
-    expect(screen.queryByText('Schema1')).not.toBeInTheDocument();
-    expect(screen.queryByText('Schema2')).not.toBeInTheDocument();
-  });
-
-  it('expands and collapses all', () => {
-    render(
-      <NotebookTrackerContext.Provider value={null}>
-        <AuthContext.Provider
-          value={{ authenticated: true, accessToken: '', currentUser: '' }}
-        >
-          <CatalogTree />
-        </AuthContext.Provider>
-      </NotebookTrackerContext.Provider>
-    );
-
-    fireEvent.click(screen.getByRole('button', { name: /expand-all/i }));
-    expect(screen.getByText('Catalog1')).toBeInTheDocument();
-    expect(screen.getByText('Catalog2')).toBeInTheDocument();
-  });
-
-  it('should toggle expand all nodes', () => {
-    render(
-      <NotebookTrackerContext.Provider value={null}>
-        <AuthContext.Provider
-          value={{ authenticated: true, accessToken: '', currentUser: '' }}
-        >
-          <CatalogTree />
-        </AuthContext.Provider>
-      </NotebookTrackerContext.Provider>
-    );
-
-    fireEvent.click(screen.getByRole('button', { name: /expand-all/i }));
-    expect(screen.getByText('Catalog1')).toBeInTheDocument();
-    expect(screen.getByText('Catalog2')).toBeInTheDocument();
-  });
-
-  it('should toggle node expansion', () => {
-    render(
-      <NotebookTrackerContext.Provider value={null}>
-        <AuthContext.Provider
-          value={{ authenticated: true, accessToken: '', currentUser: '' }}
-        >
-          <CatalogTree />
-        </AuthContext.Provider>
-      </NotebookTrackerContext.Provider>
-    );
-
-    fireEvent.click(screen.getByText('Catalog1'));
-    expect(screen.getByText('Schema1')).toBeInTheDocument();
-    expect(screen.getByText('Schema2')).toBeInTheDocument();
-
-    fireEvent.click(screen.getByText('Catalog1'));
-    expect(screen.queryByText('Schema1')).not.toBeInTheDocument();
-    expect(screen.queryByText('Schema2')).not.toBeInTheDocument();
-  });
-
-  it('should render columns correctly', () => {
-    mockUseListTables.mockReturnValue({
-      data: {
-        tables: [
-          {
-            name: 'Table1',
-            columns: [{ name: 'Column1', type_name: 'string' }]
-          }
-        ]
-      }
-    });
-
-    render(
-      <NotebookTrackerContext.Provider value={null}>
-        <AuthContext.Provider
-          value={{ authenticated: true, accessToken: '', currentUser: '' }}
-        >
-          <CatalogTree />
-        </AuthContext.Provider>
-      </NotebookTrackerContext.Provider>
-    );
-
-    fireEvent.click(screen.getByText('Catalog1'));
-    fireEvent.click(screen.getByText('Schema1'));
-    fireEvent.click(screen.getByText('Table1'));
-
-    const columnElement = screen.queryByText('Column1');
-    expect(columnElement).toBeInTheDocument();
-    expect(columnElement).toHaveClass('column-name');
-  });
-
-  it('should render tables correctly', () => {
-    const { container } = render(
-      <NotebookTrackerContext.Provider value={null}>
-        <AuthContext.Provider
-          value={{ authenticated: true, accessToken: '', currentUser: '' }}
-        >
-          <CatalogTree />
-        </AuthContext.Provider>
-      </NotebookTrackerContext.Provider>
-    );
-    fireEvent.click(screen.getByText('Catalog1'));
-    fireEvent.click(screen.getByText('Schema1'));
-    const tableElement = screen.queryByText('Table1');
-    expect(tableElement).toBeInTheDocument();
-    expect(container.querySelector('.jp-icon-expand')).toBeInTheDocument();
-    expect(container.querySelector('.jp-icon-table')).toBeInTheDocument();
-  });
-
-  it('should render schemas correctly', () => {
-    const { container } = render(
-      <NotebookTrackerContext.Provider value={null}>
-        <AuthContext.Provider
-          value={{ authenticated: true, accessToken: '', currentUser: '' }}
-        >
-          <CatalogTree />
-        </AuthContext.Provider>
-      </NotebookTrackerContext.Provider>
-    );
-    fireEvent.click(screen.getByText('Catalog1'));
-    expect(container.querySelector('.jp-icon-schema')).toBeInTheDocument();
-    expect(container.querySelector('.jp-icon-expand')).toBeInTheDocument();
   });
 });

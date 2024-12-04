@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Box, Typography, Grid2 as Grid, Divider, Button } from '@mui/material';
 import ListColumns from './ListColumns';
 import { TableInterface } from '../../types/interfaces';
 import { useDeleteTable, useListTables } from '../../hooks/table';
+import { PreviewTableModal } from '../modals/PreviewTable';
+import { ClientContext } from '../../context/client';
+import Cookies from 'js-cookie';
 
 interface TableDetailsProps {
   table: TableInterface;
 }
 
 const TableDetails: React.FC<TableDetailsProps> = ({ table }) => {
+  const apiContext = useContext(ClientContext);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [previewData, setPreviewData] = useState([]);
   const deleteTableMutation = useDeleteTable({
     catalog: table.catalog_name,
     schema: table.schema_name
@@ -28,10 +34,27 @@ const TableDetails: React.FC<TableDetailsProps> = ({ table }) => {
         },
         {
           onSuccess: () => {
-            listTablesRequest.refetch();
+            listTablesRequest.refetch(table.catalog_name, table.schema_name);
           }
         }
       );
+    }
+  };
+
+  const handlePreview = async () => {
+    try {
+      console.log('Requesting table preview data');
+      const tableName = `${table.catalog_name}.${table.schema_name}.${table.name}`;
+      const accessToken = Cookies.get('access_token');
+      const response = await fetch(
+        `/junity-server/preview?table_name=${tableName}&access_token=${accessToken}&api_endpoint=${apiContext.defaults.baseURL}&aws_region=eu-west-1`
+      );
+      const data = await response.json();
+      console.log('Preview data:', data);
+      setPreviewData(data.data);
+      setIsPreviewOpen(true);
+    } catch (error) {
+      console.error('Error fetching preview data:', error);
     }
   };
 
@@ -49,6 +72,9 @@ const TableDetails: React.FC<TableDetailsProps> = ({ table }) => {
           <span className="jp-icon-table"></span>
           {table.name}
         </Typography>
+        <Button variant="contained" color="primary" onClick={handlePreview}>
+          Preview
+        </Button>
         <Button
           variant="contained"
           color="error"
@@ -155,6 +181,11 @@ const TableDetails: React.FC<TableDetailsProps> = ({ table }) => {
         </Typography>
         <ListColumns columns={table.columns} />
       </Box>
+      <PreviewTableModal
+        open={isPreviewOpen}
+        onClose={() => setIsPreviewOpen(false)}
+        data={previewData}
+      />
     </Box>
   );
 };

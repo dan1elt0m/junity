@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext } from 'react';
 
 interface AuthContextProps {
   accessToken: string;
@@ -15,3 +15,13 @@ const AuthContext = React.createContext<AuthContextProps>({
 AuthContext.displayName = 'AuthContext';
 
 export default AuthContext;
+
+interface LogoutContextProps {
+  logout: () => void;
+}
+
+export const LogoutContext = createContext<LogoutContextProps>({
+  logout: () => {
+    console.warn('No logout provider found');
+  }
+});
