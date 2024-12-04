@@ -3615,6 +3615,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mui/x-data-grid@npm:^7.23.0":
+  version: 7.23.0
+  resolution: "@mui/x-data-grid@npm:7.23.0"
+  dependencies:
+    "@babel/runtime": "npm:^7.25.7"
+    "@mui/utils": "npm:^5.16.6 || ^6.0.0"
+    "@mui/x-internals": "npm:7.23.0"
+    clsx: "npm:^2.1.1"
+    prop-types: "npm:^15.8.1"
+    reselect: "npm:^5.1.1"
+  peerDependencies:
+    "@emotion/react": ^11.9.0
+    "@emotion/styled": ^11.8.1
+    "@mui/material": ^5.15.14 || ^6.0.0
+    "@mui/system": ^5.15.14 || ^6.0.0
+    react: ^17.0.0 || ^18.0.0 || ^19.0.0
+    react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@emotion/react":
+      optional: true
+    "@emotion/styled":
+      optional: true
+  checksum: 1e23f6ee1b4d9b8ae32b15e49abfd88f8cad240e5ac0f7c26e502aae33d543dbbd83969dec3b67b34dfef92ae7a5ee083745c0279af01581b78d9cf05025dde5
+  languageName: node
+  linkType: hard
+
 "@mui/x-internals@npm:7.23.0":
   version: 7.23.0
   resolution: "@mui/x-internals@npm:7.23.0"
@@ -8636,6 +8662,7 @@ __metadata:
     "@jupyterlab/testutils": ^4.3.0
     "@mui/icons-material": ^6.1.9
     "@mui/material": ^6.1.8
+    "@mui/x-data-grid": ^7.23.0
     "@mui/x-tree-view": ^7.23.0
     "@react-oauth/google": ^0.12.1
     "@react-spring/web": ^9.7.5
@@ -10462,6 +10489,13 @@ __metadata:
   version: 1.0.0
   resolution: "requires-port@npm:1.0.0"
   checksum: eee0e303adffb69be55d1a214e415cf42b7441ae858c76dfc5353148644f6fd6e698926fc4643f510d5c126d12a705e7c8ed7e38061113bdf37547ab356797ff
+  languageName: node
+  linkType: hard
+
+"reselect@npm:^5.1.1":
+  version: 5.1.1
+  resolution: "reselect@npm:5.1.1"
+  checksum: 5d32d48be29071ddda21a775945c2210cf4ca3fccde1c4a0e1582ac3bf99c431c6c2330ef7ca34eae4c06feea617e7cb2c275c4b33ccf9a930836dfc98b49b13
   languageName: node
   linkType: hard
 

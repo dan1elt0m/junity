@@ -2,7 +2,7 @@ import {
   useTreeItem2,
   UseTreeItem2Parameters
 } from '@mui/x-tree-view/useTreeItem2';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Entity } from '../types/interfaces';
 import { styled } from '@mui/material/styles';
 import {
@@ -18,7 +18,7 @@ import TableChartIcon from '@mui/icons-material/TableChart';
 import BackupTableIcon from '@mui/icons-material/BackupTable';
 import { getColumnIconClass } from './column-icons';
 import StorageIcon from '@mui/icons-material/Storage';
-import { alpha } from '@mui/material';
+import { alpha, IconButton } from '@mui/material';
 import { animated, useSpring } from '@react-spring/web';
 import Collapse from '@mui/material/Collapse';
 import { TransitionProps } from '@mui/material/transitions';
@@ -27,6 +27,9 @@ import clsx from 'clsx';
 import { TreeItem2DragAndDropOverlay, TreeItem2Icon } from '@mui/x-tree-view';
 import Box from '@mui/material/Box';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import { NotebookTrackerContext } from '../context/notebook-tracker';
+import { insertEntityToNotebook } from '../components/functions/InsertEntity';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 
 interface CustomTreeItemProps
   extends Omit<UseTreeItem2Parameters, 'rootRef'>,
@@ -68,7 +71,7 @@ const getIconFromEntity = (entity: Entity) => {
 };
 
 const CustomTreeItemContent = styled(TreeItem2Content)(({ theme }) => ({
-  flexDirection: 'row-reverse',
+  flexDirection: 'row',
   borderRadius: theme.spacing(0.7),
   marginBottom: theme.spacing(0.5),
   marginTop: theme.spacing(0.5),
@@ -180,6 +183,7 @@ export const CustomTreeItem = React.forwardRef(function CustomTreeItem(
             {...getLabelProps({
               icon: icon,
               entity: entity,
+              itemId: itemId,
               onExploreClick: props.onExploreClick
             })}
           />
@@ -195,17 +199,20 @@ interface CustomLabelProps {
   children: React.ReactNode;
   icon?: React.ElementType;
   entity: Entity;
+  itemId: string;
   onExploreClick: (entity: Entity) => void;
 }
 
 function CustomLabel({
   icon: Icon,
   entity,
+  itemId,
   onExploreClick,
   children,
   ...other
 }: CustomLabelProps) {
   const explore = !('type_name' in entity);
+  const notebookTracker = useContext(NotebookTrackerContext);
   return (
     <TreeItem2Label
       {...other}
@@ -227,21 +234,44 @@ function CustomLabel({
         )}
         {children}
       </Box>
-      {explore && (
-        <Box
-          component={RemoveRedEyeIcon}
-          sx={{
-            fontSize: '1.2rem',
-            cursor: 'pointer',
-            color: 'inherit',
-            '&:hover': { color: 'orange' }
-          }}
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        {explore && (
+          <IconButton
+            onClick={(e: React.MouseEvent) => {
+              e.stopPropagation();
+              onExploreClick(entity);
+            }}
+            aria-label="explore-button"
+            color="inherit"
+            title="View in Explorer"
+            size="small"
+            sx={{
+              '&:hover': {
+                color: 'orange'
+              }
+            }}
+          >
+            <RemoveRedEyeIcon sx={{ fontSize: '1.2rem' }} />
+          </IconButton>
+        )}
+        <IconButton
           onClick={(e: React.MouseEvent) => {
             e.stopPropagation();
-            onExploreClick(entity);
+            insertEntityToNotebook(itemId, notebookTracker!);
           }}
-        />
-      )}
+          aria-label="insert-button"
+          color="inherit"
+          size="small"
+          title="Insert into Notebook"
+          sx={{
+            '&:hover': {
+              color: 'orange'
+            }
+          }}
+        >
+          <KeyboardDoubleArrowRightIcon sx={{ fontSize: '1.2rem' }} />
+        </IconButton>
+      </Box>
     </TreeItem2Label>
   );
 }

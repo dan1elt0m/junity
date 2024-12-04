@@ -12,7 +12,7 @@ describe('Main Component', () => {
       <AuthContext.Provider
         value={{ authenticated, accessToken: '', currentUser: '' }}
       >
-        <MainPanel onLogout={mockLogout}>
+        <MainPanel>
           <div>Child Content</div>
         </MainPanel>
       </AuthContext.Provider>

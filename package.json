@@ -65,6 +65,7 @@
         "@jupyterlab/launcher": "^4.2.5",
         "@mui/icons-material": "^6.1.9",
         "@mui/material": "^6.1.8",
+        "@mui/x-data-grid": "^7.23.0",
         "@mui/x-tree-view": "^7.23.0",
         "@react-oauth/google": "^0.12.1",
         "@react-spring/web": "^9.7.5",

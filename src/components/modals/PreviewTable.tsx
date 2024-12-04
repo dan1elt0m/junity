@@ -1,17 +1,6 @@
 import React from 'react';
-import {
-  Modal,
-  Box,
-  Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  IconButton
-} from '@mui/material';
+import { Modal, Box, Typography, Paper, IconButton } from '@mui/material';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import CloseIcon from '@mui/icons-material/Close';
 
 interface PreviewModalProps {
@@ -30,7 +19,12 @@ export const PreviewTableModal: React.FC<PreviewModalProps> = ({
   }
 
   const headers = Object.keys(data[0]);
-  const rows = data.slice(1, 11); // Get the first 10 rows
+  const rows = data.map((row, index) => ({ id: index, ...row }));
+
+  const columns: GridColDef[] = headers.map(header => ({
+    field: header,
+    headerName: header
+  }));
 
   return (
     <Modal open={open} onClose={onClose}>
@@ -40,7 +34,6 @@ export const PreviewTableModal: React.FC<PreviewModalProps> = ({
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: 600,
           bgcolor: 'background.paper',
           boxShadow: 24,
           p: 4
@@ -60,38 +53,24 @@ export const PreviewTableModal: React.FC<PreviewModalProps> = ({
             <CloseIcon />
           </IconButton>
         </Box>
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          sx={{ marginBottom: 2 }}
-        >
-          Displaying the top 10 rows
-        </Typography>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                {headers.map(key => (
-                  <TableCell
-                    key={key}
-                    sx={{ backgroundColor: '#f0f0f0', fontWeight: 'bold' }}
-                  >
-                    {key}
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row, index) => (
-                <TableRow key={index}>
-                  {Object.values(row).map((value, idx) => (
-                    <TableCell key={idx}>{value}</TableCell>
-                  ))}
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <Paper sx={{ height: '100%', width: '100%' }}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            pageSizeOptions={[5, 10, 20, 50, 100]}
+            rowHeight={25}
+            sx={{
+              border: 1,
+              borderColor: 'grey.500',
+              '& .MuiDataGrid-cell': {
+                borderBottom: '1px solid grey'
+              },
+              '& .MuiDataGrid-columnHeaders': {
+                borderBottom: '1px solid grey'
+              }
+            }}
+          />
+        </Paper>
       </Box>
     </Modal>
   );

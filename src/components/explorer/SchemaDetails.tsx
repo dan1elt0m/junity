@@ -60,7 +60,8 @@ const SchemaDetails: React.FC<SchemaDetailsProps> = ({
           display: 'flex',
           justifyContent: 'flex-end',
           gap: 2,
-          marginBottom: 2
+          marginBottom: 2,
+          width: '100%'
         }}
       >
         <Typography variant="h4" gutterBottom sx={{ flexGrow: 1 }}>

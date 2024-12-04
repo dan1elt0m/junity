@@ -1,10 +1,7 @@
-// src/components/mainContainer.tsx
-import React, { useContext, useEffect, useRef } from 'react';
-import AuthContext from '../../context/auth';
-import '../../../style/menu.css';
+import React, { useEffect, useRef } from 'react';
+import { Box } from '@mui/material';
 import junityLogoSvg from '../../../assets/junity-logo.svg';
 import { LabIcon } from '@jupyterlab/ui-components';
-import { logoutIcon } from '../../style/icons';
 
 const junityIcon = new LabIcon({
   name: 'junity:logo-large',
@@ -13,45 +10,46 @@ const junityIcon = new LabIcon({
 
 interface MainContainerProps {
   children: React.ReactNode;
-  onLogout: () => void;
 }
 
-export const MainPanel: React.FC<MainContainerProps> = ({
-  children,
-  onLogout
-}) => {
-  const authContext = useContext(AuthContext);
+export const MainPanel: React.FC<MainContainerProps> = ({ children }) => {
   const iconRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     if (iconRef.current) {
       junityIcon.element({
         container: iconRef.current,
-        height: '30px',
-        width: '150px',
-        marginLeft: '2px'
+        height: '20px',
+        width: '100px',
+        marginLeft: '0'
       });
     }
   }, []);
 
   return (
-    <div className="main-container">
-      <div className="header">
-        <div className="inner">
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'flex-start',
+          justifyContent: 'space-between',
+          padding: '5px',
+          backgroundColor: 'lightblue',
+          borderBottom: '1px solid #ccc',
+          position: 'relative'
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            marginLeft: 0
+          }}
+        >
           <span ref={iconRef}></span>
-        </div>
-        {authContext.authenticated && (
-          <button
-            className="logout-button"
-            onClick={onLogout}
-            aria-label="logout"
-            title="Logout"
-          >
-            <logoutIcon.react width={16} height={16} />
-          </button>
-        )}
-      </div>
-      <div className="content">{children}</div>
-    </div>
+        </Box>
+      </Box>
+      <Box sx={{ flexGrow: 1, padding: 0 }}>{children}</Box>
+    </Box>
   );
 };

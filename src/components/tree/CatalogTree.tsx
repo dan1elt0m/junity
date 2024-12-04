@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useContext } from 'react';
 import { TreeViewBaseItem } from '@mui/x-tree-view/models';
 import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
 import { useListTables } from '../../hooks/table';
 import { useListCatalogs } from '../../hooks/catalog';
 import { useListSchemas } from '../../hooks/schema';
 import '../../../style/tree.css';
+import RefreshIcon from '@mui/icons-material/Refresh';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import {
   Entity,
@@ -16,6 +18,8 @@ import {
   CustomTreeItem,
   CustomTreeItemSlotProps
 } from '../../style/catalog-tree';
+import { Box, IconButton } from '@mui/material';
+import AuthContext, { LogoutContext } from '../../context/auth';
 
 export const CatalogTree: React.FC<{
   onExploreClick?: (entity: Entity) => void;
@@ -25,6 +29,9 @@ export const CatalogTree: React.FC<{
   );
   const [tables, setTables] = useState<{ [key: string]: TableInterface[] }>({});
   const [entities, setEntities] = useState<{ [key: string]: Entity }>({});
+  const [refreshKey, setRefreshKey] = useState(0);
+  const authContext = useContext(AuthContext);
+  const logoutContext = useContext(LogoutContext);
 
   const listCatalogsRequest = useListCatalogs();
   const listSchemasRequest = useListSchemas({
@@ -67,9 +74,13 @@ export const CatalogTree: React.FC<{
         }
       }
     };
-
     fetchAllChildren();
-  }, [listCatalogsRequest.data]);
+  }, [listCatalogsRequest.data, refreshKey]);
+
+  const handleRefresh = async () => {
+    setRefreshKey(prevKey => prevKey + 1);
+    await listCatalogsRequest.refetch();
+  };
 
   const treeItems = useMemo(() => {
     const treeItems: TreeViewBaseItem[] = [];
@@ -130,26 +141,78 @@ export const CatalogTree: React.FC<{
   }, [listCatalogsRequest.data, schemas, tables, onExploreClick]);
 
   return (
-    <RichTreeView
-      items={treeItems}
-      defaultExpandedItems={['1', '1.1']}
-      defaultSelectedItems="1.1"
+    <Box
       sx={{
-        height: 'fit-content',
-        flexGrow: 1,
-        maxWidth: 400,
-        overflowY: 'auto'
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        width: '100%'
       }}
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      slots={{ item: CustomTreeItem as any }}
-      slotProps={{
-        item: {
-          entities: entities,
-          onExploreClick: onExploreClick,
-          console: console
-        } as CustomTreeItemSlotProps
-      }}
-    />
+    >
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          padding: 0,
+          height: '30px',
+          borderBottom: '1px solid #ccc',
+          gap: 0
+        }}
+      >
+        <IconButton
+          onClick={handleRefresh}
+          aria-label="refresh-button"
+          color="inherit"
+          title={'Refresh catalog'}
+          sx={{
+            marginRight: 0,
+            '&:hover': {
+              color: 'primary.main'
+            }
+          }}
+        >
+          <RefreshIcon width={10} height={10} />
+        </IconButton>
+        {authContext.authenticated && (
+          <IconButton
+            onClick={logoutContext.logout}
+            aria-label="logout-button"
+            title="Logout"
+            color="inherit"
+            sx={{
+              marginRight: 0,
+              '&:hover': {
+                color: 'primary.main'
+              }
+            }}
+          >
+            <LogoutIcon width={10} height={10} />
+          </IconButton>
+        )}
+      </Box>
+      <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
+        <RichTreeView
+          items={treeItems}
+          defaultExpandedItems={['1', '1.1']}
+          defaultSelectedItems="1.1"
+          sx={{
+            height: 'fit-content',
+            flexGrow: 1,
+            maxWidth: 400,
+            overflowY: 'auto'
+          }}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          slots={{ item: CustomTreeItem as any }}
+          slotProps={{
+            item: {
+              entities: entities,
+              onExploreClick: onExploreClick,
+              console: console
+            } as CustomTreeItemSlotProps
+          }}
+        />
+      </Box>
+    </Box>
   );
 };
 
