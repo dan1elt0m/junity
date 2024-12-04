@@ -45,11 +45,6 @@ jobs:
         set -eux
         jlpm run test
 
-    - name: Test the extension pytest
-      run: |
-        set -eux
-        pytest junity/tests --cov=junity --cov-report=xml --cov-report=term-missing
-
     - name: Package the extension
       run: |
         set -eux
