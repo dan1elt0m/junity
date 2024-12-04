@@ -8,7 +8,7 @@ from junity.handlers import setup_handlers
 def jy_web_app(jp_web_app):
     setup_handlers(jp_web_app)
 
-@patch('junity.preview_handler.preview')
+@patch('junity.preview_handler.PreviewHandler.get')
 def test_get_preview(mock_preview, jy_web_app, jp_asyncio_loop, jp_fetch):
     mock_preview.return_value = [
         {"column1": "value1", "column2": "value2"}
@@ -29,7 +29,7 @@ def test_get_preview(mock_preview, jy_web_app, jp_asyncio_loop, jp_fetch):
         {"column1": "value1", "column2": "value2"}
     ]
 
-@patch('junity.preview_handler.preview')
+@patch('junity.preview_handler.PreviewHandler.get')
 def test_get_preview_empty(mock_preview, jy_web_app, jp_asyncio_loop, jp_fetch):
     mock_preview.return_value = []
 

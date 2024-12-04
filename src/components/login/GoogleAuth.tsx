@@ -6,7 +6,7 @@ import {
 } from '@react-oauth/google';
 import Cookies from 'js-cookie';
 import { useLoginWithToken } from '../../hooks/login';
-import '../../../style/auth.css';
+import { Box, Container, Alert } from '@mui/material';
 
 interface AuthContainerProps {
   googleAuthEnabled: boolean;
@@ -82,14 +82,24 @@ export const GoogleAuth: React.FC<AuthContainerProps> = ({
   };
 
   return (
-    <div className="container">
+    <Container maxWidth="sm">
       {loginError && (
-        <div className="error-message">
-          Oops.. login failed, check console logs or contact your system
-          administrator.
-        </div>
+        <Alert severity="error" sx={{ mb: 2 }}>
+          Login failed, check console logs or contact your system administrator.
+        </Alert>
       )}
-      <div className="login-container">
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        p={3}
+        border={1}
+        borderColor="grey.300"
+        borderRadius={2}
+        boxShadow={3}
+        bgcolor="background.paper"
+      >
         <GoogleOAuthProvider clientId={googleClientId}>
           <GoogleLogin
             onSuccess={handleGoogleSignIn}
@@ -103,7 +113,7 @@ export const GoogleAuth: React.FC<AuthContainerProps> = ({
             aria-label="Sign in with Google"
           />
         </GoogleOAuthProvider>
-      </div>
-    </div>
+      </Box>
+    </Container>
   );
 };

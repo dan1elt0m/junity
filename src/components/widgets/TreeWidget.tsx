@@ -8,7 +8,7 @@ import AppContext from '../../context/app-context';
 import { NotebookTrackerContext } from '../../context/notebook-tracker';
 import { ClientContext, getClient } from '../../context/client';
 import AuthContext, { LogoutContext } from '../../context/auth';
-import '../../../style/auth.css';
+import { Box, Container, Typography } from '@mui/material';
 import { SideBar } from '../functions/SideBar';
 import { GoogleAuth } from '../login/GoogleAuth';
 import { MainPanel } from '../panels/MainPanel';
@@ -108,23 +108,55 @@ export class TreeWidget extends ReactWidget {
                     !this.authenticated &&
                     !this.token ? (
                       !this.googleClientId ? (
-                        <div className="container">
-                          <div className="error-message">
+                        <Container>
+                          <Typography variant="h6" color="error">
                             Error: Google authentication is enabled, but no
                             client ID is set.
-                          </div>
-                        </div>
+                          </Typography>
+                        </Container>
                       ) : (
-                        <div className="container">
-                          <div className="login-container">
-                            <GoogleAuth
-                              googleAuthEnabled={this.googleAuthEnabled}
-                              googleClientId={this.googleClientId}
-                              setAuthenticated={this.setAuthenticated}
-                              updateToken={this.setToken}
-                            />
-                          </div>
-                        </div>
+                        <Container>
+                          <Box
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="flex-start"
+                            p={3}
+                          >
+                            <Box
+                              border={1}
+                              borderColor="blue"
+                              bgcolor="white"
+                              p={4}
+                              m={3}
+                              borderRadius={4}
+                              boxShadow={3}
+                              textAlign="center"
+                              maxWidth={350}
+                            >
+                              <Typography
+                                variant="body1"
+                                margin={3}
+                                gutterBottom
+                              >
+                                Sign in to access Unity Catalog
+                              </Typography>
+                              <GoogleAuth
+                                googleAuthEnabled={this.googleAuthEnabled}
+                                googleClientId={this.googleClientId}
+                                setAuthenticated={this.setAuthenticated}
+                                updateToken={this.setToken}
+                              />
+                              <Typography
+                                variant="body2"
+                                margin={3}
+                                gutterBottom
+                              >
+                                Contact your site administrator to request
+                                access.
+                              </Typography>
+                            </Box>
+                          </Box>
+                        </Container>
                       )
                     ) : (
                       <SideBar />
