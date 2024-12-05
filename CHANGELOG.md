@@ -2,11 +2,25 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.7.5
+
+([Full Changelog](https://github.com/dan1elt0m/junity/compare/v0.7.4...c39202648855292a27c7f5edcbae8ef51cf1c07d))
+
+### Bugs fixed
+
+- Fixes serialization error [#28](https://github.com/dan1elt0m/junity/pull/28) ([@dan1elt0m](https://github.com/dan1elt0m))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/dan1elt0m/junity/graphs/contributors?from=2024-12-05&to=2024-12-05&type=c))
+
+[@dan1elt0m](https://github.com/search?q=repo%3Adan1elt0m%2Fjunity+involves%3Adan1elt0m+updated%3A2024-12-05..2024-12-05&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.7.4
 
 Change DuckDB requirement
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.7.3
 
