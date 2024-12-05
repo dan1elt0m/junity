@@ -36,7 +36,10 @@ export const PreviewTableModal: React.FC<PreviewModalProps> = ({
           transform: 'translate(-50%, -50%)',
           bgcolor: 'background.paper',
           boxShadow: 24,
-          p: 4
+          p: 4,
+          maxWidth: '90vw',
+          maxHeight: '90vh',
+          overflow: 'auto'
         }}
       >
         <Box

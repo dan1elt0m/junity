@@ -1,11 +1,19 @@
 import React, { useContext, useState } from 'react';
-import { Box, Typography, Grid2 as Grid, Divider, Button } from '@mui/material';
+import {
+  Box,
+  Typography,
+  Grid2 as Grid,
+  Divider,
+  Button,
+  Alert
+} from '@mui/material';
 import ListColumns from './ListColumns';
 import { TableInterface } from '../../types/interfaces';
 import { useDeleteTable, useListTables } from '../../hooks/table';
 import { PreviewTableModal } from '../modals/PreviewTable';
 import { ClientContext } from '../../context/client';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 
 interface TableDetailsProps {
   table: TableInterface;
@@ -15,6 +23,7 @@ const TableDetails: React.FC<TableDetailsProps> = ({ table }) => {
   const apiContext = useContext(ClientContext);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [previewData, setPreviewData] = useState([]);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const deleteTableMutation = useDeleteTable({
     catalog: table.catalog_name,
     schema: table.schema_name
@@ -45,21 +54,40 @@ const TableDetails: React.FC<TableDetailsProps> = ({ table }) => {
     try {
       console.log('Requesting table preview data');
       const tableName = `${table.catalog_name}.${table.schema_name}.${table.name}`;
-      const accessToken = Cookies.get('access_token');
-      const response = await fetch(
-        `/junity-server/preview?table_name=${tableName}&access_token=${accessToken}&api_endpoint=${apiContext.defaults.baseURL}&aws_region=eu-west-1`
-      );
-      const data = await response.json();
-      console.log('Preview data:', data);
+      const accessToken = Cookies.get('access_token') || '';
+      const response = await axios.get(`/junity-server/preview`, {
+        params: {
+          table_name: tableName,
+          access_token: accessToken,
+          api_endpoint: apiContext.defaults.baseURL
+        }
+      });
+      const data = await response.data;
       setPreviewData(data.data);
       setIsPreviewOpen(true);
+      setErrorMessage(null); // Clear any previous error message
     } catch (error) {
       console.error('Error fetching preview data:', error);
+      if (axios.isAxiosError(error)) {
+        console.error('Axios error message:', error.message);
+        setErrorMessage(
+          `Error fetching preview data: ${error.message}. View console for more details.`
+        );
+      } else {
+        setErrorMessage(
+          'An unexpected error occurred. View console for more details.'
+        );
+      }
     }
   };
 
   return (
     <Box sx={{ padding: 2 }}>
+      {errorMessage && (
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {errorMessage}
+        </Alert>
+      )}
       <Box
         sx={{
           display: 'flex',
