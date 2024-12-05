@@ -2,11 +2,15 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.7.7
+
+No merged PRs
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.7.6
 
 Restrict page size options of data previewer
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.7.5
 
