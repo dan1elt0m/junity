@@ -2,11 +2,15 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.7.8
+
+Fix flickering of preview table window
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.7.7
 
 No merged PRs
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.7.6
 
