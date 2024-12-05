@@ -15,7 +15,11 @@ class PreviewHandler(APIHandler):
         table_name = self.get_argument("table_name")
         access_token = self.get_argument("access_token")
         api_endpoint = self.get_argument("api_endpoint")
-        aws_region = self.get_argument("aws_region")
+        aws_region = os.environ.get("JY_AWS_REGION", "eu-west-1")
+        docker_host = os.environ.get("JY_DOCKER_HOST")
+
+        if docker_host:
+            api_endpoint = docker_host
 
         [catalog_name, _, _] = table_name.split(".")
 
