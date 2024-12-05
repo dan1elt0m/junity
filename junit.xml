@@ -1,53 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="55" failures="0" errors="0" time="17.09">
-  <testsuite name="ListTables" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:01" time="3.278" tests="3">
-    <testcase classname="ListTables renders a list of tables" name="ListTables renders a list of tables" time="0.109">
+<testsuites name="jest tests" tests="55" failures="0" errors="0" time="22.614">
+  <testsuite name="ListTables" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:20" time="2.902" tests="3">
+    <testcase classname="ListTables renders a list of tables" name="ListTables renders a list of tables" time="0.099">
     </testcase>
-    <testcase classname="ListTables calls onTableClick when a table row is clicked" name="ListTables calls onTableClick when a table row is clicked" time="0.007">
+    <testcase classname="ListTables calls onTableClick when a table row is clicked" name="ListTables calls onTableClick when a table row is clicked" time="0.009">
     </testcase>
-    <testcase classname="ListTables changes row background color on mouse enter and leave" name="ListTables changes row background color on mouse enter and leave" time="0.026">
-    </testcase>
-  </testsuite>
-  <testsuite name="SchemaDetails" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:01" time="3.286" tests="1">
-    <testcase classname="SchemaDetails renders schema details correctly" name="SchemaDetails renders schema details correctly" time="0.129">
+    <testcase classname="ListTables changes row background color on mouse enter and leave" name="ListTables changes row background color on mouse enter and leave" time="0.025">
     </testcase>
   </testsuite>
-  <testsuite name="ExplorerDetails" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:01" time="3.359" tests="3">
-    <testcase classname="ExplorerDetails renders loading state initially" name="ExplorerDetails renders loading state initially" time="0.028">
-    </testcase>
-    <testcase classname="ExplorerDetails renders error state" name="ExplorerDetails renders error state" time="0.002">
-    </testcase>
-    <testcase classname="ExplorerDetails renders catalogs" name="ExplorerDetails renders catalogs" time="0.061">
+  <testsuite name="SchemaDetails" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:20" time="2.931" tests="1">
+    <testcase classname="SchemaDetails renders schema details correctly" name="SchemaDetails renders schema details correctly" time="0.146">
     </testcase>
   </testsuite>
-  <testsuite name="CatalogDetails" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:01" time="3.487" tests="2">
-    <testcase classname="CatalogDetails renders catalog details correctly" name="CatalogDetails renders catalog details correctly" time="0.173">
+  <testsuite name="ExplorerDetails" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:20" time="2.994" tests="3">
+    <testcase classname="ExplorerDetails renders loading state initially" name="ExplorerDetails renders loading state initially" time="0.016">
     </testcase>
-    <testcase classname="CatalogDetails renders schemas correctly" name="CatalogDetails renders schemas correctly" time="0.017">
+    <testcase classname="ExplorerDetails renders error state" name="ExplorerDetails renders error state" time="0.003">
     </testcase>
-  </testsuite>
-  <testsuite name="TableDetails" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:01" time="4.362" tests="1">
-    <testcase classname="TableDetails renders table details correctly" name="TableDetails renders table details correctly" time="0.105">
+    <testcase classname="ExplorerDetails renders catalogs" name="ExplorerDetails renders catalogs" time="0.051">
     </testcase>
   </testsuite>
-  <testsuite name="ListSchema" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:04" time="1.063" tests="1">
-    <testcase classname="ListSchema renders a list of schemas" name="ListSchema renders a list of schemas" time="0.024">
+  <testsuite name="CatalogDetails" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:20" time="3.15" tests="2">
+    <testcase classname="CatalogDetails renders catalog details correctly" name="CatalogDetails renders catalog details correctly" time="0.189">
+    </testcase>
+    <testcase classname="CatalogDetails renders schemas correctly" name="CatalogDetails renders schemas correctly" time="0.018">
     </testcase>
   </testsuite>
-  <testsuite name="ListCatalogs" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:04" time="1.171" tests="3">
-    <testcase classname="ListCatalogs renders a list of catalogs" name="ListCatalogs renders a list of catalogs" time="0.026">
-    </testcase>
-    <testcase classname="ListCatalogs calls onCatalogClick when a catalog row is clicked" name="ListCatalogs calls onCatalogClick when a catalog row is clicked" time="0.013">
-    </testcase>
-    <testcase classname="ListCatalogs changes row background color on mouse enter and leave" name="ListCatalogs changes row background color on mouse enter and leave" time="0.036">
+  <testsuite name="TableDetails" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:20" time="8.402" tests="1">
+    <testcase classname="TableDetails renders table details correctly" name="TableDetails renders table details correctly" time="0.205">
     </testcase>
   </testsuite>
-  <testsuite name="ListColumns" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:04" time="1.439" tests="1">
-    <testcase classname="ListColumns renders a list of columns" name="ListColumns renders a list of columns" time="0.009">
+  <testsuite name="ListColumns" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:23" time="6.936" tests="1">
+    <testcase classname="ListColumns renders a list of columns" name="ListColumns renders a list of columns" time="0.024">
     </testcase>
   </testsuite>
-  <testsuite name="getColumnIconClass" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:05" time="0.68" tests="9">
-    <testcase classname="getColumnIconClass should return ToggleOffIcon for BOOLEAN and BINARY" name="getColumnIconClass should return ToggleOffIcon for BOOLEAN and BINARY" time="0.001">
+  <testsuite name="ListCatalogs" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:23" time="7.059" tests="3">
+    <testcase classname="ListCatalogs renders a list of catalogs" name="ListCatalogs renders a list of catalogs" time="0.038">
+    </testcase>
+    <testcase classname="ListCatalogs calls onCatalogClick when a catalog row is clicked" name="ListCatalogs calls onCatalogClick when a catalog row is clicked" time="0.016">
+    </testcase>
+    <testcase classname="ListCatalogs changes row background color on mouse enter and leave" name="ListCatalogs changes row background color on mouse enter and leave" time="0.031">
+    </testcase>
+  </testsuite>
+  <testsuite name="ListSchema" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:23" time="7.627" tests="1">
+    <testcase classname="ListSchema renders a list of schemas" name="ListSchema renders a list of schemas" time="0.02">
+    </testcase>
+  </testsuite>
+  <testsuite name="Main Component" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:20" time="11.122" tests="2">
+    <testcase classname="Main Component should render the logo" name="Main Component should render the logo" time="0.094">
+    </testcase>
+    <testcase classname="Main Component should render children content" name="Main Component should render children content" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="CatalogTree" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:23" time="8.323" tests="1">
+    <testcase classname="CatalogTree renders tree" name="CatalogTree renders tree" time="0.204">
+    </testcase>
+  </testsuite>
+  <testsuite name="getColumnIconClass" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:28" time="3.032" tests="9">
+    <testcase classname="getColumnIconClass should return ToggleOffIcon for BOOLEAN and BINARY" name="getColumnIconClass should return ToggleOffIcon for BOOLEAN and BINARY" time="0">
     </testcase>
     <testcase classname="getColumnIconClass should return CheckBoxOutlineBlankIcon for NULL" name="getColumnIconClass should return CheckBoxOutlineBlankIcon for NULL" time="0">
     </testcase>
@@ -66,45 +76,29 @@
     <testcase classname="getColumnIconClass should return NotListedLocationIcon for unknown types" name="getColumnIconClass should return NotListedLocationIcon for unknown types" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="loadSettingEnv" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:05" time="0.569" tests="3">
-    <testcase classname="loadSettingEnv should load settings and update them correctly" name="loadSettingEnv should load settings and update them correctly" time="0.01">
+  <testsuite name="useListSchemas" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:30" time="1.706" tests="1">
+    <testcase classname="useListSchemas fetches and returns Schemas" name="useListSchemas fetches and returns Schemas" time="0.072">
+    </testcase>
+  </testsuite>
+  <testsuite name="ExplorerPanel" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:30" time="1.681" tests="4">
+    <testcase classname="ExplorerPanel renders message when no entity is selected" name="ExplorerPanel renders message when no entity is selected" time="0.004">
+    </testcase>
+    <testcase classname="ExplorerPanel renders catalog details correctly" name="ExplorerPanel renders catalog details correctly" time="0.001">
+    </testcase>
+    <testcase classname="ExplorerPanel renders schema details correctly" name="ExplorerPanel renders schema details correctly" time="0.001">
+    </testcase>
+    <testcase classname="ExplorerPanel renders table details correctly" name="ExplorerPanel renders table details correctly" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="loadSettingEnv" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:31" time="1.201" tests="3">
+    <testcase classname="loadSettingEnv should load settings and update them correctly" name="loadSettingEnv should load settings and update them correctly" time="0.056">
     </testcase>
     <testcase classname="loadSettingEnv should handle missing settings data" name="loadSettingEnv should handle missing settings data" time="0.001">
     </testcase>
-    <testcase classname="loadSettingEnv should handle partial settings data" name="loadSettingEnv should handle partial settings data" time="0.001">
+    <testcase classname="loadSettingEnv should handle partial settings data" name="loadSettingEnv should handle partial settings data" time="0.002">
     </testcase>
   </testsuite>
-  <testsuite name="CatalogTree" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:04" time="1.817" tests="1">
-    <testcase classname="CatalogTree renders tree" name="CatalogTree renders tree" time="0.107">
-    </testcase>
-  </testsuite>
-  <testsuite name="useListCatalogs" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:05" time="0.701" tests="1">
-    <testcase classname="useListCatalogs fetches and returns catalogs" name="useListCatalogs fetches and returns catalogs" time="0.074">
-    </testcase>
-  </testsuite>
-  <testsuite name="Main Component" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:01" time="5.333" tests="2">
-    <testcase classname="Main Component should render the logo" name="Main Component should render the logo" time="0.072">
-    </testcase>
-    <testcase classname="Main Component should render children content" name="Main Component should render children content" time="0.005">
-    </testcase>
-  </testsuite>
-  <testsuite name="requestAPI" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:06" time="0.373" tests="5">
-    <testcase classname="requestAPI should make a successful request and return JSON data" name="requestAPI should make a successful request and return JSON data" time="0.001">
-    </testcase>
-    <testcase classname="requestAPI should handle non-JSON response" name="requestAPI should handle non-JSON response" time="0.006">
-    </testcase>
-    <testcase classname="requestAPI should handle empty response body" name="requestAPI should handle empty response body" time="0">
-    </testcase>
-    <testcase classname="requestAPI should throw a ResponseError for unsuccessful response" name="requestAPI should throw a ResponseError for unsuccessful response" time="0.003">
-    </testcase>
-    <testcase classname="requestAPI should throw a NetworkError for network issues" name="requestAPI should throw a NetworkError for network issues" time="0.005">
-    </testcase>
-  </testsuite>
-  <testsuite name="useLoginWithToken" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:06" time="0.728" tests="1">
-    <testcase classname="useLoginWithToken should successfully exchange token" name="useLoginWithToken should successfully exchange token" time="0.061">
-    </testcase>
-  </testsuite>
-  <testsuite name="insertEntityToNotebook" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:06" time="0.328" tests="5">
+  <testsuite name="insertEntityToNotebook" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:32" time="1.81" tests="5">
     <testcase classname="insertEntityToNotebook should insert the path into the current cell&apos;s editor" name="insertEntityToNotebook should insert the path into the current cell&apos;s editor" time="0.001">
     </testcase>
     <testcase classname="insertEntityToNotebook should log an error if there is no active notebook" name="insertEntityToNotebook should log an error if there is no active notebook" time="0">
@@ -116,42 +110,48 @@
     <testcase classname="insertEntityToNotebook should log an error if replaceSelection method is not available on the editor" name="insertEntityToNotebook should log an error if replaceSelection method is not available on the editor" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="ExplorerPanel" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:06" time="0.547" tests="4">
-    <testcase classname="ExplorerPanel renders message when no entity is selected" name="ExplorerPanel renders message when no entity is selected" time="0.003">
-    </testcase>
-    <testcase classname="ExplorerPanel renders catalog details correctly" name="ExplorerPanel renders catalog details correctly" time="0.001">
-    </testcase>
-    <testcase classname="ExplorerPanel renders schema details correctly" name="ExplorerPanel renders schema details correctly" time="0.001">
-    </testcase>
-    <testcase classname="ExplorerPanel renders table details correctly" name="ExplorerPanel renders table details correctly" time="0.002">
+  <testsuite name="useListCatalogs" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:31" time="2.244" tests="1">
+    <testcase classname="useListCatalogs fetches and returns catalogs" name="useListCatalogs fetches and returns catalogs" time="0.079">
     </testcase>
   </testsuite>
-  <testsuite name="useListTables" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:06" time="0.699" tests="1">
-    <testcase classname="useListTables fetches and returns tables" name="useListTables fetches and returns tables" time="0.064">
+  <testsuite name="useLoginWithToken" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:31" time="2.464" tests="1">
+    <testcase classname="useLoginWithToken should successfully exchange token" name="useLoginWithToken should successfully exchange token" time="0.126">
     </testcase>
   </testsuite>
-  <testsuite name="useListSchemas" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:06" time="0.613" tests="1">
-    <testcase classname="useListSchemas fetches and returns Schemas" name="useListSchemas fetches and returns Schemas" time="0.069">
+  <testsuite name="requestAPI" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:32" time="2.167" tests="5">
+    <testcase classname="requestAPI should make a successful request and return JSON data" name="requestAPI should make a successful request and return JSON data" time="0.006">
+    </testcase>
+    <testcase classname="requestAPI should handle non-JSON response" name="requestAPI should handle non-JSON response" time="0.059">
+    </testcase>
+    <testcase classname="requestAPI should handle empty response body" name="requestAPI should handle empty response body" time="0.001">
+    </testcase>
+    <testcase classname="requestAPI should throw a ResponseError for unsuccessful response" name="requestAPI should throw a ResponseError for unsuccessful response" time="0.022">
+    </testcase>
+    <testcase classname="requestAPI should throw a NetworkError for network issues" name="requestAPI should throw a NetworkError for network issues" time="0.003">
     </testcase>
   </testsuite>
-  <testsuite name="CatalogExplorer" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:01" time="6.648" tests="3">
-    <testcase classname="CatalogExplorer should create and open a widget for a catalog" name="CatalogExplorer should create and open a widget for a catalog" time="0.053">
-    </testcase>
-    <testcase classname="CatalogExplorer should create and open a widget for a schema" name="CatalogExplorer should create and open a widget for a schema" time="0.009">
-    </testcase>
-    <testcase classname="CatalogExplorer should create and open a widget for a table" name="CatalogExplorer should create and open a widget for a table" time="0.007">
+  <testsuite name="useListTables" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:31" time="3.541" tests="1">
+    <testcase classname="useListTables fetches and returns tables" name="useListTables fetches and returns tables" time="0.084">
     </testcase>
   </testsuite>
-  <testsuite name="Menu Component" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:01" time="6.676" tests="1">
-    <testcase classname="Menu Component should render the selection buttons" name="Menu Component should render the selection buttons" time="0.097">
+  <testsuite name="CatalogExplorer" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:20" time="16.446" tests="3">
+    <testcase classname="CatalogExplorer should create and open a widget for a catalog" name="CatalogExplorer should create and open a widget for a catalog" time="0.089">
+    </testcase>
+    <testcase classname="CatalogExplorer should create and open a widget for a schema" name="CatalogExplorer should create and open a widget for a schema" time="0.012">
+    </testcase>
+    <testcase classname="CatalogExplorer should create and open a widget for a table" name="CatalogExplorer should create and open a widget for a table" time="0.017">
     </testcase>
   </testsuite>
-  <testsuite name="Junity extension" errors="0" failures="0" skipped="0" timestamp="2024-12-05T09:19:01" time="14.524" tests="3">
-    <testcase classname="Junity extension Activates without crashing" name="Junity extension Activates without crashing" time="0.064">
+  <testsuite name="Menu Component" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:20" time="16.515" tests="1">
+    <testcase classname="Menu Component should render the selection buttons" name="Menu Component should render the selection buttons" time="0.147">
     </testcase>
-    <testcase classname="Junity extension Should use default settings if no env vars are set" name="Junity extension Should use default settings if no env vars are set" time="0.002">
+  </testsuite>
+  <testsuite name="Junity extension" errors="0" failures="0" skipped="0" timestamp="2024-12-05T13:41:20" time="20.362" tests="3">
+    <testcase classname="Junity extension Activates without crashing" name="Junity extension Activates without crashing" time="0.068">
     </testcase>
-    <testcase classname="Junity extension Should update settings if env vars are set" name="Junity extension Should update settings if env vars are set" time="0">
+    <testcase classname="Junity extension Should use default settings if no env vars are set" name="Junity extension Should use default settings if no env vars are set" time="0.007">
+    </testcase>
+    <testcase classname="Junity extension Should update settings if env vars are set" name="Junity extension Should update settings if env vars are set" time="0.003">
     </testcase>
   </testsuite>
 </testsuites>

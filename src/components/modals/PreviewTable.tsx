@@ -60,7 +60,7 @@ export const PreviewTableModal: React.FC<PreviewModalProps> = ({
           <DataGrid
             rows={rows}
             columns={columns}
-            pageSizeOptions={[5, 10, 20, 50, 100]}
+            pageSizeOptions={[5, 10, 20]}
             rowHeight={25}
             sx={{
               border: 1,
