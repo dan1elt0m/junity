@@ -10,6 +10,7 @@ A OSS Unity Catalog extension for Jupyter Lab. This extension allows you to brow
 
 - Browse and manage the Unity Catalog in JupyterLab
 - SidePanel Catalog Tree with option to insert names into code cells
+- Preview table data
 - Oauth with Google and token based authentication
 - Easy configuration with JupyterLab settings editor
 - Docker example with JupyterLab, Unity Catalog and DuckDB
@@ -47,8 +48,13 @@ Possible editor / env settings are:
 - `googleAuthEnabled / JY_GOOGLE_AUTH_ENABLED`: Enable or disable authentication. Default is `False`. If enabled, the `googleClientId` setting is required. In addition, the UC server must be configured to accept Google authentication and user must exist in the UC server.
 - `googleClientId / JY_GOOGLE_CLIENT_ID`: The Google client ID for authentication. Default is `None`.
 
-Settings can be configured partially in editor and partially in env variables. The env variables overwrite
+These settings can be configured partially in editor and partially in env variables. The env variables overwrite
 editor settings. Env vars are only processed on startup, but editor settings can be changed at runtime.
+
+Specific settings for data preview:
+
+- `JY_AWS_REGION`: Required if data is stored on AWS. Default is `eu-west-1`
+- `JY_DOCKER_HOST`: Required if both JupyterLab and Unity Catalog are running in Docker.
 
 ## Example
 
