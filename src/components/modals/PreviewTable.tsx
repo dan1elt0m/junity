@@ -9,85 +9,87 @@ interface PreviewModalProps {
   data: Record<string, React.ReactNode>[];
 }
 
-export const PreviewTableModal: React.FC<PreviewModalProps> = memo(({ open, onClose, data }) => {
-  if (data.length === 0) {
-    return null;
-  }
+export const PreviewTableModal: React.FC<PreviewModalProps> = memo(
+  ({ open, onClose, data }) => {
+    if (data.length === 0) {
+      return null;
+    }
 
-  const headers = Object.keys(data[0]);
-  const rows = data.map((row, index) => ({ id: index, ...row }));
+    const headers = Object.keys(data[0]);
+    const rows = data.map((row, index) => ({ id: index, ...row }));
 
-  const columns: GridColDef[] = headers.map(header => ({
-    field: header,
-    headerName: header,
-    width: 100
-  }));
+    const columns: GridColDef[] = headers.map(header => ({
+      field: header,
+      headerName: header,
+      width: 100
+    }));
 
-  return (
-    <Modal open={open} onClose={onClose}>
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          bgcolor: 'rgba(0, 0, 0, 0.5)',
-          boxShadow: 24,
-          p: 4,
-          overflow: 'auto'
-        }}
-      >
+    return (
+      <Modal open={open} onClose={onClose}>
         <Box
           sx={{
-            maxWidth: '100%',
-            maxHeight: '100%',
-            bgcolor: 'background.paper',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            bgcolor: 'rgba(0, 0, 0, 0.5)',
             boxShadow: 24,
             p: 4,
-            overflow: 'scroll',
-            margin: 'auto'
+            overflow: 'auto'
           }}
         >
           <Box
             sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center'
+              maxWidth: '100%',
+              maxHeight: '100%',
+              bgcolor: 'background.paper',
+              boxShadow: 24,
+              p: 4,
+              overflow: 'scroll',
+              margin: 'auto'
             }}
           >
-            <Typography variant="h6" component="h2" gutterBottom>
-              Table Preview
-            </Typography>
-            <IconButton onClick={onClose}>
-              <CloseIcon />
-            </IconButton>
-          </Box>
-          <Paper sx={{ height: '100%', width: '100%' }}>
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              pageSizeOptions={[5, 10, 25]}
-              rowHeight={25}
+            <Box
               sx={{
-                border: 1,
-                borderColor: 'grey.500',
-                '& .MuiDataGrid-cell': {
-                  borderBottom: '1px solid grey'
-                },
-                '& .MuiDataGrid-columnHeaders': {
-                  borderBottom: '1px solid grey'
-                }
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center'
               }}
-            />
-          </Paper>
+            >
+              <Typography variant="h6" component="h2" gutterBottom>
+                Table Preview
+              </Typography>
+              <IconButton onClick={onClose}>
+                <CloseIcon />
+              </IconButton>
+            </Box>
+            <Paper sx={{ height: '100%', width: '100%' }}>
+              <DataGrid
+                rows={rows}
+                columns={columns}
+                pageSizeOptions={[5, 10, 25]}
+                rowHeight={25}
+                sx={{
+                  border: 1,
+                  borderColor: 'grey.500',
+                  '& .MuiDataGrid-cell': {
+                    borderBottom: '1px solid grey'
+                  },
+                  '& .MuiDataGrid-columnHeaders': {
+                    borderBottom: '1px solid grey'
+                  }
+                }}
+              />
+            </Paper>
+          </Box>
         </Box>
-      </Box>
-    </Modal>
-  );
-});
+      </Modal>
+    );
+  }
+);
 
 export default PreviewTableModal;
