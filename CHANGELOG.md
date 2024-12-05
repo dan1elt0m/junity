@@ -2,6 +2,22 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.7.3
+
+([Full Changelog](https://github.com/dan1elt0m/junity/compare/v0.7.2...afb12456588d0b4b78025d52ac3cd1b2e2091286))
+
+### Bugs fixed
+
+- Add pandas to python deps [#26](https://github.com/dan1elt0m/junity/pull/26) ([@dan1elt0m](https://github.com/dan1elt0m))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/dan1elt0m/junity/graphs/contributors?from=2024-12-05&to=2024-12-05&type=c))
+
+[@dan1elt0m](https://github.com/search?q=repo%3Adan1elt0m%2Fjunity+involves%3Adan1elt0m+updated%3A2024-12-05..2024-12-05&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.7.2
 
 ([Full Changelog](https://github.com/dan1elt0m/junity/compare/v0.7.0...b0ffe54279e4ba666ed45784dfd225a2fcfac344))
@@ -15,8 +31,6 @@
 ([GitHub contributors page for this release](https://github.com/dan1elt0m/junity/graphs/contributors?from=2024-12-04&to=2024-12-05&type=c))
 
 [@dan1elt0m](https://github.com/search?q=repo%3Adan1elt0m%2Fjunity+involves%3Adan1elt0m+updated%3A2024-12-04..2024-12-05&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.7.1
 
