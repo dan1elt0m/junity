@@ -38,8 +38,8 @@ class PreviewHandler(APIHandler):
                     ATTACH '{catalog_name}' AS {catalog_name} (TYPE UC_CATALOG);
                     """)
 
-            data = conn.execute(f"SELECT * FROM {table_name} LIMIT 500;").fetchdf().to_dict(orient="records")
+            data = conn.execute(f"SELECT * FROM {table_name} LIMIT 500;").fetchdf().to_json(orient="records")
 
-        self.finish(json.dumps({
+        self.finish({
             "data" : data
-        }))
+        })

@@ -62,8 +62,9 @@ const TableDetails: React.FC<TableDetailsProps> = ({ table }) => {
           api_endpoint: apiContext.defaults.baseURL
         }
       });
-      const data = await response.data;
-      setPreviewData(data.data);
+      const data = await JSON.parse(response.data.data);
+      console.log('Preview data:', data);
+      setPreviewData(data);
       setIsPreviewOpen(true);
       setErrorMessage(null); // Clear any previous error message
     } catch (error) {
