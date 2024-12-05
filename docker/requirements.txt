@@ -1,2 +1,2 @@
-junity==0.7.0
+junity==0.7.2
 duckdb==1.1.3
