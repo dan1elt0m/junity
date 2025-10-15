@@ -1,3 +1,5 @@
+Archived
+
 ![Junity Logo](style/logo/junity.png)
 
 [![Github Actions Status](https://github.com/dan1elt0m/junity/workflows/Build/badge.svg)](https://github.com/dan1elt0m/junity/actions/workflows/build.yml)
